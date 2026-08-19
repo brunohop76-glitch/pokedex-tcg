@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #e8e0c8;
+  --foreground: #1c2b22;
+  --retro-green: #3d7a5a;
+  --retro-dark: #18352b;
+  --retro-red: #d62828;
+  --retro-cream: #f7f1dc;
+  --retro-shadow: #9b947f;
 }
 
 @theme inline {
@@ -12,15 +17,381 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  image-rendering: auto;
+}
+
+button,
+a,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* =========================================================
+   POKEDEX RETRO / GAME BOY ADVANCE THEME
+   Visual inspired by classic handheld RPG interfaces:
+   cream panels, dark green frames, red accents and pixel-like borders.
+   ========================================================= */
+
+main.min-h-screen {
+  background-color: #e8e0c8 !important;
+  color: #1c2b22 !important;
+}
+
+/* Remove the old futuristic glow layer. */
+main > .pointer-events-none.fixed {
+  display: none !important;
+}
+
+/* Remove the large "Explore the Pokemon World" hero title/description. */
+main > section:first-of-type h2,
+main > section:first-of-type h2 + p {
+  display: none !important;
+}
+
+/* Top device/header */
+main > header {
+  position: sticky !important;
+  top: 0;
+  background: #263f35 !important;
+  border-bottom: 4px solid #172a22 !important;
+  box-shadow: 0 3px 0 #9b947f, 0 6px 0 rgba(24,53,43,.18) !important;
+  backdrop-filter: none !important;
+}
+
+main > header > div {
+  min-height: 70px;
+}
+
+main > header a:first-child > div:first-child {
+  width: 46px !important;
+  height: 46px !important;
+  border-radius: 8px !important;
+  border: 3px solid #f7f1dc !important;
+  background: #d62828 !important;
+  color: #fff !important;
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,.25), 3px 3px 0 #102018 !important;
+}
+
+main > header h1 {
+  color: #fff !important;
+  font-family: var(--font-geist-mono), monospace !important;
+  letter-spacing: .12em !important;
+}
+
+main > header p {
+  color: #c8d8c5 !important;
+}
+
+main > header nav a {
+  color: #d9e7d4 !important;
+}
+
+main > header nav a:first-child {
+  color: #ffdf72 !important;
+}
+
+main > header nav a:hover {
+  color: #fff !important;
+}
+
+main > header > div > div:last-child {
+  border: 2px solid #82b96f !important;
+  background: #19352b !important;
+  border-radius: 6px !important;
+}
+
+main > header > div > div:last-child span:last-child {
+  color: #9be27c !important;
+}
+
+/* Main search / Pokédex screen */
+main > section:first-of-type {
+  background:
+    linear-gradient(rgba(24,53,43,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24,53,43,.05) 1px, transparent 1px),
+    #cdd9b8 !important;
+  background-size: 8px 8px !important;
+  border-bottom: 5px solid #263f35 !important;
+}
+
+main > section:first-of-type > div {
+  padding-top: 42px !important;
+  padding-bottom: 42px !important;
+}
+
+main > section:first-of-type > div > div {
+  max-width: 900px !important;
+}
+
+main > section:first-of-type .mb-6 {
+  margin-bottom: 18px !important;
+}
+
+main > section:first-of-type .mb-6 span:first-child {
+  width: 18px !important;
+  height: 18px !important;
+  background: #d62828 !important;
+  box-shadow: none !important;
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 75% 75%, 75% 100%, 0 100%) !important;
+}
+
+main > section:first-of-type .mb-6 span:last-child {
+  color: #263f35 !important;
+  font-family: var(--font-geist-mono), monospace !important;
+  letter-spacing: .18em !important;
+}
+
+/* Search box */
+main > section:first-of-type .group.relative > div:first-child {
+  display: none !important;
+}
+
+main > section:first-of-type .group.relative > div:last-child {
+  border: 4px solid #263f35 !important;
+  border-radius: 7px !important;
+  background: #f7f1dc !important;
+  padding: 5px !important;
+  box-shadow: inset 0 0 0 2px #a7b596, 5px 5px 0 #9b947f !important;
+  backdrop-filter: none !important;
+}
+
+main > section:first-of-type input {
+  color: #18352b !important;
+  font-family: var(--font-geist-mono), monospace !important;
+  font-weight: 700 !important;
+}
+
+main > section:first-of-type input::placeholder {
+  color: #7c806f !important;
+}
+
+main > section:first-of-type .group.relative span {
+  color: #d62828 !important;
+}
+
+main > section:first-of-type button {
+  border-radius: 5px !important;
+  background: #d62828 !important;
+  color: #fff !important;
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,.22), 2px 2px 0 #7e1717 !important;
+}
+
+main > section:first-of-type button:hover {
+  transform: translate(1px, 1px) !important;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,.22), 1px 1px 0 #7e1717 !important;
+}
+
+/* Stats */
+main > section:first-of-type .mt-12 {
+  margin-top: 28px !important;
+}
+
+main > section:first-of-type .mt-12 p:first-child {
+  color: #18352b !important;
+  font-family: var(--font-geist-mono), monospace !important;
+}
+
+main > section:first-of-type .mt-12 p:last-child {
+  color: #536454 !important;
+}
+
+main > section:first-of-type .h-10.w-px {
+  background: #87927d !important;
+}
+
+/* Sections */
+main > section:not(:first-of-type) {
+  color: #1c2b22 !important;
+}
+
+#generations {
+  background: #e8e0c8 !important;
+}
+
+#generations .text-cyan-400 {
+  color: #39745b !important;
+}
+
+#generations h3 {
+  color: #18352b !important;
+  font-family: var(--font-geist-mono), monospace !important;
+  letter-spacing: -.03em !important;
+}
+
+#generations h3 .text-red-500 {
+  color: #d62828 !important;
+}
+
+#generations p {
+  color: #657060 !important;
+}
+
+#generations .bg-gradient-to-r {
+  background: #91a48d !important;
+}
+
+/* Generation buttons: make them feel like cartridge/menu tiles. */
+#generations button {
+  min-height: 132px !important;
+  border: 3px solid #667564 !important;
+  border-radius: 8px !important;
+  background: #f7f1dc !important;
+  color: #18352b !important;
+  box-shadow: 3px 3px 0 #9b947f !important;
+}
+
+#generations button:hover {
+  transform: translateY(-2px) !important;
+  border-color: #39745b !important;
+  background: #fff9e8 !important;
+  box-shadow: 4px 4px 0 #7f8875 !important;
+}
+
+#generations button[class*="border-red-500"] {
+  border-color: #d62828 !important;
+  background: #fff0e7 !important;
+  box-shadow: 3px 3px 0 #a84b42 !important;
+}
+
+#generations button p {
+  color: #526052 !important;
+}
+
+#generations button p:first-child {
+  color: #39745b !important;
+}
+
+#generations button[class*="border-red-500"] p:first-child {
+  color: #d62828 !important;
+}
+
+#generations button .absolute {
+  display: none !important;
+}
+
+/* Pokemon database area */
+#pokemon {
+  background: #e8e0c8 !important;
+}
+
+#pokemon h3 {
+  color: #18352b !important;
+  font-family: var(--font-geist-mono), monospace !important;
+}
+
+#pokemon article {
+  border: 3px solid #667564 !important;
+  border-radius: 8px !important;
+  background: #f7f1dc !important;
+  box-shadow: 3px 3px 0 #9b947f !important;
+}
+
+#pokemon article:hover {
+  transform: translateY(-3px) !important;
+  border-color: #39745b !important;
+  box-shadow: 4px 5px 0 #7d8674 !important;
+}
+
+#pokemon article > div:first-child {
+  background: #d4dfc5 !important;
+  border-bottom: 3px solid #667564 !important;
+}
+
+#pokemon article img {
+  image-rendering: auto;
+}
+
+#pokemon article h4 {
+  color: #18352b !important;
+  font-family: var(--font-geist-mono), monospace !important;
+}
+
+#pokemon article p,
+#pokemon article span {
+  color: #647062 !important;
+}
+
+/* Loading / empty panels */
+main .bg-white,
+main .bg-white\/\[0\.025\] {
+  background: #f7f1dc !important;
+}
+
+/* TCG strip */
+#tcg,
+main > section.bg-red-600 {
+  background: #b82028 !important;
+  color: #fff !important;
+  border-top: 5px solid #263f35 !important;
+}
+
+#tcg h3,
+main > section.bg-red-600 h3 {
+  font-family: var(--font-geist-mono), monospace !important;
+}
+
+#tcg article,
+main > section.bg-red-600 article {
+  border: 3px solid #263f35 !important;
+  border-radius: 8px !important;
+  box-shadow: 4px 4px 0 #64141a !important;
+}
+
+/* Footer */
+main > footer {
+  background: #18352b !important;
+  color: #cdd9c7 !important;
+  border-top: 4px solid #10251d !important;
+  font-family: var(--font-geist-mono), monospace !important;
+}
+
+/* Pixel-ish scanline texture without external images */
+main::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  opacity: .035;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 3px,
+    #18352b 3px,
+    #18352b 4px
+  );
+}
+
+@media (max-width: 768px) {
+  main > header > div {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  main > section:first-of-type > div {
+    padding-top: 28px !important;
+    padding-bottom: 28px !important;
+  }
+
+  #generations {
+    padding-top: 34px !important;
+    padding-bottom: 34px !important;
+  }
+
+  #generations > div:last-child {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
 }
