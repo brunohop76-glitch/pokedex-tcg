@@ -2,7 +2,10 @@
 
 :root {
   --bg: #dfe5c9;
-  --paper: #f4f0d8;
+  --paper: #f7f2d8;
+  --paper-light: #fffbea;
+  --screen: #e7edc9;
+  --screen-dark: #cfd9ae;
   --ink: #17362c;
   --green: #24533f;
   --green-dark: #102d23;
@@ -45,8 +48,6 @@ main.min-h-screen {
 }
 
 main > .pointer-events-none.fixed { display: none !important; }
-
-/* The old hero phrase stays removed; search becomes the main display. */
 main > section:first-of-type h2,
 main > section:first-of-type h2 + p { display: none !important; }
 
@@ -132,7 +133,7 @@ main > section:first-of-type .group.relative > div:last-child {
   min-height: 58px;
   border: 4px solid var(--green-dark) !important;
   border-radius: 7px !important;
-  background: var(--paper) !important;
+  background: var(--paper-light) !important;
   padding: 5px !important;
   box-shadow: inset 0 0 0 2px #aeb99d, 5px 5px 0 var(--shadow) !important;
   backdrop-filter: none !important;
@@ -229,7 +230,9 @@ main > section:first-of-type .h-10.w-px { background: #83917d !important; }
 #generations button[class*="border-red-500"] p:first-child { color: var(--red) !important; }
 #generations button .absolute { display: none !important; }
 
-/* DATABASE */
+/* =========================================================
+   POKÉDEX CARDS — LIGHT LCD / GAME BOY SCREEN
+   ========================================================= */
 #pokemon {
   background:
     linear-gradient(rgba(23,54,44,.035) 1px, transparent 1px),
@@ -243,42 +246,117 @@ main > section:first-of-type .h-10.w-px { background: #83917d !important; }
   font-family: var(--font-geist-mono), monospace !important;
   letter-spacing: -.04em !important;
 }
+
+/* Card body: warm Pokédex paper instead of black. */
 #pokemon article {
   position: relative;
   overflow: hidden !important;
-  border: 3px solid #536557 !important;
-  border-radius: 8px !important;
-  background: var(--paper) !important;
-  box-shadow: 4px 4px 0 #929887 !important;
+  border: 3px solid #526b59 !important;
+  border-radius: 10px !important;
+  background: var(--paper-light) !important;
+  color: var(--green-dark) !important;
+  box-shadow: 4px 4px 0 #9aa08c, inset 0 0 0 1px rgba(255,255,255,.9) !important;
   transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease !important;
 }
 #pokemon article:hover {
   transform: translateY(-4px) !important;
-  border-color: #2f6650 !important;
-  box-shadow: 5px 7px 0 #707a6d !important;
+  border-color: var(--red) !important;
+  box-shadow: 5px 7px 0 #777f70, 0 0 0 2px rgba(215,25,32,.08) !important;
 }
+
+/* Image area: soft LCD green, not black. */
 #pokemon article > div:first-child {
+  position: relative !important;
+  min-height: 190px !important;
   background:
-    radial-gradient(circle at 50% 40%, rgba(255,255,255,.35), transparent 55%),
-    #c9d5b5 !important;
-  border-bottom: 3px solid #536557 !important;
+    radial-gradient(circle at 50% 45%, rgba(255,255,255,.68), transparent 54%),
+    linear-gradient(rgba(23,54,44,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23,54,44,.025) 1px, transparent 1px),
+    var(--screen) !important;
+  background-size: auto, 8px 8px, 8px 8px, auto !important;
+  border-bottom: 3px solid #789071 !important;
 }
-#pokemon article img { transition: transform .16s ease !important; }
-#pokemon article:hover img { transform: scale(1.07) !important; }
+
+/* Soft inner screen frame. */
+#pokemon article > div:first-child::after {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgba(36,83,63,.14);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+#pokemon article img {
+  position: relative !important;
+  z-index: 2 !important;
+  filter: drop-shadow(0 8px 8px rgba(23,54,44,.18)) !important;
+  transition: transform .16s ease, filter .16s ease !important;
+}
+#pokemon article:hover img {
+  transform: scale(1.07) !important;
+  filter: drop-shadow(0 10px 10px rgba(23,54,44,.25)) !important;
+}
+
+/* Number badge. */
+#pokemon article > div:first-child > span:first-child {
+  background: #f4efd7 !important;
+  color: #365242 !important;
+  border: 2px solid #7b8b76 !important;
+  border-radius: 4px !important;
+  box-shadow: 2px 2px 0 rgba(42,65,51,.16) !important;
+}
+
+/* Registered badge. */
+#pokemon article > div:first-child > span:nth-child(2) {
+  background: #e6f1dc !important;
+  color: #28704d !important;
+  border: 2px solid #6fa276 !important;
+  border-radius: 999px !important;
+  box-shadow: 2px 2px 0 rgba(42,65,51,.12) !important;
+}
+
+#pokemon article > div:last-child {
+  background:
+    linear-gradient(rgba(23,54,44,.018) 1px, transparent 1px),
+    var(--paper-light) !important;
+  background-size: 100% 6px !important;
+  color: var(--green-dark) !important;
+}
 #pokemon article h4 {
   color: var(--green-dark) !important;
   font-family: var(--font-geist-mono), monospace !important;
+  font-weight: 900 !important;
 }
-#pokemon article p,
-#pokemon article span { color: #617064 !important; }
-#pokemon article > div:first-child > span {
-  background: #1a3028 !important;
-  color: #e9efd9 !important;
-  border-radius: 4px !important;
-  padding: 4px 7px !important;
-  font-family: var(--font-geist-mono), monospace !important;
-  box-shadow: 2px 2px 0 rgba(0,0,0,.18);
+#pokemon article p { color: #657467 !important; }
+#pokemon article > div:last-child > div:last-child {
+  border-top-color: #d2d5bd !important;
 }
+#pokemon article > div:last-child > div:last-child span:first-child {
+  color: #718070 !important;
+}
+#pokemon article > div:last-child > div:last-child span:last-child {
+  color: #187d89 !important;
+}
+
+/* Type pills — keep each type color but soften them for the light card. */
+#pokemon article .border-orange-500\/30 { background: #fff0d8 !important; color: #a85419 !important; border-color: #df9b58 !important; }
+#pokemon article .border-blue-500\/30 { background: #e5f0fa !important; color: #286b96 !important; border-color: #76a9c8 !important; }
+#pokemon article .border-yellow-400\/30 { background: #fff7cc !important; color: #8a6a00 !important; border-color: #d6bd55 !important; }
+#pokemon article .border-emerald-500\/30 { background: #e3f2d9 !important; color: #28704d !important; border-color: #73a36f !important; }
+#pokemon article .border-fuchsia-500\/30 { background: #f4e4ef !important; color: #874d79 !important; border-color: #b987ac !important; }
+#pokemon article .border-cyan-300\/30 { background: #e1f2f0 !important; color: #27716f !important; border-color: #73aaa5 !important; }
+#pokemon article .border-red-500\/30 { background: #f8e0dc !important; color: #a43d35 !important; border-color: #d17a70 !important; }
+#pokemon article .border-sky-400\/30 { background: #e1eef4 !important; color: #326b83 !important; border-color: #7ca9ba !important; }
+#pokemon article .border-amber-600\/30 { background: #f5ead6 !important; color: #886229 !important; border-color: #c5a16b !important; }
+#pokemon article .border-lime-500\/30 { background: #edf2d4 !important; color: #5e7625 !important; border-color: #a8b66c !important; }
+#pokemon article .border-violet-500\/30 { background: #ece6f5 !important; color: #65528d !important; border-color: #a294c3 !important; }
+#pokemon article .border-pink-500\/30 { background: #f6e4ec !important; color: #9b5871 !important; border-color: #c992a7 !important; }
+#pokemon article .border-indigo-500\/30 { background: #e8e9f6 !important; color: #555f91 !important; border-color: #9da4ca !important; }
+#pokemon article .border-slate-400\/30 { background: #e9edf0 !important; color: #596873 !important; border-color: #a6b0b7 !important; }
+#pokemon article .border-slate-300\/30 { background: #edf0f1 !important; color: #53626b !important; border-color: #aeb9be !important; }
+#pokemon article .border-stone-400\/30 { background: #eeeae0 !important; color: #716654 !important; border-color: #b7aa93 !important; }
+#pokemon article .border-pink-300\/30 { background: #f8e8ee !important; color: #9b657d !important; border-color: #d0a2b5 !important; }
 
 /* TCG */
 #tcg,
@@ -294,8 +372,8 @@ main > section.bg-red-600 {
 main > section.bg-red-600 h3 { font-family: var(--font-geist-mono), monospace !important; }
 
 /* COMMON PANELS */
-main .bg-white { background: var(--paper) !important; border-color: #d0cbb1 !important; }
-main .bg-zinc-100 { background: #d1dbc0 !important; }
+main .bg-white { background: var(--paper-light) !important; border-color: #d0cbb1 !important; }
+main .bg-zinc-100 { background: var(--screen-dark) !important; }
 main .text-zinc-500 { color: #697467 !important; }
 main .text-zinc-400 { color: #7a8175 !important; }
 
@@ -324,4 +402,5 @@ main::after {
   #generations { padding-top: 32px !important; padding-bottom: 32px !important; }
   #generations > div:last-child { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
   #pokemon { padding-top: 0 !important; }
+  #pokemon article > div:first-child { min-height: 155px !important; }
 }
