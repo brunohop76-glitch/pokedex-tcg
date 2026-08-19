@@ -54,29 +54,63 @@ async function getPokemon(id: string): Promise<Pokemon> {
 }
 
 async function getTCGCards(
-  pokedexNumber: number
+  pokedexNumber: number,
+  pokemonName: string
 ): Promise<TCGCard[]> {
-  const query = encodeURIComponent(
+  // PRIMEIRA TENTATIVA:
+  // Busca pelo número da Pokédex
+  const pokedexQuery = encodeURIComponent(
     "nationalPokedexNumbers:" + pokedexNumber
   );
 
-  const response = await fetch(
+  const pokedexUrl =
     "https://api.pokemontcg.io/v2/cards?q=" +
-      query +
-      "&pageSize=250",
-    {
-      cache: "no-store",
+    pokedexQuery +
+    "&pageSize=250";
+
+  const pokedexResponse = await fetch(pokedexUrl, {
+    cache: "no-store",
+  });
+
+  if (pokedexResponse.ok) {
+    const pokedexData = await pokedexResponse.json();
+
+    if (
+      pokedexData.data &&
+      pokedexData.data.length > 0
+    ) {
+      return pokedexData.data;
     }
+  }
+
+  // SEGUNDA TENTATIVA:
+  // Se não encontrou pelo número,
+  // procura pelo nome do Pokémon
+  const nameQuery = encodeURIComponent(
+    "name:" + pokemonName
   );
 
-  if (!response.ok) {
-    console.error("Erro ao buscar cartas TCG");
+  const nameUrl =
+    "https://api.pokemontcg.io/v2/cards?q=" +
+    nameQuery +
+    "&pageSize=250";
+
+  const nameResponse = await fetch(nameUrl, {
+    cache: "no-store",
+  });
+
+  if (!nameResponse.ok) {
+    console.error(
+      "Erro ao buscar cartas TCG:",
+      nameResponse.status
+    );
+
     return [];
   }
 
-  const data = await response.json();
+  const nameData = await nameResponse.json();
 
-  return data.data ?? [];
+  return nameData.data ?? [];
 }
 
 export default async function PokemonPage({
@@ -87,7 +121,11 @@ export default async function PokemonPage({
   const { id } = await params;
 
   const pokemon = await getPokemon(id);
-  const cards = await getTCGCards(pokemon.id);
+
+  const cards = await getTCGCards(
+    pokemon.id,
+    pokemon.name
+  );
 
   const image =
     pokemon.sprites.other["official-artwork"].front_default;
@@ -95,6 +133,7 @@ export default async function PokemonPage({
   return (
     <main className="min-h-screen bg-[#f4f4f4] text-zinc-900">
 
+      {/* HEADER */}
       <header className="border-b border-black/10 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
 
@@ -127,10 +166,12 @@ export default async function PokemonPage({
         </div>
       </header>
 
+      {/* POKEMON */}
       <section className="mx-auto max-w-7xl px-6 py-10">
 
         <div className="grid overflow-hidden rounded-3xl bg-white shadow-sm md:grid-cols-2">
 
+          {/* IMAGE */}
           <div className="flex min-h-[420px] items-center justify-center bg-zinc-100 p-10">
 
             {image && (
@@ -143,6 +184,7 @@ export default async function PokemonPage({
 
           </div>
 
+          {/* INFORMATION */}
           <div className="p-8 md:p-12">
 
             <p className="text-sm font-black uppercase tracking-widest text-red-600">
@@ -153,6 +195,7 @@ export default async function PokemonPage({
               {pokemon.name}
             </h2>
 
+            {/* TYPES */}
             <div className="mt-6 flex flex-wrap gap-2">
 
               {pokemon.types.map((item) => (
@@ -166,6 +209,7 @@ export default async function PokemonPage({
 
             </div>
 
+            {/* STATS */}
             <div className="mt-8 grid grid-cols-2 gap-4">
 
               <div className="rounded-2xl bg-zinc-100 p-5">
@@ -194,6 +238,7 @@ export default async function PokemonPage({
 
             </div>
 
+            {/* ABILITIES */}
             <div className="mt-8">
 
               <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">
@@ -221,6 +266,7 @@ export default async function PokemonPage({
 
       </section>
 
+      {/* EVOLUTION */}
       <section className="mx-auto max-w-7xl px-6 pb-10">
 
         <div className="rounded-3xl bg-white p-8 shadow-sm">
@@ -242,6 +288,7 @@ export default async function PokemonPage({
 
       </section>
 
+      {/* TCG */}
       <section className="bg-red-600">
 
         <div className="mx-auto max-w-7xl px-6 py-16 text-white">
@@ -283,6 +330,7 @@ export default async function PokemonPage({
                   className="overflow-hidden rounded-2xl bg-white text-zinc-900 shadow-xl transition duration-300 hover:-translate-y-2"
                 >
 
+                  {/* CARD IMAGE */}
                   <div className="bg-zinc-100">
 
                     <img
@@ -293,6 +341,7 @@ export default async function PokemonPage({
 
                   </div>
 
+                  {/* CARD INFORMATION */}
                   <div className="p-4">
 
                     <h4 className="font-black">
@@ -337,6 +386,7 @@ export default async function PokemonPage({
 
       </section>
 
+      {/* FOOTER */}
       <footer className="bg-zinc-950 px-6 py-8 text-center text-sm text-zinc-500">
         Pokédex TCG • Projeto desenvolvido com Next.js
       </footer>
