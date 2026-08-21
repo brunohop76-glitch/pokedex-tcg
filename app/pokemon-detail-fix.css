@@ -1,31 +1,42 @@
-/* FINAL DETAIL LAYOUT FIX
-   Stable two-column Pokemon detail layout.
-   Restored to the known-good compact artwork version. */
+/* POLISHED POKEMON DETAIL LAYOUT
+   Keeps the existing Nexus / Fire Red visual language while making
+   the hero more compact, balanced and information-dense. */
 
 main > section:first-of-type > div > div.grid {
   display: grid !important;
-  grid-template-columns: 34% 66% !important;
+  grid-template-columns: 36% 64% !important;
   width: 100% !important;
   gap: 0 !important;
   align-items: stretch !important;
 }
 
 main > section:first-of-type > div > div.grid > div:first-child {
-  min-height: 360px !important;
-  height: 360px !important;
-  padding: 14px !important;
+  min-height: 350px !important;
+  height: 350px !important;
+  padding: 12px !important;
   border-right: 2px solid #71816f !important;
   border-bottom: 0 !important;
   overflow: hidden !important;
 }
 
 main > section:first-of-type > div > div.grid > div:first-child img {
-  width: 72% !important;
-  max-width: 270px !important;
-  max-height: 285px !important;
+  width: 66% !important;
+  max-width: 245px !important;
+  max-height: 255px !important;
   height: auto !important;
   object-fit: contain !important;
-  margin: 24px auto 0 !important;
+  margin: 18px auto 0 !important;
+  filter: drop-shadow(0 16px 10px rgba(23,54,44,.22)) !important;
+}
+
+main > section:first-of-type > div > div.grid > div:first-child > div:first-child {
+  left: 14px !important;
+  top: 14px !important;
+}
+
+main > section:first-of-type > div > div.grid > div:first-child > div:nth-child(2) {
+  right: 14px !important;
+  top: 14px !important;
 }
 
 main > section:first-of-type > div > div.grid > div:nth-child(2) {
@@ -33,41 +44,53 @@ main > section:first-of-type > div > div.grid > div:nth-child(2) {
   visibility: visible !important;
   opacity: 1 !important;
   min-width: 0 !important;
-  min-height: 360px !important;
-  padding: 24px 28px !important;
+  min-height: 350px !important;
+  padding: 20px 24px !important;
   background: #f7f2d8 !important;
   overflow: hidden !important;
 }
 
 main > section:first-of-type > div > div.grid > div:nth-child(2) h1 {
-  font-size: clamp(2.6rem, 4vw, 4rem) !important;
-  line-height: .9 !important;
+  font-size: clamp(2.45rem, 3.6vw, 3.55rem) !important;
+  line-height: .88 !important;
+  letter-spacing: -.035em !important;
   margin-top: 2px !important;
 }
 
 main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child(3) {
-  margin-top: 10px !important;
-  padding: 11px 13px !important;
+  margin-top: 8px !important;
+  padding: 9px 12px !important;
 }
 
 main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child(4) {
-  margin-top: 10px !important;
-  gap: 7px !important;
+  margin-top: 9px !important;
+  gap: 6px !important;
 }
 
 main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child(4) > div {
-  min-height: 55px !important;
-  padding: 8px 9px !important;
+  min-height: 48px !important;
+  padding: 7px 8px !important;
 }
 
 main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child(5) {
-  margin-top: 9px !important;
-  gap: 10px !important;
+  margin-top: 8px !important;
+  gap: 8px !important;
+}
+
+main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child(5) span {
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+
+/* Make the lower information panels visually cleaner and remove
+   accidental hard outlines without changing their data. */
+main > section:nth-of-type(2) > div {
+  box-shadow: 5px 5px 0 #8d9582 !important;
 }
 
 @media (min-width: 769px) and (max-width: 1100px) {
   main > section:first-of-type > div > div.grid {
-    grid-template-columns: 36% 64% !important;
+    grid-template-columns: 38% 62% !important;
   }
 
   main > section:first-of-type > div > div.grid > div:first-child {
@@ -76,14 +99,14 @@ main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child
   }
 
   main > section:first-of-type > div > div.grid > div:first-child img {
-    width: 70% !important;
-    max-width: 240px !important;
-    max-height: 260px !important;
+    width: 68% !important;
+    max-width: 225px !important;
+    max-height: 235px !important;
   }
 
   main > section:first-of-type > div > div.grid > div:nth-child(2) {
     min-height: 330px !important;
-    padding: 20px 22px !important;
+    padding: 18px 20px !important;
   }
 }
 
@@ -102,7 +125,7 @@ main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child
   main > section:first-of-type > div > div.grid > div:first-child img {
     width: 62% !important;
     max-width: 220px !important;
-    max-height: 240px !important;
+    max-height: 235px !important;
   }
 
   main > section:first-of-type > div > div.grid > div:nth-child(2) {
