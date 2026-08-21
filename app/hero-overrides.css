@@ -1,0 +1,38 @@
+/* HERO FIRE RED — refinamento visual */
+main>section:first-of-type{
+  min-height:560px!important;
+  position:relative!important;
+  overflow:hidden!important;
+  background-image:linear-gradient(90deg,rgba(3,20,12,.96) 0%,rgba(3,20,12,.88) 29%,rgba(3,20,12,.45) 58%,rgba(3,20,12,.12) 100%),url("https://archives.bulbagarden.net/wiki/Special:Redirect/file/Viridian_City_FRLG.png")!important;
+  background-size:cover!important;
+  background-position:center center!important;
+  background-repeat:no-repeat!important;
+}
+main>section:first-of-type>div{padding-top:48px!important;padding-bottom:40px!important}
+main>section:first-of-type>div>div>div:first-child{
+  max-width:720px!important;
+  padding:26px 28px 24px!important;
+  border:2px solid rgba(64,157,93,.42)!important;
+  border-radius:12px!important;
+  background:linear-gradient(180deg,rgba(2,24,14,.82),rgba(2,24,14,.67))!important;
+  box-shadow:0 16px 38px rgba(0,0,0,.32),inset 0 0 0 1px rgba(255,255,255,.035)!important;
+  backdrop-filter:blur(2px)!important;
+}
+main>section:first-of-type>div>div>div:first-child::before{content:"VIRIDIAN CITY  •  KANTO"!important;margin-bottom:16px!important;color:#64e875!important;font:800 11px var(--font-geist-mono),monospace!important;letter-spacing:.2em!important;text-shadow:1px 1px 0 #071b12!important}
+main>section:first-of-type h2{font-size:0!important;margin:0!important;color:#fff!important;text-shadow:4px 4px 0 #071b12,0 0 18px rgba(0,0,0,.35)!important}
+main>section:first-of-type h2::before{content:"POKÉDEX"!important;display:block!important;font:900 clamp(4rem,7vw,6.4rem)/.82 var(--font-geist-mono),monospace!important;letter-spacing:-.08em!important;color:#fff!important}
+main>section:first-of-type h2::after{content:"NEXUS DATABASE"!important;display:block!important;margin-top:13px!important;font:900 clamp(1.15rem,2vw,1.8rem)/1 var(--font-geist-mono),monospace!important;letter-spacing:.12em!important;color:#ed2b2b!important;text-shadow:2px 2px 0 #721615!important}
+main>section:first-of-type h2+ p{display:block!important;max-width:600px!important;margin-top:18px!important;color:#f7f3dc!important;font-size:1rem!important;line-height:1.5!important;text-shadow:2px 2px 0 rgba(0,0,0,.5)!important}
+main>section:first-of-type .group.relative{max-width:650px!important;margin-top:22px!important}
+main>section:first-of-type .group.relative>div:last-child{min-height:62px!important;border:4px solid #173b2a!important;border-radius:8px!important;background:#fffbea!important;padding:4px!important;box-shadow:inset 0 0 0 2px #b5bea4,5px 5px 0 #071b12,0 0 20px rgba(0,0,0,.2)!important}
+main>section:first-of-type .group.relative input{font:700 14px var(--font-geist-mono),monospace!important;color:#17362c!important}
+main>section:first-of-type .group.relative button{min-height:50px!important;border-radius:5px!important;background:#df1c24!important;box-shadow:inset 0 -3px 0 rgba(0,0,0,.22),2px 2px 0 #8e1117!important}
+main>section:first-of-type>div>div>div:first-child>div:last-child{display:flex!important;gap:10px!important;flex-wrap:nowrap!important;margin-top:20px!important}
+main>section:first-of-type>div>div>div:first-child>div:last-child>div{display:block!important;min-width:0!important;flex:1 1 0!important;padding:12px 15px!important;border:3px solid #28714a!important;border-radius:7px!important;background:rgba(2,25,15,.94)!important;box-shadow:3px 3px 0 #071b12,inset 0 0 0 1px rgba(94,227,110,.12)!important}
+main>section:first-of-type>div>div>div:first-child>div:last-child>div:empty{display:none!important}
+main>section:first-of-type>div>div>div:first-child>div:last-child>div p:first-child{margin:0!important;font:900 29px/1 var(--font-geist-mono),monospace!important;color:#fff!important;text-shadow:2px 2px 0 #071b12!important}
+main>section:first-of-type>div>div>div:first-child>div:last-child>div p:last-child{margin-top:6px!important;color:#62e876!important;font:800 9px/1 var(--font-geist-mono),monospace!important;letter-spacing:.14em!important}
+main>section:first-of-type>div>div>div:first-child>div:last-child>div:nth-child(1)::after,main>section:first-of-type>div>div>div:first-child>div:last-child>div:nth-child(2)::after,main>section:first-of-type>div>div>div:first-child>div:last-child>div:nth-child(3)::after{display:none!important;content:none!important}
+main>section:first-of-type>div>div>div:nth-child(2){display:none!important}
+main>section:first-of-type::after{content:"NEXUS DATABASE  //  FIRE RED EDITION"!important;position:absolute!important;right:28px!important;bottom:16px!important;color:rgba(255,255,255,.38)!important;font:700 8px var(--font-geist-mono),monospace!important;letter-spacing:.16em!important;pointer-events:none!important}
+@media(max-width:768px){main>section:first-of-type{min-height:640px!important;background-position:62% center!important}main>section:first-of-type>div{padding-top:30px!important;padding-bottom:30px!important}main>section:first-of-type>div>div>div:first-child{margin:0 8px!important;padding:20px 17px!important}main>section:first-of-type h2::before{font-size:clamp(3.1rem,15vw,5rem)!important}main>section:first-of-type h2::after{font-size:1rem!important}main>section:first-of-type .group.relative{max-width:100%!important}main>section:first-of-type>div>div>div:first-child>div:last-child>div{padding:10px 8px!important}main>section:first-of-type>div>div>div:first-child>div:last-child>div p:first-child{font-size:22px!important}main>section:first-of-type::after{display:none!important}}
