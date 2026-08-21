@@ -17,6 +17,16 @@ main > section:first-of-type > div > div.grid > div:first-child {
   border-right: 2px solid #71816f !important;
   border-bottom: 0 !important;
   overflow: hidden !important;
+  background: linear-gradient(145deg,#405846 0%,#526753 48%,#647564 100%) !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), inset 0 -35px 70px rgba(5,25,17,.18) !important;
+}
+
+main > section:first-of-type > div > div.grid > div:first-child::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  background: linear-gradient(135deg,rgba(255,255,255,.08),transparent 35%,rgba(0,0,0,.12)) !important;
 }
 
 main > section:first-of-type > div > div.grid > div:first-child img {
@@ -26,6 +36,13 @@ main > section:first-of-type > div > div.grid > div:first-child img {
   height: auto !important;
   object-fit: contain !important;
   margin: 24px auto 0 !important;
+  filter: drop-shadow(0 18px 10px rgba(0,0,0,.28)) !important;
+  transition: transform .35s cubic-bezier(.2,.8,.2,1),filter .35s ease !important;
+}
+
+main > section:first-of-type > div > div.grid > div:first-child:hover img {
+  transform: translateY(-6px) scale(1.035) !important;
+  filter: drop-shadow(0 25px 14px rgba(0,0,0,.34)) !important;
 }
 
 main > section:first-of-type > div > div.grid > div:nth-child(2) {
@@ -35,7 +52,7 @@ main > section:first-of-type > div > div.grid > div:nth-child(2) {
   min-width: 0 !important;
   min-height: 360px !important;
   padding: 24px 28px !important;
-  background: #f7f2d8 !important;
+  background: linear-gradient(180deg,#fbf7df 0%,#f7f2d8 100%) !important;
   overflow: hidden !important;
 }
 
@@ -43,11 +60,25 @@ main > section:first-of-type > div > div.grid > div:nth-child(2) h1 {
   font-size: clamp(2.6rem, 4vw, 4rem) !important;
   line-height: .9 !important;
   margin-top: 2px !important;
+  letter-spacing: -.045em !important;
+  text-shadow: 3px 3px 0 rgba(23,63,49,.12) !important;
+}
+
+main > section:first-of-type > div > div.grid > div:nth-child(2) h1::after {
+  content: "" !important;
+  display: block !important;
+  width: 64px !important;
+  height: 4px !important;
+  margin-top: 12px !important;
+  background: #e52521 !important;
+  box-shadow: 10px 0 0 #173f31 !important;
 }
 
 main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child(3) {
   margin-top: 10px !important;
   padding: 11px 13px !important;
+  border-radius: 9px !important;
+  box-shadow: 3px 3px 0 rgba(23,63,49,.15) !important;
 }
 
 main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child(4) {
@@ -58,11 +89,56 @@ main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child
 main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child(4) > div {
   min-height: 55px !important;
   padding: 8px 9px !important;
+  transition: transform .2s ease,box-shadow .2s ease,border-color .2s ease !important;
+}
+
+main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child(4) > div:hover {
+  transform: translateY(-3px) !important;
+  border-color: #28714a !important;
+  box-shadow: 3px 4px 0 rgba(23,63,49,.16) !important;
 }
 
 main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child(5) {
   margin-top: 9px !important;
   gap: 10px !important;
+}
+
+/* Ability and move chips */
+main > section:first-of-type > div > div.grid > div:nth-child(2) button,
+main > section:first-of-type > div > div.grid > div:nth-child(2) a {
+  transition: transform .18s ease,box-shadow .18s ease,background-color .18s ease !important;
+}
+
+main > section:first-of-type > div > div.grid > div:nth-child(2) button:hover,
+main > section:first-of-type > div > div.grid > div:nth-child(2) a:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 2px 3px 0 rgba(23,63,49,.18) !important;
+}
+
+/* Lower data panels */
+main > section:nth-of-type(2) > div {
+  gap: 18px !important;
+}
+
+main > section:nth-of-type(2) > div > div {
+  border-width: 2px !important;
+  box-shadow: 5px 5px 0 #8d9582,0 12px 26px rgba(18,56,45,.08) !important;
+  transition: transform .2s ease,box-shadow .2s ease !important;
+}
+
+main > section:nth-of-type(2) > div > div:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 5px 8px 0 #8d9582,0 16px 30px rgba(18,56,45,.12) !important;
+}
+
+/* Stat bars become cleaner and more readable */
+main > section:nth-of-type(2) [class*="bg-[#c"] {
+  overflow: hidden !important;
+}
+
+/* Evolution panel */
+main > section:nth-of-type(3) > div {
+  box-shadow: 5px 5px 0 #8d9582,0 12px 26px rgba(18,56,45,.08) !important;
 }
 
 @media (min-width: 769px) and (max-width: 1100px) {
