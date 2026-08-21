@@ -1,0 +1,20 @@
+/* GENERATIONS FIRE RED — seleção retrô */
+#generations{position:relative!important;overflow:hidden!important;background:linear-gradient(rgba(245,242,216,.94),rgba(223,229,201,.96)),linear-gradient(90deg,rgba(23,54,44,.06) 1px,transparent 1px),linear-gradient(rgba(23,54,44,.05) 1px,transparent 1px),#dfe5c9!important;background-size:auto,18px 18px,18px 18px,auto!important;border-bottom:4px solid #183b2d!important;padding-top:54px!important;padding-bottom:58px!important}
+#generations::before{content:"POKÉMON REGION SELECT";display:block!important;margin:0 auto 12px!important;max-width:1180px!important;color:#168b65!important;font:900 10px var(--font-geist-mono),monospace!important;letter-spacing:.22em!important}
+#generations h3{font-family:var(--font-geist-mono),monospace!important;font-size:clamp(2rem,4vw,3.1rem)!important;line-height:1!important;letter-spacing:-.055em!important;color:#12382b!important;text-shadow:2px 2px 0 rgba(255,255,255,.65)!important}
+#generations h3 .text-red-500{color:#d71920!important}
+#generations>div{position:relative!important;z-index:1!important}
+#generations button{position:relative!important;min-height:136px!important;padding:17px 15px!important;border:3px solid #617667!important;border-radius:9px!important;background:linear-gradient(180deg,#fffbea 0%,#f0ead0 100%)!important;color:#17362c!important;box-shadow:4px 4px 0 #9aa08c,inset 0 0 0 1px rgba(255,255,255,.95)!important;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease,background .16s ease!important;text-align:left!important;overflow:hidden!important}
+#generations button::after{content:"▶";position:absolute!important;right:12px!important;bottom:10px!important;font:900 10px var(--font-geist-mono),monospace!important;color:#9aa08c!important;opacity:.75!important}
+#generations button:hover{transform:translateY(-5px)!important;border-color:#d71920!important;background:linear-gradient(180deg,#fffdf0 0%,#f8e9df 100%)!important;box-shadow:5px 7px 0 #858b7c,0 0 0 2px rgba(215,25,32,.08)!important}
+#generations button:hover::after{color:#d71920!important}
+#generations button[class*="border-red-500"]{border-color:#d71920!important;background:linear-gradient(180deg,#fff7e9 0%,#f8ddd2 100%)!important;box-shadow:4px 5px 0 #a1a08b,0 0 0 2px rgba(215,25,32,.1)!important}
+#generations button[class*="border-red-500"]::before{content:"● ACTIVE";position:absolute!important;right:11px!important;top:10px!important;color:#d71920!important;font:900 7px var(--font-geist-mono),monospace!important;letter-spacing:.08em!important}
+#generations button>span,#generations button p{font-family:var(--font-geist-mono),monospace!important}
+#generations button span:first-child{color:#7a806f!important;font-size:9px!important;font-weight:900!important;letter-spacing:.16em!important}
+#generations button span:last-child{color:#17362c!important;font-weight:900!important}
+#generations button strong,#generations button b{color:#17362c!important}
+#generations button .text-xs{color:#6b766b!important}
+#generations button .text-red-500{color:#d71920!important}
+#generations button[class*="border-red-500"] .text-red-500{color:#d71920!important}
+@media(max-width:768px){#generations{padding-top:38px!important;padding-bottom:42px!important}#generations::before{padding-left:18px!important}#generations button{min-height:120px!important;padding:14px 11px!important}#generations button:hover{transform:none!important}}
