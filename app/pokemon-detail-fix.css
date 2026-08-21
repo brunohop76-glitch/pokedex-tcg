@@ -84,32 +84,35 @@ main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child
 
 /* Lower panels */
 main > section:nth-of-type(2) > div {
-  box-shadow: 5px 5px 0 #8d9582 !important;
+  box-shadow: 4px 4px 0 #8d9582 !important;
   background-image: linear-gradient(rgba(23,63,49,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(23,63,49,.025) 1px, transparent 1px) !important;
   background-size: 7px 7px !important;
 }
 
-/* Statistics: cleaner bars with stronger hierarchy */
+/* Statistics: compact, readable bars */
 main > section:nth-of-type(2) > div:first-child > div:last-child {
-  margin-top: 18px !important;
+  margin-top: 14px !important;
 }
 
 main > section:nth-of-type(2) > div:first-child > div:last-child > div {
-  min-height: 22px !important;
-  padding: 3px 0 !important;
+  min-height: 20px !important;
+  padding: 2px 0 !important;
+  align-items: center !important;
 }
 
 main > section:nth-of-type(2) > div:first-child > div:last-child > div > span:first-child {
   letter-spacing: .08em !important;
   font-size: 8px !important;
+  font-weight: 800 !important;
 }
 
 main > section:nth-of-type(2) > div:first-child > div:last-child > div > div {
-  height: 12px !important;
+  height: 11px !important;
   border: 1px solid #71816f !important;
   border-radius: 999px !important;
   background: #dce4d0 !important;
   box-shadow: inset 1px 1px 2px rgba(23,63,49,.12) !important;
+  overflow: hidden !important;
 }
 
 main > section:nth-of-type(2) > div:first-child > div:last-child > div > div > div {
@@ -123,15 +126,27 @@ main > section:nth-of-type(2) > div:first-child > div:last-child > div > div > d
 main > section:nth-of-type(2) > div:first-child > div:last-child > div > span:last-child {
   font-size: 11px !important;
   font-weight: 900 !important;
+  min-width: 22px !important;
+  text-align: right !important;
 }
 
-/* Type chart: make the badges feel like a proper Pokédex legend */
+/* Type chart: clearer two-level legend */
 main > section:nth-of-type(2) > div:nth-child(2) > div {
-  margin-top: 16px !important;
+  margin-top: 13px !important;
+  padding: 9px 10px !important;
+  border: 1px solid rgba(113,129,111,.45) !important;
+  border-radius: 9px !important;
+  background: rgba(247,242,216,.62) !important;
+}
+
+main > section:nth-of-type(2) > div:nth-child(2) > div + div {
+  margin-top: 8px !important;
 }
 
 main > section:nth-of-type(2) > div:nth-child(2) > div > div {
   gap: 7px !important;
+  margin-top: 5px !important;
+  flex-wrap: wrap !important;
 }
 
 main > section:nth-of-type(2) > div:nth-child(2) span {
