@@ -196,44 +196,93 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="relative z-10 border-b border-white/5">
-        <div className="mx-auto max-w-7xl px-6 py-16 md:py-20">
-          <div className="max-w-4xl">
-            <div className="mb-6 flex items-center gap-3">
-              <span className="h-px w-10 bg-red-500 shadow-[0_0_10px_#ef4444]" />
-              <span className="text-xs font-black uppercase tracking-[0.35em] text-red-400">SYSTEM // ONLINE</span>
-            </div>
+      <section className="relative z-10 overflow-hidden border-b border-white/10 bg-[#070a08]">
+        <div className="absolute inset-0 opacity-[0.12] [background-image:linear-gradient(rgba(34,197,94,0.25)_1px,transparent_1px),linear-gradient(90deg,rgba(34,197,94,0.25)_1px,transparent_1px)] [background-size:32px_32px]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#07110d] via-transparent to-[#120607]" />
+        <div className="absolute right-[-80px] top-[-100px] h-[420px] w-[420px] rounded-full border border-emerald-400/10 opacity-40" />
+        <div className="absolute right-[-30px] top-[-50px] h-[320px] w-[320px] rounded-full border border-red-500/10 opacity-50" />
 
-            <p className="max-w-2xl text-base leading-7 text-zinc-400 md:text-lg">
-              Central de dados para explorar os 1025 Pokémon, suas regiões, tipos, evoluções e cartas TCG.
-            </p>
+        <div className="relative mx-auto max-w-7xl px-6 py-10 md:py-14">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.35fr_0.65fr]">
+            <div>
+              <div className="flex items-center gap-3">
+                <span className="h-2.5 w-2.5 bg-red-500 shadow-[0_0_12px_#ef4444]" />
+                <span className="text-[10px] font-black uppercase tracking-[0.35em] text-red-400">SYSTEM // ONLINE</span>
+                <span className="hidden h-px w-24 bg-red-500/30 sm:block" />
+                <span className="hidden text-[9px] font-bold uppercase tracking-[0.25em] text-zinc-600 sm:block">NEXUS TERMINAL 01</span>
+              </div>
 
-            <div className="mt-8 max-w-3xl">
-              <div className="group relative">
-                <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-red-500/60 via-purple-500/30 to-cyan-400/60 opacity-70 blur-sm transition group-focus-within:opacity-100" />
-                <div className="relative flex items-center rounded-2xl border border-white/10 bg-[#0c0c11]/95 p-2">
-                  <span className="px-4 text-xl text-cyan-400">⌕</span>
-                  <input
-                    type="text"
-                    placeholder="Pesquisar Pokémon ou número..."
-                    value={search}
-                    onChange={(event) => setSearch(event.target.value)}
-                    className="w-full bg-transparent px-2 py-4 text-sm font-medium text-white outline-none placeholder:text-zinc-600"
-                  />
-                  {search && (
-                    <button onClick={() => setSearch("")} className="mr-2 rounded-lg px-3 py-2 text-xs font-bold text-zinc-500 hover:bg-white/5 hover:text-white">LIMPAR</button>
-                  )}
-                  <button onClick={() => setCurrentPage(1)} className="rounded-xl bg-gradient-to-r from-red-600 to-red-500 px-6 py-3 text-xs font-black uppercase tracking-wider">Buscar</button>
+              <div className="mt-6 max-w-3xl">
+                <p className="text-[10px] font-black uppercase tracking-[0.35em] text-cyan-400">POKÉDEX DATABASE</p>
+                <h2 className="mt-2 text-4xl font-black tracking-tight md:text-6xl">
+                  Seu banco de dados <span className="text-red-500">Pokémon.</span>
+                </h2>
+                <p className="mt-4 max-w-2xl text-sm leading-6 text-zinc-400 md:text-base">
+                  Explore Pokémon, regiões, tipos, evoluções e cartas TCG em uma única central de dados.
+                </p>
+              </div>
+
+              <div className="mt-7 max-w-3xl">
+                <div className="group relative">
+                  <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-red-500/25 via-transparent to-cyan-400/25 opacity-70 blur-md transition duration-300 group-focus-within:opacity-100" />
+                  <div className="relative flex items-center rounded-xl border-2 border-[#29493c] bg-[#f4f0d8] p-1.5 shadow-[6px_6px_0_rgba(0,0,0,0.35)]">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center border-r border-[#d6d0b6] text-lg text-red-600">⌕</div>
+                    <input
+                      type="text"
+                      placeholder="Pesquisar Pokémon ou número..."
+                      value={search}
+                      onChange={(event) => setSearch(event.target.value)}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter") setCurrentPage(1);
+                      }}
+                      className="w-full bg-transparent px-4 py-3 text-sm font-bold text-[#173b31] outline-none placeholder:text-[#718078]"
+                    />
+                    {search && (
+                      <button onClick={() => setSearch("")} className="mr-1 hidden rounded-lg px-3 py-2 text-[9px] font-black uppercase tracking-wider text-[#52655e] hover:bg-black/5 sm:block">Limpar</button>
+                    )}
+                    <button onClick={() => setCurrentPage(1)} className="rounded-lg bg-[#e52521] px-5 py-3 text-[10px] font-black uppercase tracking-widest text-white shadow-[3px_3px_0_#8d1715] transition hover:-translate-y-0.5 hover:bg-[#f02d29]">Buscar</button>
+                  </div>
+                </div>
+                <div className="mt-2 flex items-center gap-3 text-[9px] font-bold uppercase tracking-widest text-zinc-600">
+                  <span>ENTER → pesquisar</span>
+                  <span className="h-1 w-1 rounded-full bg-zinc-700" />
+                  <span>nome ou número da Pokédex</span>
+                </div>
+              </div>
+
+              <div className="mt-8 flex flex-wrap items-center gap-0">
+                <div className="pr-7">
+                  <p className="text-3xl font-black text-white">1025</p>
+                  <p className="mt-1 text-[9px] font-black uppercase tracking-[0.2em] text-zinc-600">Pokémon</p>
+                </div>
+                <div className="h-11 w-px bg-white/10" />
+                <div className="px-7">
+                  <p className="text-3xl font-black text-white">09</p>
+                  <p className="mt-1 text-[9px] font-black uppercase tracking-[0.2em] text-zinc-600">Gerações</p>
+                </div>
+                <div className="h-11 w-px bg-white/10" />
+                <div className="pl-7">
+                  <p className="text-3xl font-black text-red-500">TCG</p>
+                  <p className="mt-1 text-[9px] font-black uppercase tracking-[0.2em] text-zinc-600">Database</p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-10 flex flex-wrap gap-8">
-              <div><p className="text-3xl font-black">1025</p><p className="mt-1 text-[10px] font-bold uppercase tracking-widest text-zinc-600">Pokémon</p></div>
-              <div className="h-10 w-px bg-white/10" />
-              <div><p className="text-3xl font-black">09</p><p className="mt-1 text-[10px] font-bold uppercase tracking-widest text-zinc-600">Gerações</p></div>
-              <div className="h-10 w-px bg-white/10" />
-              <div><p className="text-3xl font-black text-red-500">TCG</p><p className="mt-1 text-[10px] font-bold uppercase tracking-widest text-zinc-600">Database</p></div>
+            <div className="hidden lg:block">
+              <div className="relative ml-auto max-w-[310px] overflow-hidden rounded-2xl border border-emerald-500/20 bg-[#0b120e]/90 p-5 shadow-[0_0_50px_rgba(16,185,129,0.06)]">
+                <div className="absolute right-0 top-0 h-20 w-20 bg-emerald-400/5 blur-2xl" />
+                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                  <span className="text-[9px] font-black uppercase tracking-[0.25em] text-zinc-500">POKÉDEX SYSTEM</span>
+                  <span className="flex items-center gap-1.5 text-[8px] font-black uppercase tracking-widest text-emerald-400"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />Ready</span>
+                </div>
+                <div className="mt-5 space-y-4 font-mono">
+                  <div className="flex items-center justify-between"><span className="text-[9px] text-zinc-600">STATUS</span><span className="text-[10px] font-bold text-emerald-400">ONLINE</span></div>
+                  <div className="flex items-center justify-between"><span className="text-[9px] text-zinc-600">REGISTROS</span><span className="text-[10px] font-bold text-cyan-400">1,025</span></div>
+                  <div className="flex items-center justify-between"><span className="text-[9px] text-zinc-600">REGIÕES</span><span className="text-[10px] font-bold text-white">09</span></div>
+                  <div className="flex items-center justify-between"><span className="text-[9px] text-zinc-600">TCG LINK</span><span className="text-[10px] font-bold text-red-400">CONNECTED</span></div>
+                </div>
+                <div className="mt-5 border-t border-white/10 pt-4 text-[8px] font-bold uppercase tracking-[0.2em] text-zinc-700">NEXUS // DATABASE 01</div>
+              </div>
             </div>
           </div>
         </div>
