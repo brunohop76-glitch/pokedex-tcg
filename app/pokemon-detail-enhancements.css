@@ -1,31 +1,33 @@
 /* POKEMON DETAIL — compact FireRed/GBA dossier */
 
-/* The homepage hero rules also target the first section on the detail page.
-   These scoped rules restore the detail layout without touching the homepage. */
+/* FINAL OVERRIDE: this page is loaded after the generic hero CSS.
+   Keep the detail page independent from the homepage hero rules. */
 main > section:first-of-type > div > div > div.grid {
   display: grid !important;
-  grid-template-columns: 36% 64% !important;
-  max-width: none !important;
+  grid-template-columns: 38% minmax(0, 62%) !important;
   width: 100% !important;
+  max-width: none !important;
   align-items: stretch !important;
 }
 
 main > section:first-of-type > div > div > div.grid > div:first-child {
-  max-width: none !important;
   width: 100% !important;
+  max-width: none !important;
   min-height: 430px !important;
-  height: 100% !important;
-  padding: 24px !important;
-  background: linear-gradient(rgba(23,54,44,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(23,54,44,.045) 1px, transparent 1px), #dfe8d0 !important;
-  background-size: 8px 8px !important;
+  height: auto !important;
+  padding: 22px !important;
   border-right: 3px solid #71816f !important;
   border-bottom: 0 !important;
+  background: linear-gradient(rgba(23,54,44,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(23,54,44,.045) 1px, transparent 1px), #dfe8d0 !important;
+  background-size: 8px 8px !important;
 }
 
 main > section:first-of-type > div > div > div.grid > div:first-child img {
-  max-height: 390px !important;
-  width: 88% !important;
+  display: block !important;
+  max-height: 380px !important;
+  width: 92% !important;
   object-fit: contain !important;
+  margin: 0 auto !important;
   filter: drop-shadow(0 18px 10px rgba(23,54,44,.22)) !important;
   transition: transform .3s ease, filter .3s ease !important;
 }
@@ -35,57 +37,72 @@ main > section:first-of-type > div > div > div.grid > div:first-child:hover img 
   filter: drop-shadow(0 24px 12px rgba(23,54,44,.25)) !important;
 }
 
-/* Keep the Pokédex number visible on the detail image. */
-main > section:first-of-type > div > div > div.grid > div:first-child > div:first-child {
+/* IMPORTANT: hero-overrides.css previously hid this entire panel. */
+main > section:first-of-type > div > div > div:nth-child(2) {
   display: block !important;
-}
-
-/* Detail information panel */
-main > section:first-of-type > div > div > div.grid > div:nth-child(2) {
-  display: block !important;
-  min-width: 0 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
   width: 100% !important;
-  padding: 30px 34px !important;
+  min-width: 0 !important;
+  padding: 28px 30px !important;
   background: #f7f2d8 !important;
   color: #17362c !important;
 }
 
-/* Pokémon name — replaces the oversized generic branding visually. */
+main > section:first-of-type > div > div > div.grid > div:nth-child(2) {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  padding: 28px 30px !important;
+  background: #f7f2d8 !important;
+  color: #17362c !important;
+}
+
+/* Number + Pokemon name */
+main > section:first-of-type > div > div > div:nth-child(2) h1,
 main > section:first-of-type > div > div > div.grid > div:nth-child(2) h1 {
-  margin-top: 4px !important;
+  display: block !important;
+  margin: 4px 0 0 !important;
   color: #123b30 !important;
   font-family: var(--font-geist-mono), monospace !important;
-  font-size: clamp(2.3rem, 4vw, 4.2rem) !important;
-  line-height: .95 !important;
+  font-size: clamp(2.5rem, 4.5vw, 4.5rem) !important;
+  line-height: .92 !important;
   font-weight: 1000 !important;
   letter-spacing: -.075em !important;
   text-transform: uppercase !important;
   text-shadow: 3px 3px 0 #c7ccb9 !important;
 }
 
+main > section:first-of-type > div > div > div:nth-child(2) h1::after,
 main > section:first-of-type > div > div > div.grid > div:nth-child(2) h1::after {
   content: "";
   display: block;
   width: 58px;
   height: 5px;
-  margin-top: 12px;
+  margin-top: 11px;
   background: #e52521;
   box-shadow: 3px 3px 0 #8d9582;
 }
 
+main > section:first-of-type > div > div > div:nth-child(2) > div:first-child p,
 main > section:first-of-type > div > div > div.grid > div:nth-child(2) > div:first-child p {
   color: #e52521 !important;
   font-family: var(--font-geist-mono), monospace !important;
   letter-spacing: .18em !important;
 }
 
-/* Hide the generic XP tile to give the name and real information more room. */
+/* Hide only the Base XP tile, not the information panel. */
+main > section:first-of-type > div > div > div:nth-child(2) > div:first-child > div:last-child,
 main > section:first-of-type > div > div > div.grid > div:nth-child(2) > div:first-child > div:last-child {
   display: none !important;
 }
 
-/* Description panel */
+/* Description */
+main > section:first-of-type > div > div > div:nth-child(2) > div:nth-child(3),
 main > section:first-of-type > div > div > div.grid > div:nth-child(2) > div:nth-child(3) {
+  display: block !important;
   background: #e7edcf !important;
   border: 2px solid #71816f !important;
   border-radius: 10px !important;
@@ -93,39 +110,44 @@ main > section:first-of-type > div > div > div.grid > div:nth-child(2) > div:nth
 }
 
 /* Information tiles */
+main > section:first-of-type > div > div > div:nth-child(2) > div:nth-child(4),
+main > section:first-of-type > div > div > div.grid > div:nth-child(2) > div:nth-child(4) {
+  display: grid !important;
+}
+
+main > section:first-of-type > div > div > div:nth-child(2) > div:nth-child(4) > div,
 main > section:first-of-type > div > div > div.grid > div:nth-child(2) > div:nth-child(4) > div {
+  display: block !important;
   background: #faf6df !important;
   border-color: #c5cbb8 !important;
   border-radius: 8px !important;
-  min-height: 72px !important;
+  min-height: 70px !important;
 }
 
-/* Abilities / moves */
+/* Abilities and moves */
+main > section:first-of-type > div > div > div:nth-child(2) > div:nth-child(5),
 main > section:first-of-type > div > div > div.grid > div:nth-child(2) > div:nth-child(5) {
-  gap: 18px !important;
+  display: grid !important;
+  gap: 16px !important;
 }
 
-main > section:first-of-type > div > div > div.grid > div:nth-child(2) > div:nth-child(5) > div {
-  min-width: 0 !important;
-}
-
-/* Prevent the hero's generic rules from hiding detail text. */
 main > section:first-of-type > div > div > div.grid h2,
-main > section:first-of-type > div > div > div.grid p {
+main > section:first-of-type > div > div > div.grid p,
+main > section:first-of-type > div > div > div:nth-child(2) h2,
+main > section:first-of-type > div > div > div:nth-child(2) p {
   opacity: 1 !important;
 }
 
-/* Make the lower status/type panels visually match the compact dossier. */
 main > section:nth-of-type(2) {
   padding-top: 6px !important;
 }
 
 @media (min-width: 1100px) {
   main > section:first-of-type > div > div > div.grid > div:first-child {
-    min-height: 470px !important;
+    min-height: 460px !important;
   }
   main > section:first-of-type > div > div > div.grid > div:first-child img {
-    max-height: 410px !important;
+    max-height: 390px !important;
   }
 }
 
@@ -134,15 +156,12 @@ main > section:nth-of-type(2) {
     grid-template-columns: 1fr !important;
   }
   main > section:first-of-type > div > div > div.grid > div:first-child {
-    min-height: 360px !important;
+    min-height: 350px !important;
     border-right: 0 !important;
     border-bottom: 3px solid #71816f !important;
   }
   main > section:first-of-type > div > div > div.grid > div:first-child img {
-    max-height: 330px !important;
-  }
-  main > section:first-of-type > div > div > div.grid > div:nth-child(2) {
-    padding: 26px !important;
+    max-height: 320px !important;
   }
 }
 
@@ -155,9 +174,11 @@ main > section:nth-of-type(2) {
     max-height: 275px !important;
     width: 82% !important;
   }
+  main > section:first-of-type > div > div > div:nth-child(2),
   main > section:first-of-type > div > div > div.grid > div:nth-child(2) {
     padding: 22px 18px !important;
   }
+  main > section:first-of-type > div > div > div:nth-child(2) h1,
   main > section:first-of-type > div > div > div.grid > div:nth-child(2) h1 {
     font-size: 2.4rem !important;
   }
