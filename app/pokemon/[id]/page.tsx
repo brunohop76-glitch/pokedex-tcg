@@ -6,9 +6,7 @@ type Pokemon = {
   types: { type: { name: string } }[];
   abilities: { ability: { name: string } }[];
   sprites: {
-    other: {
-      "official-artwork": { front_default: string | null };
-    };
+    other: { "official-artwork": { front_default: string | null } };
   };
 };
 
@@ -22,7 +20,11 @@ type TCGCardBrief = {
 type TCGCard = TCGCardBrief & {
   rarity?: string;
   illustrator?: string;
-  set?: { id?: string; name?: string };
+  set?: {
+    id?: string;
+    name?: string;
+    serie?: { id?: string; name?: string };
+  };
 };
 
 type EvolutionDetail = {
@@ -48,18 +50,13 @@ type EvolutionLink = {
 };
 
 async function getPokemon(id: string): Promise<Pokemon> {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
-    cache: "no-store",
-  });
-
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, { cache: "no-store" });
   if (!response.ok) throw new Error("Pokémon não encontrado");
   return response.json();
 }
 
 async function getPokemonSpecies(id: number) {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`, {
-    cache: "no-store",
-  });
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`, { cache: "no-store" });
   return response.ok ? response.json() : null;
 }
 
@@ -68,7 +65,6 @@ async function getEvolutionChain(id: number): Promise<EvolutionLink | null> {
     const species = await getPokemonSpecies(id);
     const url = species?.evolution_chain?.url;
     if (!url) return null;
-
     const response = await fetch(url, { cache: "no-store" });
     return response.ok ? (await response.json()).chain : null;
   } catch {
@@ -88,10 +84,7 @@ function formatName(name: string) {
 function getEvolutionCondition(details: EvolutionDetail[]) {
   const detail = details?.[0];
   if (!detail) return "Evolução";
-
-  if (detail.trigger?.name === "level-up" && detail.min_level) {
-    return `Nível ${detail.min_level}`;
-  }
+  if (detail.trigger?.name === "level-up" && detail.min_level) return `Nível ${detail.min_level}`;
   if (detail.item?.name) return formatName(detail.item.name);
   if (detail.trigger?.name === "trade") return "Troca";
   if (detail.min_happiness) return `Felicidade ${detail.min_happiness}+`;
@@ -106,27 +99,39 @@ function getEvolutionCondition(details: EvolutionDetail[]) {
   return formatName(detail.trigger?.name || "Evolução");
 }
 
-function flattenEvolutionChain(link: EvolutionLink, result: Array<{ name: string; id: number; image: string | null; details: EvolutionDetail[] }> = []) {
+function flattenEvolutionChain(
+  link: EvolutionLink,
+  result: Array<{ name: string; id: number; image: string | null; details: EvolutionDetail[] }> = []
+) {
   result.push({
     name: link.species.name,
     id: getPokemonIdFromUrl(link.species.url),
     image: null,
     details: link.evolution_details || [],
   });
-
-  for (const next of link.evolves_to || []) {
-    flattenEvolutionChain(next, result);
-  }
-
+  for (const next of link.evolves_to || []) flattenEvolutionChain(next, result);
   return result;
 }
 
-function getCardImage(image?: string | null) {
-  if (!image) return null;
-  const clean = image.replace(/\/$/, "");
-  return clean.endsWith(".png") || clean.endsWith(".webp") || clean.endsWith(".jpg")
-    ? clean
-    : `${clean}/high.png`;
+// A TCGdex entrega o campo image como uma URL-base.
+// Para evitar imagens quebradas, preferimos montar a URL usando
+// serie + set + localId do detalhe completo da carta.
+function getReliableCardImage(card: TCGCard) {
+  const serieId = card.set?.serie?.id;
+  const setId = card.set?.id;
+  const localId = card.localId;
+
+  if (serieId && setId && localId) {
+    return `https://assets.tcgdex.net/en/${serieId}/${setId}/${localId}/high.png`;
+  }
+
+  if (card.image) {
+    const clean = card.image.replace(/\/$/, "");
+    if (/\.(png|webp|jpg)$/i.test(clean)) return clean;
+    return `${clean}/high.png`;
+  }
+
+  return null;
 }
 
 async function getTCGCards(pokedexNumber: number, pokemonName: string): Promise<TCGCard[]> {
@@ -134,13 +139,10 @@ async function getTCGCards(pokedexNumber: number, pokemonName: string): Promise<
   let briefs: TCGCardBrief[] = [];
 
   try {
-    const dexResponse = await fetch(`${base}/dex-ids/${pokedexNumber}`, {
-      cache: "no-store",
-    });
-
-    if (dexResponse.ok) {
-      const dexData = await dexResponse.json();
-      briefs = Array.isArray(dexData) ? dexData : dexData.cards || [];
+    const response = await fetch(`${base}/dex-ids/${pokedexNumber}`, { cache: "no-store" });
+    if (response.ok) {
+      const data = await response.json();
+      briefs = Array.isArray(data) ? data : data.cards || [];
     }
   } catch (error) {
     console.error("Erro na busca por Pokédex TCGdex:", error);
@@ -153,7 +155,6 @@ async function getTCGCards(pokedexNumber: number, pokemonName: string): Promise<
         `${base}/cards?category=Pokemon&name=${name}&pagination:itemsPerPage=100`,
         { cache: "no-store" }
       );
-
       if (response.ok) {
         const data = await response.json();
         briefs = Array.isArray(data) ? data : data.cards || [];
@@ -164,43 +165,46 @@ async function getTCGCards(pokedexNumber: number, pokemonName: string): Promise<
   }
 
   const unique = Array.from(
-    new Map(briefs.filter((card) => card?.id && card?.name).map((card) => [card.id, card])).values()
+    new Map(
+      briefs
+        .filter((card) => card?.id && card?.name)
+        .map((card) => [card.id, card])
+    ).values()
   ).slice(0, 100);
 
   const detailed = await Promise.all(
-    unique.map(async (card): Promise<TCGCard> => {
+    unique.map(async (card): Promise<TCGCard | null> => {
       try {
         const response = await fetch(`${base}/cards/${encodeURIComponent(card.id)}`, {
           cache: "no-store",
         });
 
-        if (response.ok) {
-          const full = await response.json();
-          return {
-            ...card,
-            ...full,
-            image: full.image || card.image || null,
-            localId: full.localId || card.localId,
-          };
-        }
+        if (!response.ok) return card;
+
+        const full = await response.json();
+        return {
+          ...card,
+          ...full,
+          image: full.image || card.image || null,
+          localId: full.localId || card.localId,
+          set: full.set || card.set,
+        };
       } catch (error) {
         console.error("Erro ao carregar carta:", card.id, error);
+        return card;
       }
-
-      return card;
     })
   );
 
   return detailed
-    .map((card) => ({ ...card, image: getCardImage(card.image) }))
+    .filter((card): card is TCGCard => Boolean(card))
+    .map((card) => ({ ...card, image: getReliableCardImage(card) }))
     .filter((card) => Boolean(card.image));
 }
 
 async function getEvolutionPokemon(name: string) {
   try {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`, {
-      cache: "no-store",
-    });
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`, { cache: "no-store" });
     if (!response.ok) return { id: 0, image: null };
     const data = await response.json();
     return {
@@ -270,9 +274,7 @@ export default async function PokemonPage({
 
             <div className="mt-6 flex flex-wrap gap-2">
               {pokemon.types.map((item) => (
-                <span key={item.type.name} className="rounded-full bg-zinc-900 px-4 py-2 text-xs font-bold uppercase text-white">
-                  {item.type.name}
-                </span>
+                <span key={item.type.name} className="rounded-full bg-zinc-900 px-4 py-2 text-xs font-bold uppercase text-white">{item.type.name}</span>
               ))}
             </div>
 
@@ -291,9 +293,7 @@ export default async function PokemonPage({
               <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">Habilidades</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {pokemon.abilities.map((item) => (
-                  <span key={item.ability.name} className="rounded-xl border border-zinc-200 px-4 py-2 text-sm font-semibold capitalize">
-                    {item.ability.name.replace(/-/g, " ")}
-                  </span>
+                  <span key={item.ability.name} className="rounded-xl border border-zinc-200 px-4 py-2 text-sm font-semibold capitalize">{item.ability.name.replace(/-/g, " ")}</span>
                 ))}
               </div>
             </div>
@@ -315,11 +315,9 @@ export default async function PokemonPage({
                   return (
                     <div key={`${evolution.name}-${evolution.id}`} className="flex items-center gap-4">
                       <a href={`/pokemon/${evolution.id}`} className={`group relative w-40 overflow-hidden rounded-2xl border-2 bg-white p-4 text-center transition ${isCurrent ? "border-red-600 shadow-lg" : "border-zinc-200 hover:border-red-400 hover:shadow-md"}`}>
-                        {isCurrent && (
-                          <span className="absolute right-2 top-2 rounded-full bg-red-600 px-2 py-1 text-[9px] font-black uppercase text-white">Você está aqui</span>
-                        )}
+                        {isCurrent && <span className="absolute right-2 top-2 rounded-full bg-red-600 px-2 py-1 text-[9px] font-black uppercase text-white">Você está aqui</span>}
                         <div className="flex h-28 items-center justify-center">
-                          {evolution.image && <img src={evolution.image} alt={evolution.name} className="h-full w-full object-contain transition duration-300 group-hover:scale-110" />}
+                          {evolution.image ? <img src={evolution.image} alt={evolution.name} className="h-full w-full object-contain transition duration-300 group-hover:scale-110" /> : <span className="text-xs text-zinc-400">Sem imagem</span>}
                         </div>
                         <p className="text-xs font-bold text-zinc-400">#{String(evolution.id).padStart(4, "0")}</p>
                         <p className="mt-1 font-black capitalize">{formatName(evolution.name)}</p>
@@ -355,21 +353,13 @@ export default async function PokemonPage({
           ) : (
             <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
               {cards.map((card) => {
-                const cardImage = getCardImage(card.image);
-                if (!cardImage) return null;
-
+                if (!card.image) return null;
                 return (
-                  <article key={card.id} className="group overflow-hidden rounded-2xl bg-white text-zinc-900 shadow-xl transition duration-300 hover:-translate-y-4 hover:scale-[1.04] hover:shadow-2xl">
-                    <div className="relative bg-zinc-100 p-2">
-                      <img
-                        src={cardImage}
-                        alt={card.name}
-                        loading="lazy"
-                        className="block w-full rounded-lg transition duration-300 group-hover:scale-[1.02]"
-                      />
-                      <div className="pointer-events-none absolute left-3 top-3 rounded-full bg-zinc-950/90 px-3 py-1 text-[9px] font-black tracking-wider text-yellow-300 opacity-0 transition group-hover:opacity-100">VER CARTA</div>
+                  <article key={card.id} className="group relative overflow-visible rounded-2xl bg-white text-zinc-900 shadow-xl transition duration-300 hover:z-20 hover:-translate-y-4 hover:scale-[1.04] hover:shadow-2xl">
+                    <div className="relative overflow-hidden rounded-t-2xl bg-zinc-100 p-2">
+                      <img src={card.image} alt={card.name} loading="lazy" className="block w-full rounded-lg transition duration-300 group-hover:scale-[1.02]" />
+                      <div className="pointer-events-none absolute left-4 top-4 rounded-full bg-zinc-950/90 px-3 py-1 text-[9px] font-black tracking-wider text-yellow-300 opacity-0 transition group-hover:opacity-100">VER CARTA</div>
                     </div>
-
                     <div className="p-4">
                       <h4 className="font-black">{card.name}</h4>
                       <p className="mt-2 text-xs font-semibold text-zinc-500">{card.set?.name || `Coleção ${card.id.split("-")[0]}`}</p>
