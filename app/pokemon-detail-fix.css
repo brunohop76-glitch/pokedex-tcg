@@ -1,173 +1,75 @@
-/* FINAL DETAIL LAYOUT FIX */
-main > section:first-of-type > div > div.grid {
-  display: grid !important;
-  grid-template-columns: 34% 66% !important;
-  width: 100% !important;
-  gap: 0 !important;
-  align-items: stretch !important;
-}
-main > section:first-of-type > div > div.grid > div:first-child {
-  min-height: 360px !important;
-  height: 360px !important;
-  padding: 14px !important;
-  border-right: 2px solid #71816f !important;
-  border-bottom: 0 !important;
-  overflow: hidden !important;
-  background: linear-gradient(145deg,#405846 0%,#526753 48%,#647564 100%) !important;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), inset 0 -35px 70px rgba(5,25,17,.18) !important;
-}
-main > section:first-of-type > div > div.grid > div:first-child::after {
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 !important;
-  pointer-events: none !important;
-  background: linear-gradient(135deg,rgba(255,255,255,.08),transparent 35%,rgba(0,0,0,.12)) !important;
-}
-main > section:first-of-type > div > div.grid > div:first-child img {
-  width: 72% !important;
-  max-width: 270px !important;
-  max-height: 285px !important;
-  height: auto !important;
-  object-fit: contain !important;
-  margin: 24px auto 0 !important;
-  filter: drop-shadow(0 18px 10px rgba(0,0,0,.28)) !important;
-  transition: transform .35s cubic-bezier(.2,.8,.2,1),filter .35s ease !important;
-}
-main > section:first-of-type > div > div.grid > div:first-child:hover img {
-  transform: translateY(-6px) scale(1.035) !important;
-  filter: drop-shadow(0 25px 14px rgba(0,0,0,.34)) !important;
-}
-main > section:first-of-type > div > div.grid > div:nth-child(2) {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  min-width: 0 !important;
-  min-height: 360px !important;
-  padding: 24px 28px !important;
-  background: linear-gradient(180deg,#fbf7df 0%,#f7f2d8 100%) !important;
-  overflow: hidden !important;
-}
-main > section:first-of-type > div > div.grid > div:nth-child(2) h1 {
-  font-size: clamp(2.6rem, 4vw, 4rem) !important;
-  line-height: .9 !important;
-  margin-top: 2px !important;
-  letter-spacing: -.045em !important;
-  text-shadow: 3px 3px 0 rgba(23,63,49,.12) !important;
-}
-main > section:first-of-type > div > div.grid > div:nth-child(2) h1::after {
-  content: "" !important;
-  display: block !important;
-  width: 64px !important;
-  height: 4px !important;
-  margin-top: 12px !important;
-  background: #e52521 !important;
-  box-shadow: 10px 0 0 #173f31 !important;
-}
-main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child(3) {
-  margin-top: 10px !important;
-  padding: 11px 13px !important;
-  border-radius: 9px !important;
-  box-shadow: 3px 3px 0 rgba(23,63,49,.15) !important;
-}
-main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child(4) {
-  margin-top: 10px !important;
-  gap: 7px !important;
-}
-main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child(4) > div {
-  min-height: 55px !important;
-  padding: 8px 9px !important;
-  transition: transform .2s ease,box-shadow .2s ease,border-color .2s ease !important;
-}
-main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child(4) > div:hover {
-  transform: translateY(-3px) !important;
-  border-color: #28714a !important;
-  box-shadow: 3px 4px 0 rgba(23,63,49,.16) !important;
-}
-main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child(5) {
-  margin-top: 9px !important;
-  gap: 10px !important;
-}
-main > section:first-of-type > div > div.grid > div:nth-child(2) button,
-main > section:first-of-type > div > div.grid > div:nth-child(2) a {
-  transition: transform .18s ease,box-shadow .18s ease,background-color .18s ease !important;
-}
-main > section:first-of-type > div > div.grid > div:nth-child(2) button:hover,
-main > section:first-of-type > div > div.grid > div:nth-child(2) a:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 2px 3px 0 rgba(23,63,49,.18) !important;
-}
-main > section:nth-of-type(2) > div {
-  gap: 18px !important;
-}
-main > section:nth-of-type(2) > div > div {
-  border-width: 2px !important;
-  box-shadow: 5px 5px 0 #8d9582,0 12px 26px rgba(18,56,45,.08) !important;
-  transition: transform .2s ease,box-shadow .2s ease !important;
-}
-main > section:nth-of-type(2) > div > div:hover {
-  transform: translateY(-3px) !important;
-  box-shadow: 5px 8px 0 #8d9582,0 16px 30px rgba(18,56,45,.12) !important;
-}
-main > section:nth-of-type(2) > div > div > div {
-  border-color: transparent !important;
-  box-shadow: none !important;
-}
-main > section:nth-of-type(2) > div:first-child > div:nth-child(2) > div > div {
-  border: 1px solid #71816f !important;
-  box-shadow: none !important;
-}
-main > section:nth-of-type(2) [class*="bg-[#c"] {
-  overflow: hidden !important;
-}
-main > section:nth-of-type(3) > div {
-  box-shadow: 5px 5px 0 #8d9582,0 12px 26px rgba(18,56,45,.08) !important;
+/* FINAL CLEANUP — LOWER PANELS */
+main > section:nth-of-type(2) > div > div * {
+  outline: none !important;
 }
 
-/* CLEAN LOWER PANELS — remove accidental debug outlines */
-main > section:nth-of-type(2) > div > div > div:first-child,
-main > section:nth-of-type(2) > div > div > div.mt-5,
-main > section:nth-of-type(2) > div > div > div[class*="mt-5"] {
+/* Remove accidental inner boxes/black outlines from both lower cards */
+main > section:nth-of-type(2) > div > div > div,
+main > section:nth-of-type(2) > div > div > div > div,
+main > section:nth-of-type(2) > div > div > div > div > div {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* The lower cards themselves keep their professional outer frame */
+main > section:nth-of-type(2) > div > div {
+  border: 2px solid #71816f !important;
+  box-shadow: 5px 5px 0 #8d9582, 0 12px 26px rgba(18,56,45,.08) !important;
+  background: #f7f2d8 !important;
+}
+
+/* Statistics: clean header and rows */
+main > section:nth-of-type(2) > div:first-child > div > div:first-child,
+main > section:nth-of-type(2) > div:first-child > div > div.mt-5,
+main > section:nth-of-type(2) > div:first-child > div > div.mt-5 > div[class*="grid"] {
   border: 0 !important;
-  outline: 0 !important;
+  outline: none !important;
   box-shadow: none !important;
   background: transparent !important;
 }
-main > section:nth-of-type(2) > div > div > div.mt-5 > div,
-main > section:nth-of-type(2) > div > div > div[class*="mt-5"] > div {
-  border: 0 !important;
-  outline: 0 !important;
-  box-shadow: none !important;
-  background: transparent !important;
-}
-/* restore only the stat-track borders */
-main > section:nth-of-type(2) > div:first-child > div.mt-5 > div[class*="grid"] > div:nth-child(2) {
+
+/* Only the actual stat tracks have a border */
+main > section:nth-of-type(2) > div:first-child > div > div.mt-5 > div[class*="grid"] > div:nth-child(2) {
   border: 1px solid #71816f !important;
-  outline: 0 !important;
+  outline: none !important;
   box-shadow: none !important;
   background: #d8dfc6 !important;
 }
-main > section:nth-of-type(2) > div:first-child > div.mt-5 > div[class*="grid"] > div:nth-child(2) > div {
+
+main > section:nth-of-type(2) > div:first-child > div > div.mt-5 > div[class*="grid"] > div:nth-child(2) > div {
   border: 0 !important;
-  outline: 0 !important;
+  outline: none !important;
   box-shadow: none !important;
   background: #00a9d6 !important;
 }
-/* keep the type badges visually clean */
+
+/* Type chart: no inner rectangular frames */
+main > section:nth-of-type(2) > div:nth-child(2) > div,
+main > section:nth-of-type(2) > div:nth-child(2) > div > div,
+main > section:nth-of-type(2) > div:nth-child(2) > div > div > div {
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Keep only the colored type pills */
 main > section:nth-of-type(2) > div:nth-child(2) .rounded-md {
   border: 0 !important;
-  outline: 0 !important;
+  outline: none !important;
   box-shadow: none !important;
 }
 
-@media (min-width: 769px) and (max-width: 1100px) {
-  main > section:first-of-type > div > div.grid { grid-template-columns: 36% 64% !important; }
-  main > section:first-of-type > div > div.grid > div:first-child { min-height: 330px !important; height: 330px !important; }
-  main > section:first-of-type > div > div.grid > div:first-child img { width: 70% !important; max-width: 240px !important; max-height: 260px !important; }
-  main > section:first-of-type > div > div.grid > div:nth-child(2) { min-height: 330px !important; padding: 20px 22px !important; }
+/* Slightly more breathing room and a cleaner visual hierarchy */
+main > section:nth-of-type(2) > div:first-child > div > div:first-child h2,
+main > section:nth-of-type(2) > div:nth-child(2) h2 {
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
+
 @media (max-width: 768px) {
-  main > section:first-of-type > div > div.grid { grid-template-columns: 1fr !important; }
-  main > section:first-of-type > div > div.grid > div:first-child { min-height: 300px !important; height: 300px !important; border-right: 0 !important; border-bottom: 2px solid #71816f !important; }
-  main > section:first-of-type > div > div.grid > div:first-child img { width: 62% !important; max-width: 220px !important; max-height: 240px !important; }
-  main > section:first-of-type > div > div.grid > div:nth-child(2) { min-height: auto !important; padding: 20px 18px !important; }
+  main > section:nth-of-type(2) > div > div {
+    box-shadow: 4px 4px 0 #8d9582 !important;
+  }
 }
