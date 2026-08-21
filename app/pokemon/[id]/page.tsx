@@ -1,3 +1,5 @@
+import CardGallery from "./CardGallery";
+
 type Pokemon = {
   id: number;
   name: string;
@@ -348,43 +350,14 @@ export default async function PokemonPage({
               <p className="mt-2 text-sm text-red-100">Não encontramos cartas vinculadas a este Pokémon.</p>
             </div>
           ) : (
-            <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-              {cards.map((card) => {
-                if (!card.image) return null;
-                return (
-                  <article key={card.id} className="group relative overflow-visible rounded-2xl bg-white text-zinc-900 shadow-xl transition duration-300 hover:z-20 hover:-translate-y-4 hover:scale-[1.04] hover:shadow-2xl">
-                    <div className="relative overflow-hidden rounded-t-2xl bg-zinc-100 p-2">
-                      <img src={card.image} alt={card.name} loading="lazy" className="block w-full rounded-lg transition duration-300 group-hover:scale-[1.02]" />
-                      <a
-                        href={card.image}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Ver carta ${card.name}`}
-                        className="absolute inset-0 flex items-center justify-center bg-black/0 transition duration-300 group-hover:bg-black/40"
-                      >
-                        <span className="translate-y-2 rounded-full border border-white/40 bg-red-600 px-5 py-2 text-[10px] font-black tracking-widest text-white opacity-0 shadow-lg transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                          VER CARTA ↗
-                        </span>
-                      </a>
-                    </div>
-                    <div className="p-4">
-                      <h4 className="font-black">{card.name}</h4>
-                      <p className="mt-2 text-xs font-semibold text-zinc-500">{card.set?.name || `Coleção ${card.id.split("-")[0]}`}</p>
-                      <div className="mt-3 flex items-center justify-between gap-2 text-xs">
-                        <span className="rounded-full bg-zinc-100 px-3 py-1 font-bold">#{card.localId || card.id.split("-").slice(1).join("-")}</span>
-                        {card.rarity && <span className="text-right font-semibold text-zinc-500">{card.rarity}</span>}
-                      </div>
-                      {card.illustrator && <p className="mt-3 text-xs text-zinc-400">Artista: {card.illustrator}</p>}
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
+            <CardGallery cards={cards} />
           )}
         </div>
       </section>
 
-      <footer className="bg-zinc-950 px-6 py-8 text-center text-sm text-zinc-500">Pokédex TCG • Projeto desenvolvido com Next.js</footer>
+      <footer className="bg-zinc-950 px-6 py-8 text-center text-sm text-zinc-500">
+        Pokédex TCG • Projeto desenvolvido com Next.js
+      </footer>
     </main>
   );
 }
