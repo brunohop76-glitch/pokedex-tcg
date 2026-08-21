@@ -82,10 +82,64 @@ main > section:first-of-type > div > div.grid > div:nth-child(2) > div:nth-child
   padding-bottom: 5px !important;
 }
 
-/* Make the lower information panels visually cleaner and remove
-   accidental hard outlines without changing their data. */
+/* Lower panels */
 main > section:nth-of-type(2) > div {
   box-shadow: 5px 5px 0 #8d9582 !important;
+  background-image: linear-gradient(rgba(23,63,49,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(23,63,49,.025) 1px, transparent 1px) !important;
+  background-size: 7px 7px !important;
+}
+
+/* Statistics: cleaner bars with stronger hierarchy */
+main > section:nth-of-type(2) > div:first-child > div:last-child {
+  margin-top: 18px !important;
+}
+
+main > section:nth-of-type(2) > div:first-child > div:last-child > div {
+  min-height: 22px !important;
+  padding: 3px 0 !important;
+}
+
+main > section:nth-of-type(2) > div:first-child > div:last-child > div > span:first-child {
+  letter-spacing: .08em !important;
+  font-size: 8px !important;
+}
+
+main > section:nth-of-type(2) > div:first-child > div:last-child > div > div {
+  height: 12px !important;
+  border: 1px solid #71816f !important;
+  border-radius: 999px !important;
+  background: #dce4d0 !important;
+  box-shadow: inset 1px 1px 2px rgba(23,63,49,.12) !important;
+}
+
+main > section:nth-of-type(2) > div:first-child > div:last-child > div > div > div {
+  height: 100% !important;
+  border-radius: 999px !important;
+  background: linear-gradient(90deg, #009ac5, #14b8d5) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.3) !important;
+  transition: width .45s ease !important;
+}
+
+main > section:nth-of-type(2) > div:first-child > div:last-child > div > span:last-child {
+  font-size: 11px !important;
+  font-weight: 900 !important;
+}
+
+/* Type chart: make the badges feel like a proper Pokédex legend */
+main > section:nth-of-type(2) > div:nth-child(2) > div {
+  margin-top: 16px !important;
+}
+
+main > section:nth-of-type(2) > div:nth-child(2) > div > div {
+  gap: 7px !important;
+}
+
+main > section:nth-of-type(2) > div:nth-child(2) span {
+  border-radius: 6px !important;
+  padding: 6px 11px !important;
+  font-size: 9px !important;
+  letter-spacing: .03em !important;
+  box-shadow: 1px 2px 0 rgba(23,63,49,.16) !important;
 }
 
 @media (min-width: 769px) and (max-width: 1100px) {
