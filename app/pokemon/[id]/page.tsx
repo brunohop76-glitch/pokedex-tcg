@@ -113,9 +113,6 @@ function flattenEvolutionChain(
   return result;
 }
 
-// A TCGdex entrega o campo image como uma URL-base.
-// Para evitar imagens quebradas, preferimos montar a URL usando
-// serie + set + localId do detalhe completo da carta.
 function getReliableCardImage(card: TCGCard) {
   const serieId = card.set?.serie?.id;
   const setId = card.set?.id;
@@ -358,7 +355,17 @@ export default async function PokemonPage({
                   <article key={card.id} className="group relative overflow-visible rounded-2xl bg-white text-zinc-900 shadow-xl transition duration-300 hover:z-20 hover:-translate-y-4 hover:scale-[1.04] hover:shadow-2xl">
                     <div className="relative overflow-hidden rounded-t-2xl bg-zinc-100 p-2">
                       <img src={card.image} alt={card.name} loading="lazy" className="block w-full rounded-lg transition duration-300 group-hover:scale-[1.02]" />
-                      <div className="pointer-events-none absolute left-4 top-4 rounded-full bg-zinc-950/90 px-3 py-1 text-[9px] font-black tracking-wider text-yellow-300 opacity-0 transition group-hover:opacity-100">VER CARTA</div>
+                      <a
+                        href={card.image}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Ver carta ${card.name}`}
+                        className="absolute inset-0 flex items-center justify-center bg-black/0 transition duration-300 group-hover:bg-black/40"
+                      >
+                        <span className="translate-y-2 rounded-full border border-white/40 bg-red-600 px-5 py-2 text-[10px] font-black tracking-widest text-white opacity-0 shadow-lg transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                          VER CARTA ↗
+                        </span>
+                      </a>
                     </div>
                     <div className="p-4">
                       <h4 className="font-black">{card.name}</h4>
