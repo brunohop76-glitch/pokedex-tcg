@@ -108,16 +108,12 @@ main > section:nth-of-type(2) > div > div:hover {
   transform: translateY(-3px) !important;
   box-shadow: 5px 8px 0 #8d9582,0 16px 30px rgba(18,56,45,.12) !important;
 }
-/* Remove the unwanted black/debug-like inner rectangles. */
 main > section:nth-of-type(2) > div > div > div {
-  border: 0 !important;
-  outline: 0 !important;
+  border-color: transparent !important;
   box-shadow: none !important;
 }
-/* Restore only the visible borders of the real stat bars. */
 main > section:nth-of-type(2) > div:first-child > div:nth-child(2) > div > div {
   border: 1px solid #71816f !important;
-  outline: 0 !important;
   box-shadow: none !important;
 }
 main > section:nth-of-type(2) [class*="bg-[#c"] {
@@ -126,6 +122,43 @@ main > section:nth-of-type(2) [class*="bg-[#c"] {
 main > section:nth-of-type(3) > div {
   box-shadow: 5px 5px 0 #8d9582,0 12px 26px rgba(18,56,45,.08) !important;
 }
+
+/* CLEAN LOWER PANELS — remove accidental debug outlines */
+main > section:nth-of-type(2) > div > div > div:first-child,
+main > section:nth-of-type(2) > div > div > div.mt-5,
+main > section:nth-of-type(2) > div > div > div[class*="mt-5"] {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+main > section:nth-of-type(2) > div > div > div.mt-5 > div,
+main > section:nth-of-type(2) > div > div > div[class*="mt-5"] > div {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+/* restore only the stat-track borders */
+main > section:nth-of-type(2) > div:first-child > div.mt-5 > div[class*="grid"] > div:nth-child(2) {
+  border: 1px solid #71816f !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: #d8dfc6 !important;
+}
+main > section:nth-of-type(2) > div:first-child > div.mt-5 > div[class*="grid"] > div:nth-child(2) > div {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: #00a9d6 !important;
+}
+/* keep the type badges visually clean */
+main > section:nth-of-type(2) > div:nth-child(2) .rounded-md {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
 @media (min-width: 769px) and (max-width: 1100px) {
   main > section:first-of-type > div > div.grid { grid-template-columns: 36% 64% !important; }
   main > section:first-of-type > div > div.grid > div:first-child { min-height: 330px !important; height: 330px !important; }
