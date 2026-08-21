@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 
 type Card = {
   id: string;
@@ -14,18 +14,22 @@ type Card = {
 
 export default function CardGallery({ cards }: { cards: Card[] }) {
   const [selected, setSelected] = useState<Card | null>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
 
-  function handleMove(event: React.MouseEvent<HTMLElement>) {
+  function handleMove(event: MouseEvent<HTMLElement>, id: string) {
     const rect = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
-    const rotateY = ((x / rect.width) - 0.5) * 14;
-    const rotateX = -((y / rect.height) - 0.5) * 14;
-    setRotation({ x: rotateX, y: rotateY });
+    setHoveredId(id);
+    setRotation({
+      x: -((y / rect.height) - 0.5) * 12,
+      y: ((x / rect.width) - 0.5) * 12,
+    });
   }
 
   function resetRotation() {
+    setHoveredId(null);
     setRotation({ x: 0, y: 0 });
   }
 
@@ -34,16 +38,20 @@ export default function CardGallery({ cards }: { cards: Card[] }) {
       <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {cards.map((card) => {
           if (!card.image) return null;
+          const isHovered = hoveredId === card.id;
 
           return (
             <article
               key={card.id}
-              onMouseMove={handleMove}
+              onMouseMove={(event) => handleMove(event, card.id)}
               onMouseLeave={resetRotation}
-              className="tcg-card-3d group relative cursor-pointer overflow-visible rounded-2xl bg-white text-zinc-900 shadow-xl"
               onClick={() => setSelected(card)}
+              className="tcg-card-3d group relative cursor-pointer overflow-visible rounded-2xl bg-white text-zinc-900 shadow-xl"
               style={{
-                transform: `perspective(900px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+                transform: isHovered
+                  ? `perspective(900px) translateY(-16px) scale(1.045) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`
+                  : "perspective(900px) translateY(0) scale(1) rotateX(0deg) rotateY(0deg)",
+                zIndex: isHovered ? 50 : 1,
               }}
             >
               <div className="relative overflow-hidden rounded-t-2xl bg-zinc-100 p-2">
@@ -51,12 +59,12 @@ export default function CardGallery({ cards }: { cards: Card[] }) {
                   src={card.image}
                   alt={card.name}
                   loading="lazy"
-                  className="block w-full rounded-lg"
+                  className="block w-full rounded-lg transition duration-300 group-hover:scale-[1.025]"
                 />
 
-                <div className="pointer-events-none absolute inset-0 rounded-t-2xl bg-gradient-to-br from-white/30 via-transparent to-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="pointer-events-none absolute inset-0 rounded-t-2xl bg-gradient-to-br from-white/35 via-transparent to-black/25 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-600 px-5 py-3 text-[10px] font-black uppercase tracking-wider text-white opacity-0 shadow-xl transition-all duration-300 group-hover:opacity-100 group-hover:scale-105">
+                <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-600 px-5 py-3 text-[10px] font-black uppercase tracking-wider text-white opacity-0 shadow-[0_8px_25px_rgba(0,0,0,.35)] transition-all duration-300 group-hover:scale-105 group-hover:opacity-100">
                   VER CARTA ↗
                 </div>
               </div>
@@ -91,7 +99,7 @@ export default function CardGallery({ cards }: { cards: Card[] }) {
 
       {selected?.image && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-5 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-5 backdrop-blur-md"
           onClick={() => setSelected(null)}
         >
           <div
@@ -101,13 +109,13 @@ export default function CardGallery({ cards }: { cards: Card[] }) {
             <button
               type="button"
               onClick={() => setSelected(null)}
-              className="absolute -right-3 -top-3 z-20 flex h-11 w-11 items-center justify-center rounded-full border-2 border-white bg-red-600 text-xl font-black text-white shadow-xl transition hover:scale-110 hover:bg-red-500"
+              className="absolute -right-4 -top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full border-2 border-white bg-red-600 text-2xl font-black text-white shadow-xl transition hover:scale-110 hover:bg-red-500"
               aria-label="Fechar carta"
             >
               ×
             </button>
 
-            <div className="relative rounded-2xl bg-white p-2 shadow-[0_30px_100px_rgba(0,0,0,.7)]">
+            <div className="rounded-2xl bg-white p-2 shadow-[0_30px_100px_rgba(0,0,0,.7)]">
               <img
                 src={selected.image}
                 alt={selected.name}
