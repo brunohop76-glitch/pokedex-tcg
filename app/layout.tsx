@@ -5,6 +5,7 @@ import "./hero-overrides.css";
 import "./hero-enhancements.css";
 import "./generation-enhancements.css";
 import "./pokemon-enhancements.css";
+import "./pokemon-detail-enhancements.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
