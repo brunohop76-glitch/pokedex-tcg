@@ -1,72 +1,74 @@
-/* HOMEPAGE HERO — final structural override */
+/* HOME HERO FINAL — scoped to the actual JSX in app/page.tsx */
 
+/* Keep the FireRed/map background clean and readable. */
 main > section:first-of-type {
-  min-height: 555px !important;
   position: relative !important;
-  overflow: hidden !important;
-  background-position: center center !important;
+  min-height: 520px !important;
+  background-position: center !important;
 }
 
-/* The actual content wrapper is the relative max-w-7xl div inside the hero. */
+/* The real hero content wrapper. */
 main > section:first-of-type > div.relative {
   position: relative !important;
-  z-index: 5 !important;
-  max-width: 80rem !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  padding: 56px 24px 46px !important;
+  z-index: 20 !important;
+  max-width: 1280px !important;
+  padding-top: 42px !important;
+  padding-bottom: 42px !important;
 }
 
-/* The actual layout row is the first child grid of the wrapper. */
-main > section:first-of-type > div.relative > div.grid {
-  display: grid !important;
-  grid-template-columns: minmax(0,1.35fr) minmax(250px,.65fr) !important;
-  gap: 40px !important;
-  align-items: center !important;
-  max-width: 1180px !important;
-  margin: 0 auto !important;
-}
-
-/* Remove accidental styling from the decorative absolute layers. */
-main > section:first-of-type > div.absolute,
-main > section:first-of-type > div.absolute * {
-  pointer-events: none !important;
-}
-
-/* Main left column */
+/* The real left column contains 4 children:
+   1 status, 2 title block, 3 search, 4 counters. */
 main > section:first-of-type > div.relative > div.grid > div:first-child {
   display: block !important;
   width: 100% !important;
-  max-width: 760px !important;
-  padding: 24px 28px 24px !important;
-  border: 2px solid rgba(51,131,84,.75) !important;
+  max-width: 820px !important;
+  padding: 30px 32px 28px !important;
+  border: 2px solid rgba(46,126,82,.72) !important;
   border-radius: 16px !important;
-  background: linear-gradient(180deg,rgba(4,35,22,.94),rgba(2,23,15,.88)) !important;
-  box-shadow: 0 20px 55px rgba(0,0,0,.48),inset 0 0 0 1px rgba(120,255,155,.04) !important;
+  background: linear-gradient(180deg,rgba(3,28,17,.93),rgba(3,20,13,.86)) !important;
+  box-shadow: 0 20px 55px rgba(0,0,0,.42), inset 0 1px 0 rgba(180,255,210,.06) !important;
   backdrop-filter: blur(2px) !important;
 }
 
-/* Status row */
+/* STATUS */
 main > section:first-of-type > div.relative > div.grid > div:first-child > div:first-child {
   display: flex !important;
   align-items: center !important;
   gap: 12px !important;
-  min-height: 28px !important;
 }
 
-/* Real title */
+/* TITLE BLOCK — this is the critical fix. */
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  margin-top: 24px !important;
+}
+
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) p:first-child {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #49d8ff !important;
+  margin: 0 !important;
+}
+
 main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) h2 {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  margin: 12px 0 0 !important;
-  font-family: var(--font-geist-mono),monospace !important;
-  font-size: clamp(3rem,6vw,5.2rem) !important;
-  line-height: .92 !important;
+  position: relative !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  margin: 8px 0 0 !important;
+  padding: 0 !important;
+  font-size: clamp(3rem, 6vw, 5.25rem) !important;
+  line-height: .94 !important;
   font-weight: 900 !important;
-  letter-spacing: -.06em !important;
+  letter-spacing: -.055em !important;
   color: #f8f5df !important;
-  text-shadow: 5px 5px 0 #06180e,0 0 24px rgba(0,0,0,.45) !important;
+  text-shadow: 5px 5px 0 #06180f, 0 0 28px rgba(0,0,0,.45) !important;
 }
 
 main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) h2::before,
@@ -76,102 +78,87 @@ main > section:first-of-type > div.relative > div.grid > div:first-child > div:n
 }
 
 main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) h2 span {
-  color: #ef2c31 !important;
+  display: inline !important;
+  color: #ed252d !important;
 }
 
-/* Intro paragraph */
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) > p {
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) p:last-child {
   display: block !important;
-  max-width: 640px !important;
-  margin-top: 14px !important;
-  color: #f3f1df !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  max-width: 650px !important;
+  margin: 14px 0 0 !important;
+  color: #d4d9d4 !important;
   font-size: 15px !important;
   line-height: 1.55 !important;
-  text-shadow: 2px 2px 0 rgba(0,0,0,.5) !important;
 }
 
-/* Search is the third child of the left column. */
+/* SEARCH */
 main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(3) {
-  margin-top: 22px !important;
-  max-width: 650px !important;
+  display: block !important;
+  margin-top: 24px !important;
+  max-width: 700px !important;
 }
 
 main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(3) .group.relative > div:last-child {
-  min-height: 64px !important;
-  padding: 4px !important;
-  border: 4px solid #143b29 !important;
-  border-radius: 9px !important;
-  background: #fffbea !important;
-  box-shadow: inset 0 0 0 2px #b6bea8,6px 6px 0 #06170d,0 0 24px rgba(0,0,0,.2) !important;
+  min-height: 62px !important;
+  border: 3px solid #315646 !important;
+  border-radius: 10px !important;
+  background: #f4f0d8 !important;
+  box-shadow: 6px 6px 0 rgba(0,0,0,.42) !important;
 }
 
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(3) .group.relative button {
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(3) button {
   min-height: 50px !important;
-  border-radius: 6px !important;
+  border-radius: 7px !important;
   background: #df1c24 !important;
-  box-shadow: inset 0 -3px 0 rgba(0,0,0,.22),2px 3px 0 #8d1116 !important;
 }
 
-/* Counter row is the fourth child of the left column. */
+/* COUNTERS */
 main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(4) {
   display: flex !important;
-  align-items: center !important;
+  align-items: stretch !important;
   gap: 0 !important;
-  margin-top: 22px !important;
+  margin-top: 25px !important;
 }
 
 main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(4) > div {
-  min-width: 118px !important;
-  padding: 9px 18px !important;
+  min-width: 130px !important;
+  padding-right: 24px !important;
+  margin-right: 24px !important;
+  border-right: 1px solid rgba(201,240,211,.15) !important;
 }
 
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(4) > div p:first-child {
-  color: #fff !important;
-  font-family: var(--font-geist-mono),monospace !important;
-  font-size: 28px !important;
-  line-height: 1 !important;
-  font-weight: 900 !important;
-  text-shadow: 2px 2px 0 #06170d !important;
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(4) > div:last-child {
+  border-right: 0 !important;
 }
 
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(4) > div p:last-child {
-  color: #63e878 !important;
-  font-family: var(--font-geist-mono),monospace !important;
-  font-size: 8px !important;
-  font-weight: 900 !important;
-  letter-spacing: .16em !important;
-  text-transform: uppercase !important;
-}
-
-/* Hide only the actual right terminal. */
+/* Hide the unused terminal/right column only. */
 main > section:first-of-type > div.relative > div.grid > div:nth-child(2) {
   display: none !important;
 }
 
-/* Keep the FireRed footer label subtle. */
-main > section:first-of-type::after {
-  font-size: 8px !important;
-  letter-spacing: .16em !important;
-  opacity: .6 !important;
-}
-
-@media (max-width: 1024px) {
-  main > section:first-of-type > div.relative > div.grid {
-    grid-template-columns: 1fr !important;
-  }
+/* Remove old pseudo-generated hero title treatments. */
+main > section:first-of-type h2::before,
+main > section:first-of-type h2::after {
+  content: none !important;
 }
 
 @media (max-width: 768px) {
-  main > section:first-of-type {
-    min-height: 620px !important;
-  }
   main > section:first-of-type > div.relative {
-    padding: 30px 16px !important;
+    padding: 28px 16px !important;
   }
+
   main > section:first-of-type > div.relative > div.grid > div:first-child {
-    padding: 22px 18px 20px !important;
+    padding: 22px 18px !important;
   }
+
   main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) h2 {
-    font-size: clamp(2.5rem,13vw,4.5rem) !important;
+    font-size: clamp(2.5rem, 12vw, 4rem) !important;
+  }
+
+  main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(4) {
+    flex-wrap: wrap !important;
+    gap: 16px !important;
   }
 }
