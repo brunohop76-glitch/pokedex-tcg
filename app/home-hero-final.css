@@ -1,126 +1,158 @@
-/* FINAL HOMEPAGE HERO OVERRIDE — exact scope only */
+/* HOMEPAGE HERO — final structural override */
 
-/* The hero has decorative absolute layers before the real content.
-   Never style those layers as if they were the content column. */
-main > section:first-of-type > div.absolute::before,
-main > section:first-of-type > div.absolute::after,
-main > section:first-of-type > div.absolute > div::before,
-main > section:first-of-type > div.absolute > div::after {
-  content: none !important;
-  display: none !important;
+main > section:first-of-type {
+  min-height: 555px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  background-position: center center !important;
 }
 
-/* Real hero content container */
+/* The actual content wrapper is the relative max-w-7xl div inside the hero. */
 main > section:first-of-type > div.relative {
   position: relative !important;
-  z-index: 10 !important;
-  padding-top: 48px !important;
-  padding-bottom: 42px !important;
-}
-
-main > section:first-of-type > div.relative > div.grid {
-  display: grid !important;
-  grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr) !important;
-  align-items: center !important;
-  gap: 40px !important;
-  max-width: 1180px !important;
+  z-index: 5 !important;
+  max-width: 80rem !important;
   margin-left: auto !important;
   margin-right: auto !important;
+  padding: 56px 24px 46px !important;
 }
 
-/* Left hero column — this is the panel that should contain title, text,
-   search and counters. */
+/* The actual layout row is the first child grid of the wrapper. */
+main > section:first-of-type > div.relative > div.grid {
+  display: grid !important;
+  grid-template-columns: minmax(0,1.35fr) minmax(250px,.65fr) !important;
+  gap: 40px !important;
+  align-items: center !important;
+  max-width: 1180px !important;
+  margin: 0 auto !important;
+}
+
+/* Remove accidental styling from the decorative absolute layers. */
+main > section:first-of-type > div.absolute,
+main > section:first-of-type > div.absolute * {
+  pointer-events: none !important;
+}
+
+/* Main left column */
 main > section:first-of-type > div.relative > div.grid > div:first-child {
+  display: block !important;
   width: 100% !important;
   max-width: 760px !important;
-  padding: 26px 30px 25px !important;
-  border: 2px solid rgba(49,122,78,.62) !important;
-  border-radius: 14px !important;
-  background: linear-gradient(180deg,rgba(3,28,17,.90),rgba(2,22,14,.80)) !important;
-  box-shadow: 0 18px 50px rgba(0,0,0,.42), inset 0 0 0 1px rgba(125,255,157,.035) !important;
-  backdrop-filter: blur(3px) !important;
+  padding: 24px 28px 24px !important;
+  border: 2px solid rgba(51,131,84,.75) !important;
+  border-radius: 16px !important;
+  background: linear-gradient(180deg,rgba(4,35,22,.94),rgba(2,23,15,.88)) !important;
+  box-shadow: 0 20px 55px rgba(0,0,0,.48),inset 0 0 0 1px rgba(120,255,155,.04) !important;
+  backdrop-filter: blur(2px) !important;
 }
 
-/* Status line belongs to the real hero column */
+/* Status row */
 main > section:first-of-type > div.relative > div.grid > div:first-child > div:first-child {
   display: flex !important;
   align-items: center !important;
   gap: 12px !important;
+  min-height: 28px !important;
 }
 
-/* Restore the actual React heading. Do not replace it with pseudo-elements. */
-main > section:first-of-type > div.relative > div.grid > div:first-child h2 {
+/* Real title */
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) h2 {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  margin: 8px 0 0 !important;
-  font-size: clamp(3rem, 6vw, 5.4rem) !important;
+  margin: 12px 0 0 !important;
+  font-family: var(--font-geist-mono),monospace !important;
+  font-size: clamp(3rem,6vw,5.2rem) !important;
   line-height: .92 !important;
   font-weight: 900 !important;
-  letter-spacing: -.055em !important;
+  letter-spacing: -.06em !important;
   color: #f8f5df !important;
-  text-shadow: 5px 5px 0 #071b12, 0 0 28px rgba(0,0,0,.42) !important;
+  text-shadow: 5px 5px 0 #06180e,0 0 24px rgba(0,0,0,.45) !important;
 }
 
-main > section:first-of-type > div.relative > div.grid > div:first-child h2::before,
-main > section:first-of-type > div.relative > div.grid > div:first-child h2::after {
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) h2::before,
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) h2::after {
   content: none !important;
   display: none !important;
 }
 
-main > section:first-of-type > div.relative > div.grid > div:first-child h2 span {
-  color: #ed2b2b !important;
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) h2 span {
+  color: #ef2c31 !important;
 }
 
-/* Description immediately below the real title */
-main > section:first-of-type > div.relative > div.grid > div:first-child h2 + p {
+/* Intro paragraph */
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) > p {
   display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
   max-width: 640px !important;
   margin-top: 14px !important;
-  color: #f8f5df !important;
+  color: #f3f1df !important;
   font-size: 15px !important;
   line-height: 1.55 !important;
-  text-shadow: 2px 2px 0 rgba(0,0,0,.52) !important;
+  text-shadow: 2px 2px 0 rgba(0,0,0,.5) !important;
 }
 
-/* Search */
-main > section:first-of-type > div.relative > div.grid > div:first-child .group.relative {
-  max-width: 650px !important;
+/* Search is the third child of the left column. */
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(3) {
   margin-top: 22px !important;
+  max-width: 650px !important;
 }
 
-main > section:first-of-type > div.relative > div.grid > div:first-child .group.relative > div:last-child {
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(3) .group.relative > div:last-child {
   min-height: 64px !important;
   padding: 4px !important;
-  border: 4px solid #153b2a !important;
+  border: 4px solid #143b29 !important;
   border-radius: 9px !important;
   background: #fffbea !important;
-  box-shadow: inset 0 0 0 2px #b7bea7,6px 6px 0 #06170d !important;
+  box-shadow: inset 0 0 0 2px #b6bea8,6px 6px 0 #06170d,0 0 24px rgba(0,0,0,.2) !important;
 }
 
-main > section:first-of-type > div.relative > div.grid > div:first-child .group.relative button {
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(3) .group.relative button {
   min-height: 50px !important;
   border-radius: 6px !important;
   background: #df1c24 !important;
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,.22),2px 3px 0 #8d1116 !important;
 }
 
-/* Database counters */
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:last-child {
+/* Counter row is the fourth child of the left column. */
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(4) {
   display: flex !important;
-  margin-top: 24px !important;
+  align-items: center !important;
+  gap: 0 !important;
+  margin-top: 22px !important;
 }
 
-/* Hide only the actual right-side terminal from the hero grid */
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(4) > div {
+  min-width: 118px !important;
+  padding: 9px 18px !important;
+}
+
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(4) > div p:first-child {
+  color: #fff !important;
+  font-family: var(--font-geist-mono),monospace !important;
+  font-size: 28px !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  text-shadow: 2px 2px 0 #06170d !important;
+}
+
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(4) > div p:last-child {
+  color: #63e878 !important;
+  font-family: var(--font-geist-mono),monospace !important;
+  font-size: 8px !important;
+  font-weight: 900 !important;
+  letter-spacing: .16em !important;
+  text-transform: uppercase !important;
+}
+
+/* Hide only the actual right terminal. */
 main > section:first-of-type > div.relative > div.grid > div:nth-child(2) {
   display: none !important;
 }
 
-/* Background image / hero sizing */
-main > section:first-of-type {
-  min-height: 520px !important;
-  background-position: center center !important;
+/* Keep the FireRed footer label subtle. */
+main > section:first-of-type::after {
+  font-size: 8px !important;
+  letter-spacing: .16em !important;
+  opacity: .6 !important;
 }
 
 @media (max-width: 1024px) {
@@ -130,17 +162,16 @@ main > section:first-of-type {
 }
 
 @media (max-width: 768px) {
-  main > section:first-of-type > div.relative {
-    padding-top: 28px !important;
-    padding-bottom: 28px !important;
+  main > section:first-of-type {
+    min-height: 620px !important;
   }
-
+  main > section:first-of-type > div.relative {
+    padding: 30px 16px !important;
+  }
   main > section:first-of-type > div.relative > div.grid > div:first-child {
-    margin: 0 2px !important;
     padding: 22px 18px 20px !important;
   }
-
-  main > section:first-of-type > div.relative > div.grid > div:first-child h2 {
+  main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) h2 {
     font-size: clamp(2.5rem,13vw,4.5rem) !important;
   }
 }
