@@ -1,7 +1,7 @@
 /* FINAL HERO RESET — last stylesheet wins */
 
-main > section:first-of-type h2,
-main > section:first-of-type h2 span {
+/* Restore the real React heading and prevent every legacy pseudo-title rule. */
+main > section:first-of-type h2 {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
@@ -41,48 +41,69 @@ main > section:first-of-type > div.relative > div.grid > div:first-child > div:n
 
 main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) p:first-child {
   display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
   color: #49d8ff !important;
-  margin: 0 !important;
+  margin: 0 0 8px !important;
   font: 900 10px/1 var(--font-geist-mono),monospace !important;
   letter-spacing: .35em !important;
 }
 
 main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) p:last-child {
   display: block !important;
-  color: #f8f5df !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #dfe4de !important;
   max-width: 650px !important;
   margin: 14px 0 0 !important;
   font-size: 15px !important;
   line-height: 1.55 !important;
 }
 
-/* Remove legacy rules that hide or replace the real hero heading. */
-main > section:first-of-type > div > div > div:first-child > div:first-child,
-main > section:first-of-type > div > div > div:first-child::before {
-  display: none !important;
-  content: none !important;
+/* Do NOT hide the status row: style it as a compact label instead. */
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:first-child {
+  display: flex !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  min-height: 0 !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 8px 14px !important;
+  margin: 0 !important;
+  border: 1px solid rgba(64,157,93,.45) !important;
+  border-radius: 6px !important;
+  background: rgba(2,30,18,.75) !important;
+  box-shadow: none !important;
 }
 
-/* Keep search immediately below title and counters below search. */
+/* Remove the old pseudo-generated city label. */
+main > section:first-of-type > div > div > div:first-child::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Search immediately below the title. */
 main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(3) {
   display: block !important;
   margin-top: 22px !important;
   max-width: 700px !important;
 }
 
+/* Counters below search. */
 main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(4) {
   display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
   margin-top: 22px !important;
 }
 
-/* The hero should not start with an empty status box. */
-main > section:first-of-type > div.relative > div.grid > div:first-child {
-  padding-top: 28px !important;
+/* Keep the hero at a comfortable height. */
+main > section:first-of-type {
+  min-height: 540px !important;
 }
 
 @media (max-width: 768px) {
-  main > section:first-of-type h2,
-  main > section:first-of-type h2 span {
+  main > section:first-of-type h2 {
     font-size: clamp(2.6rem, 13vw, 4.6rem) !important;
   }
 }
