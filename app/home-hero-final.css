@@ -1,164 +1,88 @@
-/* HOME HERO FINAL — scoped to the actual JSX in app/page.tsx */
+/* FINAL HERO RESET — last stylesheet wins */
 
-/* Keep the FireRed/map background clean and readable. */
-main > section:first-of-type {
-  position: relative !important;
-  min-height: 520px !important;
-  background-position: center !important;
-}
-
-/* The real hero content wrapper. */
-main > section:first-of-type > div.relative {
-  position: relative !important;
-  z-index: 20 !important;
-  max-width: 1280px !important;
-  padding-top: 42px !important;
-  padding-bottom: 42px !important;
-}
-
-/* The real left column contains 4 children:
-   1 status, 2 title block, 3 search, 4 counters. */
-main > section:first-of-type > div.relative > div.grid > div:first-child {
-  display: block !important;
-  width: 100% !important;
-  max-width: 820px !important;
-  padding: 30px 32px 28px !important;
-  border: 2px solid rgba(46,126,82,.72) !important;
-  border-radius: 16px !important;
-  background: linear-gradient(180deg,rgba(3,28,17,.93),rgba(3,20,13,.86)) !important;
-  box-shadow: 0 20px 55px rgba(0,0,0,.42), inset 0 1px 0 rgba(180,255,210,.06) !important;
-  backdrop-filter: blur(2px) !important;
-}
-
-/* STATUS */
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:first-child {
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-}
-
-/* TITLE BLOCK — this is the critical fix. */
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) {
+main > section:first-of-type h2,
+main > section:first-of-type h2 span {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  margin-top: 24px !important;
-}
-
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) p:first-child {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  color: #49d8ff !important;
-  margin: 0 !important;
-}
-
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) h2 {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: relative !important;
   width: auto !important;
   height: auto !important;
   overflow: visible !important;
-  margin: 8px 0 0 !important;
-  padding: 0 !important;
-  font-size: clamp(3rem, 6vw, 5.25rem) !important;
-  line-height: .94 !important;
+  position: static !important;
+  font-size: clamp(3.2rem, 6vw, 5.8rem) !important;
+  line-height: .92 !important;
   font-weight: 900 !important;
-  letter-spacing: -.055em !important;
+  letter-spacing: -.06em !important;
+  text-transform: none !important;
   color: #f8f5df !important;
+  margin: 0 !important;
+  padding: 0 !important;
   text-shadow: 5px 5px 0 #06180f, 0 0 28px rgba(0,0,0,.45) !important;
 }
 
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) h2::before,
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) h2::after {
+main > section:first-of-type h2::before,
+main > section:first-of-type h2::after {
   content: none !important;
   display: none !important;
 }
 
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) h2 span {
+main > section:first-of-type h2 span {
   display: inline !important;
   color: #ed252d !important;
 }
 
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) p:last-child {
+/* The actual title block in page.tsx is the second child of the left column. */
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
+  margin-top: 20px !important;
+}
+
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) p:first-child {
+  display: block !important;
+  color: #49d8ff !important;
+  margin: 0 !important;
+  font: 900 10px/1 var(--font-geist-mono),monospace !important;
+  letter-spacing: .35em !important;
+}
+
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) p:last-child {
+  display: block !important;
+  color: #f8f5df !important;
   max-width: 650px !important;
   margin: 14px 0 0 !important;
-  color: #d4d9d4 !important;
   font-size: 15px !important;
   line-height: 1.55 !important;
 }
 
-/* SEARCH */
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(3) {
-  display: block !important;
-  margin-top: 24px !important;
-  max-width: 700px !important;
-}
-
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(3) .group.relative > div:last-child {
-  min-height: 62px !important;
-  border: 3px solid #315646 !important;
-  border-radius: 10px !important;
-  background: #f4f0d8 !important;
-  box-shadow: 6px 6px 0 rgba(0,0,0,.42) !important;
-}
-
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(3) button {
-  min-height: 50px !important;
-  border-radius: 7px !important;
-  background: #df1c24 !important;
-}
-
-/* COUNTERS */
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(4) {
-  display: flex !important;
-  align-items: stretch !important;
-  gap: 0 !important;
-  margin-top: 25px !important;
-}
-
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(4) > div {
-  min-width: 130px !important;
-  padding-right: 24px !important;
-  margin-right: 24px !important;
-  border-right: 1px solid rgba(201,240,211,.15) !important;
-}
-
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(4) > div:last-child {
-  border-right: 0 !important;
-}
-
-/* Hide the unused terminal/right column only. */
-main > section:first-of-type > div.relative > div.grid > div:nth-child(2) {
+/* Remove legacy rules that hide or replace the real hero heading. */
+main > section:first-of-type > div > div > div:first-child > div:first-child,
+main > section:first-of-type > div > div > div:first-child::before {
   display: none !important;
-}
-
-/* Remove old pseudo-generated hero title treatments. */
-main > section:first-of-type h2::before,
-main > section:first-of-type h2::after {
   content: none !important;
 }
 
+/* Keep search immediately below title and counters below search. */
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(3) {
+  display: block !important;
+  margin-top: 22px !important;
+  max-width: 700px !important;
+}
+
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(4) {
+  display: flex !important;
+  margin-top: 22px !important;
+}
+
+/* The hero should not start with an empty status box. */
+main > section:first-of-type > div.relative > div.grid > div:first-child {
+  padding-top: 28px !important;
+}
+
 @media (max-width: 768px) {
-  main > section:first-of-type > div.relative {
-    padding: 28px 16px !important;
-  }
-
-  main > section:first-of-type > div.relative > div.grid > div:first-child {
-    padding: 22px 18px !important;
-  }
-
-  main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) h2 {
-    font-size: clamp(2.5rem, 12vw, 4rem) !important;
-  }
-
-  main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(4) {
-    flex-wrap: wrap !important;
-    gap: 16px !important;
+  main > section:first-of-type h2,
+  main > section:first-of-type h2 span {
+    font-size: clamp(2.6rem, 13vw, 4.6rem) !important;
   }
 }
