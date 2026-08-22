@@ -17,9 +17,7 @@ main > section:first-of-type::before {
   position: absolute !important;
   inset: 0 !important;
   pointer-events: none !important;
-  background:
-    linear-gradient(180deg, rgba(4, 13, 9, .18), transparent 35%, rgba(3, 16, 10, .58)),
-    linear-gradient(90deg, transparent 0%, transparent 55%, rgba(0, 0, 0, .22) 100%) !important;
+  background: linear-gradient(180deg, rgba(4, 13, 9, .12), transparent 38%, rgba(3, 16, 10, .62)) !important;
   z-index: 0 !important;
 }
 
@@ -30,64 +28,53 @@ main > section:first-of-type > div {
   padding-bottom: 42px !important;
 }
 
-/* Main glass terminal */
+/* Main hero panel */
 main > section:first-of-type > div > div > div:first-child {
   width: min(760px, 100%) !important;
   max-width: 760px !important;
-  padding: 28px 30px 24px !important;
+  padding: 26px 30px 25px !important;
   border: 2px solid rgba(49, 122, 78, .62) !important;
   border-radius: 14px !important;
-  background: linear-gradient(180deg, rgba(3, 28, 17, .90), rgba(2, 22, 14, .78)) !important;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, .42), inset 0 0 0 1px rgba(125, 255, 157, .035) !important;
+  background: linear-gradient(180deg, rgba(3, 28, 17, .92), rgba(2, 22, 14, .82)) !important;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .45), inset 0 0 0 1px rgba(125, 255, 157, .035) !important;
   backdrop-filter: blur(3px) !important;
 }
 
 main > section:first-of-type > div > div > div:first-child::before {
   content: "VIRIDIAN CITY  •  KANTO" !important;
   display: block !important;
-  margin-bottom: 17px !important;
+  margin-bottom: 14px !important;
   color: #63e878 !important;
   font: 900 10px/1 var(--font-geist-mono), monospace !important;
   letter-spacing: .22em !important;
   text-shadow: 2px 2px 0 #06180e !important;
 }
 
-/* Remove the extra right-hand terminal: yesterday's cleaner composition */
-main > section:first-of-type > div > div > div:nth-child(2) {
-  display: none !important;
-}
-
-/* Strong Pokédex title */
+/* IMPORTANT: keep the real heading visible. Do not depend on pseudo-elements for the title. */
 main > section:first-of-type h2 {
   margin: 0 !important;
-  font-size: 0 !important;
-  line-height: 1 !important;
-  color: transparent !important;
+  font-size: clamp(2.7rem, 6vw, 5.2rem) !important;
+  line-height: .95 !important;
+  font-weight: 900 !important;
+  letter-spacing: -.055em !important;
+  color: #f8f5df !important;
+  text-shadow: 5px 5px 0 #071b12, 0 0 28px rgba(0, 0, 0, .42) !important;
 }
 
-main > section:first-of-type h2::before {
-  content: "POKÉDEX" !important;
-  display: block !important;
-  font: 900 clamp(4.2rem, 8vw, 6.8rem)/.82 var(--font-geist-mono), monospace !important;
-  letter-spacing: -.085em !important;
-  color: #fff !important;
-  text-shadow: 5px 5px 0 #071b12, 0 0 28px rgba(0, 0, 0, .4) !important;
-}
-
-main > section:first-of-type h2::after {
-  content: "NEXUS DATABASE" !important;
-  display: block !important;
-  margin-top: 14px !important;
-  font: 900 clamp(1.25rem, 2.4vw, 2rem)/1 var(--font-geist-mono), monospace !important;
-  letter-spacing: .13em !important;
+main > section:first-of-type h2 span {
   color: #ed2b2b !important;
-  text-shadow: 2px 2px 0 #711516 !important;
+}
+
+main > section:first-of-type h2::before,
+main > section:first-of-type h2::after {
+  content: none !important;
+  display: none !important;
 }
 
 main > section:first-of-type h2 + p {
   display: block !important;
   max-width: 640px !important;
-  margin-top: 18px !important;
+  margin-top: 13px !important;
   color: #f8f5df !important;
   font-size: 15px !important;
   line-height: 1.55 !important;
@@ -97,7 +84,7 @@ main > section:first-of-type h2 + p {
 /* Search */
 main > section:first-of-type .group.relative {
   max-width: 650px !important;
-  margin-top: 23px !important;
+  margin-top: 21px !important;
 }
 
 main > section:first-of-type .group.relative > div:last-child {
@@ -124,65 +111,56 @@ main > section:first-of-type .group.relative button {
   border-radius: 6px !important;
   background: #df1c24 !important;
   box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .22), 2px 3px 0 #8d1116 !important;
-  transition: transform .18s ease, filter .18s ease !important;
 }
 
-main > section:first-of-type .group.relative button:hover {
-  filter: brightness(1.08) !important;
-  transform: translateY(-1px) !important;
-}
-
+/* Keyboard hint */
 main > section:first-of-type .group.relative + div {
-  color: rgba(226, 235, 226, .58) !important;
+  color: rgba(226, 235, 226, .68) !important;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, .4) !important;
 }
 
-/* Compact database counters */
+/* Database counters */
 main > section:first-of-type > div > div > div:first-child > div:last-child {
   display: flex !important;
   gap: 10px !important;
   flex-wrap: nowrap !important;
-  margin-top: 22px !important;
+  margin-top: 20px !important;
 }
 
 main > section:first-of-type > div > div > div:first-child > div:last-child > div {
   display: block !important;
   min-width: 0 !important;
   flex: 1 1 0 !important;
-  padding: 12px 15px !important;
+  padding: 11px 15px !important;
   border: 2px solid #286844 !important;
   border-radius: 8px !important;
   background: rgba(2, 25, 15, .94) !important;
   box-shadow: 3px 3px 0 #06170d, inset 0 0 0 1px rgba(99, 232, 120, .08) !important;
-  transition: transform .18s ease, border-color .18s ease, background .18s ease !important;
-}
-
-main > section:first-of-type > div > div > div:first-child > div:last-child > div:hover {
-  transform: translateY(-3px) !important;
-  border-color: #3f9861 !important;
-  background: rgba(4, 38, 23, .96) !important;
 }
 
 main > section:first-of-type > div > div > div:first-child > div:last-child > div p:first-child {
   margin: 0 !important;
-  font: 900 30px/1 var(--font-geist-mono), monospace !important;
+  font: 900 28px/1 var(--font-geist-mono), monospace !important;
   color: #fff !important;
   text-shadow: 2px 2px 0 #06170d !important;
 }
 
 main > section:first-of-type > div > div > div:first-child > div:last-child > div p:last-child {
-  margin-top: 6px !important;
+  margin-top: 5px !important;
   color: #62e876 !important;
   font: 900 8px/1 var(--font-geist-mono), monospace !important;
   letter-spacing: .16em !important;
 }
 
-main > section:first-of-type > div > div > div:first-child > div:last-child > div:nth-child(1)::after,
-main > section:first-of-type > div > div > div:first-child > div:last-child > div:nth-child(2)::after,
-main > section:first-of-type > div > div > div:first-child > div:last-child > div:nth-child(3)::after,
-main > section:first-of-type > div > div > div:first-child > div:last-child > div:empty {
-  display: none !important;
+/* Remove old decorative pseudo content from counters */
+main > section:first-of-type > div > div > div:first-child > div:last-child > div::after {
   content: none !important;
+  display: none !important;
+}
+
+/* Hide the old right terminal so the left composition stays clean */
+main > section:first-of-type > div > div > div:nth-child(2) {
+  display: none !important;
 }
 
 main > section:first-of-type::after {
@@ -213,12 +191,8 @@ main > section:first-of-type::after {
     padding: 22px 18px 20px !important;
   }
 
-  main > section:first-of-type h2::before {
-    font-size: clamp(3.2rem, 15vw, 5rem) !important;
-  }
-
-  main > section:first-of-type h2::after {
-    font-size: 1rem !important;
+  main > section:first-of-type h2 {
+    font-size: clamp(2.5rem, 13vw, 4.5rem) !important;
   }
 
   main > section:first-of-type > div > div > div:first-child > div:last-child > div {
@@ -226,7 +200,7 @@ main > section:first-of-type::after {
   }
 
   main > section:first-of-type > div > div > div:first-child > div:last-child > div p:first-child {
-    font-size: 22px !important;
+    font-size: 21px !important;
   }
 
   main > section:first-of-type::after {
