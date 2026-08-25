@@ -74,3 +74,43 @@ main > section:first-of-type > div{display:block!important;height:auto!important
 main > section:first-of-type > div > div{align-items:start!important;align-content:start!important;justify-content:stretch!important;height:auto!important;min-height:0!important;margin-top:0!important}
 main > section:first-of-type > div > div > div:first-child{align-self:start!important;justify-self:start!important;position:relative!important;top:auto!important;bottom:auto!important;transform:none!important;margin-top:0!important}
 main > section:first-of-type > div > div > div:nth-child(2){align-self:start!important;position:relative!important;top:auto!important;bottom:auto!important;transform:none!important;margin-top:0!important}
+
+/* D'MELO BRANDING — final typography override */
+main > section:first-of-type h2 {
+  max-width: 760px !important;
+  font-family: var(--font-geist-sans), Arial, sans-serif !important;
+  font-size: clamp(3.2rem, 6vw, 5.7rem) !important;
+  line-height: .94 !important;
+  letter-spacing: -.055em !important;
+  text-wrap: balance !important;
+}
+main > section:first-of-type h2 {
+  font-size: 0 !important;
+}
+main > section:first-of-type h2::before {
+  content: "POKEDEX D'MELO" !important;
+  display: block !important;
+  font-family: var(--font-geist-sans), Arial, sans-serif !important;
+  font-size: clamp(3.2rem, 6vw, 5.7rem) !important;
+  line-height: .94 !important;
+  letter-spacing: -.055em !important;
+  font-weight: 950 !important;
+  color: #f8f5df !important;
+  text-shadow: 4px 5px 0 #071b12, 0 0 22px rgba(0,0,0,.38) !important;
+}
+main > section:first-of-type h2 span { display:none !important; }
+main > section:first-of-type h2 + p {
+  max-width: 690px !important;
+  margin-top: 18px !important;
+  font-family: var(--font-geist-sans), Arial, sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.7 !important;
+  font-weight: 500 !important;
+  letter-spacing: .01em !important;
+  color: #dce3d8 !important;
+  text-shadow: 1px 2px 0 rgba(0,0,0,.38) !important;
+}
+@media(max-width:768px){
+  main > section:first-of-type h2::before{font-size:clamp(2.7rem,12vw,4.5rem)!important}
+  main > section:first-of-type h2 + p{font-size:14px!important;line-height:1.6!important}
+}
