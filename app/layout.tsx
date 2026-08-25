@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import "./hero-overrides.css";
 import "./generation-enhancements.css";
 import "./pokemon-enhancements.css";
 import "./pokemon-detail-enhancements.css";
 import "./pokemon-detail-fix.css";
 import "./pokemon-detail-hero-reset.css";
 import "./pokemon-detail-polish.css";
-import "./home-final-polish.css";
-import "./home-typography-final.css";
-import "./home-clean-final.css";
-import "./home-hero-final.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,10 +25,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="pt-BR"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
