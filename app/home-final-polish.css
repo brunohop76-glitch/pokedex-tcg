@@ -1,36 +1,34 @@
-/* HOME HERO — FINAL CLEAN LAYOUT */
+/* HOME HERO — STABLE FINAL LAYOUT */
 
 main.min-h-screen > section:first-of-type {
   min-height: 0 !important;
   height: auto !important;
-  overflow: hidden !important;
+  overflow: visible !important;
   border-bottom: 5px solid #0b251a !important;
   background-image:
-    linear-gradient(90deg, rgba(3,20,12,.92) 0%, rgba(3,20,12,.78) 38%, rgba(3,20,12,.42) 72%, rgba(3,20,12,.22) 100%),
+    linear-gradient(90deg, rgba(3,20,12,.90) 0%, rgba(3,20,12,.72) 38%, rgba(3,20,12,.38) 72%, rgba(3,20,12,.20) 100%),
     url("https://archives.bulbagarden.net/wiki/Special:Redirect/file/Viridian_City_FRLG.png") !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
 }
 
-/* REAL HERO WRAPPER */
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl {
   position: relative !important;
   z-index: 5 !important;
-  display: block !important;
   width: 100% !important;
   max-width: 1280px !important;
   min-height: 0 !important;
   height: auto !important;
   margin: 0 auto !important;
-  padding: 44px 32px 42px !important;
+  padding: 42px 32px 48px !important;
 }
 
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid {
   display: grid !important;
-  grid-template-columns: minmax(0, 1fr) 320px !important;
+  grid-template-columns: minmax(0, 1fr) 300px !important;
   align-items: start !important;
-  gap: 48px !important;
+  gap: 42px !important;
   width: 100% !important;
   max-width: 1160px !important;
   min-height: 0 !important;
@@ -38,86 +36,113 @@ main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid 
   margin: 0 auto !important;
 }
 
-/* LEFT COLUMN — force it to be transparent and unrestricted */
+/* LEFT SIDE */
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child {
   display: block !important;
   position: relative !important;
   width: 100% !important;
-  max-width: 760px !important;
+  max-width: 780px !important;
   min-width: 0 !important;
   min-height: 0 !important;
   height: auto !important;
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;
-  border-radius: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
-  backdrop-filter: none !important;
   overflow: visible !important;
   transform: none !important;
 }
 
-/* STATUS BAR */
+/* STATUS */
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div:first-child {
   display: flex !important;
   position: relative !important;
   width: fit-content !important;
-  max-width: 100% !important;
   min-height: 0 !important;
   height: auto !important;
-  margin: 0 0 22px !important;
+  margin: 0 0 18px !important;
   padding: 9px 15px !important;
   align-items: center !important;
   gap: 12px !important;
   border: 1px solid rgba(64,157,93,.55) !important;
   border-radius: 8px !important;
-  background: rgba(2,27,16,.84) !important;
-  box-shadow: 0 8px 22px rgba(0,0,0,.22) !important;
+  background: rgba(2,27,16,.86) !important;
+  box-shadow: 0 7px 20px rgba(0,0,0,.20) !important;
 }
 
-/* TITLE */
-main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl h2 {
-  display: block !important;
+/* BRAND LABEL */
+main.min-h-screen > section:first-of-type p:first-of-type {
+  margin: 0 0 7px !important;
+  font-size: 10px !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  letter-spacing: .35em !important;
+  color: #00aeea !important;
+}
+
+/* HERO TITLE — visually replace old copy without changing the data logic */
+main.min-h-screen > section:first-of-type h2 {
   position: relative !important;
+  display: block !important;
   width: 100% !important;
-  max-width: 720px !important;
-  min-width: 0 !important;
+  max-width: 780px !important;
+  min-height: 0 !important;
   height: auto !important;
   margin: 0 !important;
   padding: 0 !important;
   overflow: visible !important;
+  white-space: nowrap !important;
   font-family: var(--font-geist-sans), Arial, sans-serif !important;
-  font-size: clamp(3.25rem, 5.2vw, 5.35rem) !important;
-  line-height: .9 !important;
+  font-size: clamp(3.3rem, 6vw, 5.8rem) !important;
+  line-height: .96 !important;
   font-weight: 950 !important;
-  letter-spacing: -.065em !important;
-  text-transform: none !important;
-  color: #f7f3dc !important;
-  text-shadow: 4px 4px 0 #071b12, 0 0 24px rgba(0,0,0,.35) !important;
+  letter-spacing: -.055em !important;
+  color: transparent !important;
+  text-shadow: none !important;
 }
 
 main.min-h-screen > section:first-of-type h2::before,
 main.min-h-screen > section:first-of-type h2::after {
+  display: block !important;
   content: none !important;
-  display: none !important;
 }
 
 main.min-h-screen > section:first-of-type h2 span {
-  display: inline !important;
-  color: #ed2b2b !important;
+  display: none !important;
+}
+
+main.min-h-screen > section:first-of-type h2 {
+  font-size: 0 !important;
+}
+
+main.min-h-screen > section:first-of-type h2::before {
+  content: "POKEDEX D'MELO" !important;
+  display: block !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  font-family: var(--font-geist-sans), Arial, sans-serif !important;
+  font-size: clamp(3.7rem, 7vw, 6.4rem) !important;
+  line-height: .95 !important;
+  font-weight: 950 !important;
+  letter-spacing: -.065em !important;
+  color: #f7f3dc !important;
+  text-shadow: 4px 4px 0 #071b12, 0 8px 22px rgba(0,0,0,.28) !important;
 }
 
 /* DESCRIPTION */
 main.min-h-screen > section:first-of-type h2 + p {
   display: block !important;
   width: 100% !important;
-  max-width: 650px !important;
-  margin: 16px 0 0 !important;
-  color: #f1f0df !important;
-  font-size: 15px !important;
-  line-height: 1.55 !important;
-  text-shadow: 1px 1px 0 rgba(0,0,0,.5) !important;
+  max-width: 690px !important;
+  margin: 15px 0 0 !important;
+  color: #304a40 !important;
+  font-family: var(--font-geist-sans), Arial, sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.65 !important;
+  font-weight: 600 !important;
+  letter-spacing: -.01em !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,.65) !important;
 }
 
 /* SEARCH */
@@ -149,18 +174,13 @@ main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl .group.r
   box-shadow: inset 0 -3px 0 rgba(0,0,0,.22), 2px 3px 0 #8d1715 !important;
 }
 
-/* HINT */
-main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl .group.relative + div {
-  color: rgba(235,239,226,.78) !important;
-}
-
-/* COUNTERS — direct fourth child of left column */
+/* COUNTERS */
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div:last-child {
   display: flex !important;
   width: fit-content !important;
   max-width: 100% !important;
   min-height: 0 !important;
-  margin: 26px 0 0 !important;
+  margin: 25px 0 0 !important;
   padding: 0 !important;
   gap: 0 !important;
   border: 0 !important;
@@ -169,34 +189,25 @@ main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid 
 }
 
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div:last-child > div {
-  display: block !important;
-  min-width: 112px !important;
+  min-width: 145px !important;
   min-height: 0 !important;
-  padding: 0 22px !important;
+  padding: 0 25px !important;
   border: 0 !important;
-  border-right: 1px solid rgba(255,255,255,.16) !important;
-  border-radius: 0 !important;
+  border-right: 1px solid rgba(23,59,49,.25) !important;
   background: transparent !important;
-  box-shadow: none !important;
 }
 
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div:last-child > div:first-child { padding-left: 0 !important; }
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div:last-child > div:last-child { border-right: 0 !important; }
 
-/* RIGHT TERMINAL */
+/* TERMINAL */
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:nth-child(2) {
-  display: block !important;
-  position: relative !important;
   width: 100% !important;
-  max-width: 320px !important;
-  min-width: 0 !important;
-  min-height: 0 !important;
-  height: auto !important;
+  max-width: 300px !important;
   margin: 0 !important;
   padding: 0 !important;
   justify-self: end !important;
   align-self: start !important;
-  border: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
   overflow: visible !important;
@@ -206,12 +217,11 @@ main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid 
   width: 100% !important;
   border: 1px solid rgba(68,169,101,.48) !important;
   border-radius: 13px !important;
-  background: rgba(5,18,12,.92) !important;
-  box-shadow: 0 18px 45px rgba(0,0,0,.40) !important;
+  background: rgba(5,18,12,.94) !important;
+  box-shadow: 0 18px 40px rgba(0,0,0,.28) !important;
 }
 
 #generations, #pokemon, #tcg { scroll-margin-top: 76px !important; }
-#generations button, #pokemon a { cursor: pointer !important; }
 
 @media (max-width: 1023px) {
   main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid {
@@ -223,9 +233,13 @@ main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid 
 
 @media (max-width: 768px) {
   main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl {
-    padding: 32px 18px 34px !important;
+    padding: 32px 18px 36px !important;
   }
-  main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl h2 {
-    font-size: clamp(2.75rem, 12.5vw, 4.4rem) !important;
+  main.min-h-screen > section:first-of-type h2::before {
+    font-size: clamp(3rem, 13vw, 4.6rem) !important;
+    white-space: normal !important;
+  }
+  main.min-h-screen > section:first-of-type h2 {
+    white-space: normal !important;
   }
 }
