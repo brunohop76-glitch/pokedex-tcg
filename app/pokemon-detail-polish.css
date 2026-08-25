@@ -1,53 +1,74 @@
-/* POKEMON DETAIL — final visual polish
-   Clean hierarchy, readable typography, compact information blocks. */
+/* POKEMON DETAIL — visual finish
+   Final pass: stronger dossier hierarchy, larger artwork, cleaner modules. */
 
+/* RIGHT INFORMATION COLUMN */
 main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) {
-  padding: 32px 38px !important;
+  padding: 30px 38px 34px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
 }
 
-/* Number + title */
+/* NUMBER + NAME */
 main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) h1 {
-  margin: 2px 0 0 !important;
+  margin: 0 !important;
   color: #123f32 !important;
   font-family: var(--font-geist-sans), Arial, sans-serif !important;
-  font-size: clamp(3rem, 4.6vw, 4.25rem) !important;
-  font-weight: 900 !important;
-  line-height: .92 !important;
-  letter-spacing: -.065em !important;
+  font-size: clamp(3.1rem, 4.8vw, 4.55rem) !important;
+  font-weight: 950 !important;
+  line-height: .9 !important;
+  letter-spacing: -.07em !important;
+  text-transform: uppercase !important;
   text-shadow: 3px 3px 0 #c9cfbd !important;
 }
 
 main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) h1::after {
-  width: 64px !important;
-  height: 4px !important;
-  margin-top: 13px !important;
+  content: "" !important;
+  display: block !important;
+  width: 74px !important;
+  height: 5px !important;
+  margin-top: 12px !important;
   background: #e52521 !important;
-  box-shadow: none !important;
+  box-shadow: 3px 3px 0 #a5ac9b !important;
 }
 
-/* Small labels */
+/* technical labels */
 main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) h1 ~ p,
 main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:first-child p {
+  color: #e52521 !important;
   font-family: var(--font-geist-mono), monospace !important;
-  font-size: 10px !important;
-  font-weight: 800 !important;
-  letter-spacing: .18em !important;
-  line-height: 1.3 !important;
+  font-size: 9px !important;
+  font-weight: 900 !important;
+  letter-spacing: .2em !important;
+  line-height: 1.35 !important;
+  text-transform: uppercase !important;
 }
 
-/* Type badges */
+/* TYPE BADGES */
 main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(2) {
   display: flex !important;
-  gap: 7px !important;
+  align-items: center !important;
+  gap: 8px !important;
   margin-top: 13px !important;
   padding: 0 !important;
   background: transparent !important;
   border: 0 !important;
 }
 
-/* Description */
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(2) span {
+  min-width: 66px !important;
+  padding: 6px 10px !important;
+  border-radius: 6px !important;
+  text-align: center !important;
+  font-family: var(--font-geist-sans), Arial, sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  letter-spacing: .03em !important;
+}
+
+/* DESCRIPTION MODULE */
 main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(3) {
-  margin-top: 15px !important;
+  margin-top: 14px !important;
   padding: 14px 16px 15px !important;
   background: #e9efd7 !important;
   border: 2px solid #899685 !important;
@@ -55,57 +76,46 @@ main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-ch
   box-shadow: 3px 3px 0 #a5ac9b !important;
 }
 
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(3)::before {
+  content: "POKÉDEX ENTRY" !important;
+  display: block !important;
+  margin-bottom: 8px !important;
+  color: #007f86 !important;
+  font-family: var(--font-geist-mono), monospace !important;
+  font-size: 8px !important;
+  font-weight: 900 !important;
+  letter-spacing: .16em !important;
+}
+
 main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(3) p {
   color: #214538 !important;
   font-family: var(--font-geist-sans), Arial, sans-serif !important;
   font-size: 14px !important;
   font-weight: 550 !important;
-  line-height: 1.55 !important;
+  line-height: 1.5 !important;
   letter-spacing: 0 !important;
 }
 
-/* Information cards */
+/* FOUR INFORMATION CARDS */
 main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(4) {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   gap: 8px !important;
   margin-top: 12px !important;
 }
 
 main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(4) > div {
-  min-height: 68px !important;
+  min-height: 70px !important;
   padding: 10px 11px !important;
   background: #faf7e6 !important;
-  border: 1px solid #c4cbb9 !important;
+  border: 1px solid #bfc8b7 !important;
   border-radius: 9px !important;
-  box-shadow: 0 2px 0 rgba(74,91,77,.18) !important;
+  box-shadow: 0 3px 0 rgba(74,91,77,.16) !important;
 }
 
 main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(4) p:first-child {
   margin-bottom: 5px !important;
-  color: #627467 !important;
-  font-family: var(--font-geist-mono), monospace !important;
-  font-size: 8px !important;
-  font-weight: 800 !important;
-  letter-spacing: .14em !important;
-}
-
-main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(4) p:last-child {
-  color: #173f32 !important;
-  font-family: var(--font-geist-sans), Arial, sans-serif !important;
-  font-size: 14px !important;
-  font-weight: 800 !important;
-  line-height: 1.25 !important;
-}
-
-/* Abilities / moves */
-main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(5) {
-  gap: 22px !important;
-  margin-top: 13px !important;
-  padding-top: 2px !important;
-}
-
-main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(5) h2 {
-  margin-bottom: 7px !important;
-  color: #627467 !important;
+  color: #65776a !important;
   font-family: var(--font-geist-mono), monospace !important;
   font-size: 8px !important;
   font-weight: 900 !important;
@@ -113,19 +123,60 @@ main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-ch
   text-transform: uppercase !important;
 }
 
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(4) p:last-child {
+  color: #173f32 !important;
+  font-family: var(--font-geist-sans), Arial, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 850 !important;
+  line-height: 1.25 !important;
+}
+
+/* ABILITIES / MOVES — two dossier modules */
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(5) {
+  display: grid !important;
+  grid-template-columns: minmax(150px, .78fr) minmax(0, 1.22fr) !important;
+  gap: 16px !important;
+  margin-top: 14px !important;
+  padding-top: 11px !important;
+  border-top: 1px solid #c4cbb9 !important;
+}
+
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(5) > div {
+  min-width: 0 !important;
+  padding: 10px 10px 9px !important;
+  background: rgba(231,237,207,.48) !important;
+  border: 1px solid #c5cbb8 !important;
+  border-radius: 9px !important;
+}
+
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(5) h2 {
+  margin: 0 0 8px !important;
+  color: #5d7063 !important;
+  font-family: var(--font-geist-mono), monospace !important;
+  font-size: 8px !important;
+  font-weight: 900 !important;
+  letter-spacing: .14em !important;
+  line-height: 1.2 !important;
+  text-transform: uppercase !important;
+}
+
 main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(5) button,
 main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(5) span {
   font-family: var(--font-geist-sans), Arial, sans-serif !important;
-  font-size: 11px !important;
-  font-weight: 750 !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
 }
 
-/* Make the artwork feel balanced instead of oversized. */
+/* ARTWORK — give the Pokémon more presence */
 main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:first-child img {
-  width: 66% !important;
-  max-width: 350px !important;
-  max-height: 360px !important;
-  margin: 18px auto 0 !important;
+  width: 78% !important;
+  max-width: 400px !important;
+  max-height: 410px !important;
+  margin: 10px auto 0 !important;
+}
+
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:first-child:hover img {
+  transform: translateY(-4px) scale(1.01) !important;
 }
 
 @media (min-width: 1101px) {
@@ -134,7 +185,14 @@ main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:first-
   }
 
   main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) {
-    padding-top: 38px !important;
+    padding-top: 32px !important;
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 761px) {
+  main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:first-child img {
+    width: 74% !important;
+    max-width: 360px !important;
   }
 }
 
@@ -145,5 +203,13 @@ main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:first-
 
   main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) h1 {
     font-size: 3rem !important;
+  }
+
+  main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(4) {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(5) {
+    grid-template-columns: 1fr !important;
   }
 }
