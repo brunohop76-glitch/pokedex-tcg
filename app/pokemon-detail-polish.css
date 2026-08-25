@@ -77,7 +77,7 @@ main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-ch
 }
 
 main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(3)::before {
-  content: "POKÉDEX ENTRY" !important;
+  content: "REGISTRO DO POKÉMON" !important;
   display: block !important;
   margin-bottom: 8px !important;
   color: #007f86 !important;
