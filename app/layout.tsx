@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "./home-layout-fix.css";
 import "./generation-enhancements.css";
 import "./pokemon-enhancements.css";
 import "./pokemon-detail-enhancements.css";
