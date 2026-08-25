@@ -1,19 +1,164 @@
-/* HOME HERO — FINAL CLEAN PASS */
-main.min-h-screen > section:first-of-type{position:relative!important;min-height:0!important;height:auto!important;overflow:hidden!important;margin:0!important;padding:0!important;border:0!important;background:#eef1dc!important;background-image:linear-gradient(rgba(18,61,48,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(18,61,48,.035) 1px,transparent 1px)!important;background-size:24px 24px!important}
-main.min-h-screen > section:first-of-type::before,main.min-h-screen > section:first-of-type::after{content:none!important;display:none!important}
-main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl{width:100%!important;max-width:1120px!important;margin:0 auto!important;padding:48px 28px 52px!important}
-main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid{display:block!important;width:100%!important;max-width:100%!important;margin:0!important;padding:0!important}
-main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child{display:block!important;width:100%!important;max-width:920px!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;backdrop-filter:none!important}
-main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div:first-child,main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > p,main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div.mt-6 > p:first-child{display:none!important}
-main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div.mt-7 > .mt-2,main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div.mt-8,main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:nth-child(2){display:none!important}
-main.min-h-screen > section:first-of-type h2{display:block!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;font-size:0!important;line-height:1!important;text-align:left!important;white-space:nowrap!important;color:transparent!important;text-shadow:none!important;-webkit-text-stroke:0!important;text-stroke:0!important}
-main.min-h-screen > section:first-of-type h2 span{display:none!important}
-main.min-h-screen > section:first-of-type h2::before{content:"POKEDEX D'MELO"!important;display:block!important;width:fit-content!important;max-width:100%!important;font-family:Arial,Helvetica,sans-serif!important;font-size:clamp(3.4rem,6vw,5.8rem)!important;line-height:.95!important;font-weight:900!important;letter-spacing:-.055em!important;color:#123d31!important;text-shadow:3px 4px 0 rgba(18,61,49,.12)!important}
-main.min-h-screen > section:first-of-type h2::after{content:none!important;display:none!important}
-main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl .group.relative{display:block!important;width:min(680px,100%)!important;max-width:680px!important;margin:24px 0 0!important}
-main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl .group.relative > .absolute{display:none!important}
-main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl .group.relative > div.relative{display:flex!important;align-items:center!important;width:100%!important;min-height:58px!important;padding:4px!important;border:2px solid #173d2c!important;border-radius:8px!important;background:#f7f2d8!important;box-shadow:4px 4px 0 #071b12!important}
-main.min-h-screen > section:first-of-type input{min-width:0!important;font-family:Arial,Helvetica,sans-serif!important;font-size:14px!important;font-weight:600!important;color:#173b31!important}
-main.min-h-screen > section:first-of-type input::placeholder{color:#718078!important;opacity:1!important}
-main.min-h-screen > section:first-of-type button{min-height:48px!important;padding-left:22px!important;padding-right:22px!important;border-radius:6px!important;background:#e52521!important;box-shadow:inset 0 -3px 0 rgba(0,0,0,.22),2px 2px 0 #8d1715!important;font-family:Arial,Helvetica,sans-serif!important;font-size:10px!important;font-weight:900!important;letter-spacing:.04em!important}
-@media(max-width:768px){main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl{padding:38px 18px 42px!important}main.min-h-screen > section:first-of-type h2::before{font-size:clamp(2.7rem,11vw,4.2rem)!important;white-space:normal!important}main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl .group.relative{margin-top:20px!important}}
+/* HOME HERO — RETRO NEXUS FINAL */
+
+main.min-h-screen > section:first-of-type {
+  position: relative !important;
+  min-height: 360px !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-top: 1px solid rgba(18,61,49,.18) !important;
+  border-bottom: 2px solid #183d2e !important;
+  background: #e9edd8 !important;
+  background-image:
+    linear-gradient(rgba(18,61,49,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18,61,49,.045) 1px, transparent 1px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.12) 0, rgba(255,255,255,.12) 1px, transparent 1px, transparent 4px) !important;
+  background-size: 20px 20px, 20px 20px, 100% 4px !important;
+}
+
+/* Kill every legacy decorative pseudo-element in this hero. */
+main.min-h-screen > section:first-of-type *::before,
+main.min-h-screen > section:first-of-type *::after {
+  content: none !important;
+  display: none !important;
+}
+
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl {
+  position: relative !important;
+  z-index: 2 !important;
+  width: 100% !important;
+  max-width: 1160px !important;
+  margin: 0 auto !important;
+  padding: 38px 34px 42px !important;
+}
+
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: 980px !important;
+  margin: 0 !important;
+  padding: 28px 30px 30px !important;
+  border: 2px solid #587363 !important;
+  border-radius: 4px !important;
+  background: rgba(246,243,220,.94) !important;
+  box-shadow: 6px 6px 0 #183d2e, inset 0 0 0 2px rgba(255,255,255,.7) !important;
+}
+
+/* Retro corner marks. */
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child {
+  outline: 1px solid rgba(18,61,49,.15) !important;
+  outline-offset: 6px !important;
+}
+
+/* Remove old status/location/terminal/counters. */
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div:first-child,
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > p,
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:nth-child(2),
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div.mt-7 > .mt-2,
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div.mt-8 {
+  display: none !important;
+}
+
+/* Actual title: readable retro display, no outline gimmicks. */
+main.min-h-screen > section:first-of-type h2 {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  text-align: left !important;
+  white-space: nowrap !important;
+  font-family: Arial Black, Arial, Helvetica, sans-serif !important;
+  font-size: clamp(3.2rem, 6.2vw, 5.8rem) !important;
+  line-height: .92 !important;
+  font-weight: 900 !important;
+  letter-spacing: -.045em !important;
+  color: #123d31 !important;
+  text-shadow: 3px 4px 0 #b9c3a9 !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+main.min-h-screen > section:first-of-type h2 span {
+  display: none !important;
+}
+
+/* Search becomes the only functional element below the title. */
+main.min-h-screen > section:first-of-type .group.relative {
+  position: relative !important;
+  display: block !important;
+  width: min(700px, 100%) !important;
+  max-width: 700px !important;
+  margin: 28px 0 0 !important;
+}
+
+main.min-h-screen > section:first-of-type .group.relative > .absolute {
+  display: none !important;
+}
+
+main.min-h-screen > section:first-of-type .group.relative > div:last-child {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  min-height: 60px !important;
+  padding: 4px !important;
+  border: 3px solid #173d2c !important;
+  border-radius: 4px !important;
+  background: #fffbea !important;
+  box-shadow: 5px 5px 0 #183d2e, inset 0 0 0 1px #b9c3a9 !important;
+}
+
+main.min-h-screen > section:first-of-type input {
+  min-width: 0 !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 15px !important;
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+  color: #173b31 !important;
+}
+
+main.min-h-screen > section:first-of-type input::placeholder {
+  color: #6b776f !important;
+  opacity: 1 !important;
+}
+
+main.min-h-screen > section:first-of-type button {
+  min-height: 50px !important;
+  padding: 0 25px !important;
+  border-radius: 3px !important;
+  background: #e52521 !important;
+  border: 2px solid #8d1715 !important;
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,.18) !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  letter-spacing: .08em !important;
+}
+
+@media (max-width: 768px) {
+  main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl {
+    padding: 28px 18px 32px !important;
+  }
+
+  main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child {
+    padding: 22px 18px 24px !important;
+  }
+
+  main.min-h-screen > section:first-of-type h2 {
+    white-space: normal !important;
+    font-size: clamp(2.5rem, 12vw, 4.2rem) !important;
+  }
+
+  main.min-h-screen > section:first-of-type .group.relative {
+    margin-top: 22px !important;
+  }
+}
