@@ -214,9 +214,7 @@ export default function Home() {
 
               <div className="mt-6 max-w-3xl">
                 <p className="text-[10px] font-black uppercase tracking-[0.35em] text-cyan-400">POKÉDEX DATABASE</p>
-                <h2 className="mt-2 text-4xl font-black tracking-tight md:text-6xl">
-                  Seu banco de dados <span className="text-red-500">Pokémon.</span>
-                </h2>
+                <h2 className="mt-2 text-4xl font-black tracking-tight md:text-6xl">POKEDEX D'MELO</h2>
                 <p className="mt-4 max-w-2xl text-sm leading-6 text-zinc-400 md:text-base">
                   Explore Pokémon, regiões, tipos, evoluções e cartas TCG em uma única central de dados.
                 </p>
@@ -270,146 +268,127 @@ export default function Home() {
 
             <div className="hidden lg:block">
               <div className="relative ml-auto max-w-[310px] overflow-hidden rounded-2xl border border-emerald-500/20 bg-[#0b120e]/90 p-5 shadow-[0_0_50px_rgba(16,185,129,0.06)]">
-                <div className="absolute right-0 top-0 h-20 w-20 bg-emerald-400/5 blur-2xl" />
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                  <span className="text-[9px] font-black uppercase tracking-[0.25em] text-zinc-500">POKÉDEX SYSTEM</span>
-                  <span className="flex items-center gap-1.5 text-[8px] font-black uppercase tracking-widest text-emerald-400"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />Ready</span>
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-black uppercase tracking-[0.25em] text-zinc-500">Pokédex System</span>
+                  <span className="text-[9px] font-black uppercase tracking-widest text-emerald-400">● READY</span>
                 </div>
-                <div className="mt-5 space-y-4 font-mono">
-                  <div className="flex items-center justify-between"><span className="text-[9px] text-zinc-600">STATUS</span><span className="text-[10px] font-bold text-emerald-400">ONLINE</span></div>
-                  <div className="flex items-center justify-between"><span className="text-[9px] text-zinc-600">REGISTROS</span><span className="text-[10px] font-bold text-cyan-400">1,025</span></div>
-                  <div className="flex items-center justify-between"><span className="text-[9px] text-zinc-600">REGIÕES</span><span className="text-[10px] font-bold text-white">09</span></div>
-                  <div className="flex items-center justify-between"><span className="text-[9px] text-zinc-600">TCG LINK</span><span className="text-[10px] font-bold text-red-400">CONNECTED</span></div>
+                <div className="mt-5 space-y-3 text-[9px] font-bold uppercase tracking-widest">
+                  <div className="flex justify-between"><span className="text-zinc-600">Status</span><span className="text-emerald-400">ONLINE</span></div>
+                  <div className="flex justify-between"><span className="text-zinc-600">Registros</span><span className="text-cyan-400">1,025</span></div>
+                  <div className="flex justify-between"><span className="text-zinc-600">Regiões</span><span className="text-white">09</span></div>
+                  <div className="flex justify-between"><span className="text-zinc-600">TCG Link</span><span className="text-red-400">CONNECTED</span></div>
                 </div>
-                <div className="mt-5 border-t border-white/10 pt-4 text-[8px] font-bold uppercase tracking-[0.2em] text-zinc-700">NEXUS // DATABASE 01</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="generations" className="relative z-10 mx-auto max-w-7xl px-6 py-16">
-        <div className="mb-8">
-          <div className="flex items-center gap-3"><span className="text-[10px] font-black uppercase tracking-[0.3em] text-cyan-400">01 // NAVIGATION</span><span className="h-px flex-1 bg-gradient-to-r from-cyan-500/30 to-transparent" /></div>
-          <h3 className="mt-4 text-3xl font-black md:text-4xl">Escolha uma <span className="text-red-500">geração</span></h3>
-          <p className="mt-2 text-sm text-zinc-500">Acesse rapidamente cada região da Pokédex.</p>
-        </div>
+      <section id="generations" className="relative z-10 border-b border-white/10 bg-[#0a0d0b] py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-400">Pokémon Region Select</p>
+              <h3 className="mt-2 text-3xl font-black tracking-tight text-white md:text-5xl">Gerações <span className="text-red-500">Pokémon.</span></h3>
+            </div>
+            <p className="max-w-xl text-sm leading-6 text-zinc-500">Navegue pelas gerações e explore a coleção completa de Pokémon disponível na base de dados.</p>
+          </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-10">
-          {generations.map((generation) => {
-            const active = selectedGeneration === generation.id;
-            const count = generation.end - generation.start + 1;
-            return (
-              <button key={generation.id} onClick={() => setSelectedGeneration(generation.id)} className={`group relative min-h-[125px] overflow-hidden rounded-2xl border p-4 text-left transition duration-300 ${active ? "border-red-500/60 bg-red-500/10 shadow-[0_0_30px_rgba(239,68,68,0.12)]" : "border-white/10 bg-white/[0.025] hover:-translate-y-1 hover:border-cyan-400/30 hover:bg-white/[0.05]"}`}>
-                <p className={`text-[9px] font-black uppercase tracking-widest ${active ? "text-red-400" : "text-zinc-600"}`}>{generation.id === 0 ? "DATABASE" : `GEN ${generation.id}`}</p>
-                <p className="mt-2 text-sm font-black">{generation.id === 0 ? "Todas" : `Geração ${generation.roman}`}</p>
-                <p className={`mt-1 text-xs ${active ? "text-zinc-300" : "text-zinc-600"}`}>{generation.region}</p>
-                <p className={`mt-3 text-[10px] font-bold ${active ? "text-cyan-400" : "text-zinc-500"}`}>{count} REGISTROS</p>
-              </button>
-            );
-          })}
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+            {generations.map((generation) => {
+              const active = selectedGeneration === generation.id;
+              return (
+                <button
+                  key={generation.id}
+                  onClick={() => setSelectedGeneration(generation.id)}
+                  className={`group relative overflow-hidden rounded-2xl border p-5 text-left transition ${
+                    active
+                      ? "border-red-500/60 bg-red-500/10 shadow-[0_0_30px_rgba(239,68,68,0.08)]"
+                      : "border-white/10 bg-white/[0.02] hover:border-emerald-500/30 hover:bg-emerald-500/[0.03]"
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-zinc-600">GEN {generation.roman || "ALL"}</span>
+                    {active && <span className="text-[9px] font-black uppercase tracking-widest text-red-400">● ACTIVE</span>}
+                  </div>
+                  <p className="mt-3 text-lg font-black text-white">{generation.name}</p>
+                  <p className="mt-1 text-xs text-zinc-500">{generation.region}</p>
+                  <p className="mt-4 font-mono text-[10px] font-bold text-emerald-400">#{String(generation.start).padStart(4, "0")} — #{String(generation.end).padStart(4, "0")}</p>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      <section id="pokemon" className="relative z-10 mx-auto max-w-7xl px-6 pb-24">
-        <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <div className="flex items-center gap-3"><span className="text-[10px] font-black uppercase tracking-[0.3em] text-red-400">02 // DATABASE</span><span className="h-px w-16 bg-red-500/30" /></div>
-            <h3 className="mt-3 text-3xl font-black md:text-4xl">{search.trim() ? "Resultados da busca" : selected.id === 0 ? "Todos os Pokémon" : `Pokémon de ${selected.region}`}</h3>
-            <p className="mt-2 text-sm text-zinc-500">{search.trim() ? `Pesquisa global por "${search}"` : "Selecione um registro para acessar seus dados."}</p>
+      <section id="pokemon" className="relative z-10 bg-[#080a09] py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-cyan-400">Database / {selected.region}</p>
+              <h3 className="mt-2 text-3xl font-black tracking-tight text-white md:text-5xl">Pokémon <span className="text-red-500">catalogados.</span></h3>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-zinc-500">Página {currentPage} / {totalPages}</div>
+              {detailsLoading && <div className="text-[10px] font-bold uppercase tracking-widest text-emerald-400">Sincronizando...</div>}
+            </div>
           </div>
-          <div className="rounded-xl border border-white/10 bg-white/[0.025] px-4 py-3"><p className="text-right text-[10px] font-bold uppercase tracking-widest text-zinc-600">Registros encontrados</p><p className="text-right text-xl font-black text-cyan-400">{filteredPokemon.length}</p></div>
-        </div>
 
-        {loading ? (
-          <div className="rounded-3xl border border-white/10 bg-white/[0.025] p-20 text-center"><div className="mx-auto h-12 w-12 animate-spin rounded-full border-2 border-white/10 border-t-red-500 border-r-cyan-400" /><p className="mt-6 text-sm font-bold uppercase tracking-widest text-zinc-500">Sincronizando database...</p></div>
-        ) : paginatedPokemon.length === 0 ? (
-          <div className="rounded-3xl border border-white/10 bg-white/[0.025] p-20 text-center"><div className="text-5xl opacity-70">◉</div><h4 className="mt-5 text-xl font-black">Nenhum registro encontrado</h4><p className="mt-2 text-sm text-zinc-500">Tente outro nome ou número da Pokédex.</p><button onClick={() => { setSearch(""); setSelectedGeneration(0); }} className="mt-6 rounded-xl border border-red-500/30 bg-red-500/10 px-5 py-3 text-xs font-black uppercase tracking-widest text-red-400">Limpar filtros</button></div>
-        ) : (
-          <>
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          {loading ? (
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
+              {Array.from({ length: 12 }).map((_, index) => <div key={index} className="h-56 animate-pulse rounded-2xl border border-white/10 bg-white/[0.03]" />)}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
               {paginatedPokemon.map((item) => {
                 const id = getPokemonId(item.url);
-                const types = details[id] ?? [];
-                const isLoadingType = detailsLoading && !details[id];
-
+                const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+                const pokemonTypes = details[id] ?? [];
                 return (
-                  <a key={item.name} href={`/pokemon/${id}`} className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0b0b10] transition duration-300 hover:-translate-y-2 hover:border-cyan-400/40 hover:shadow-[0_15px_50px_rgba(0,0,0,0.5)]">
-                    <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-cyan-500/0 blur-3xl transition duration-500 group-hover:bg-cyan-500/20" />
-
-                    <div className="relative flex aspect-square items-center justify-center overflow-hidden bg-gradient-to-br from-white/[0.05] to-transparent p-5">
-                      <span className="absolute left-3 top-3 z-20 rounded-lg border border-white/10 bg-black/60 px-2 py-1 text-[9px] font-black tracking-widest text-zinc-400 backdrop-blur">#{String(id).padStart(4, "0")}</span>
-                      <span className="absolute right-3 top-3 z-20 flex items-center gap-1 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2 py-1 text-[8px] font-black uppercase tracking-wider text-emerald-300"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />Registrado</span>
-                      <div className="absolute inset-x-8 bottom-5 h-12 rounded-full bg-red-500/0 blur-2xl transition duration-500 group-hover:bg-red-500/30" />
-                      <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`} alt={item.name} loading="lazy" className="relative z-10 h-full w-full object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.7)] transition duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_25px_rgba(34,211,238,0.3)]" />
+                  <article key={id} className="group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] p-4 transition hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-white/[0.04]">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-[10px] font-bold text-zinc-600">#{String(id).padStart(4, "0")}</span>
+                      <span className="text-[9px] font-black uppercase tracking-widest text-zinc-700">{selected.region}</span>
                     </div>
-
-                    <div className="relative border-t border-white/5 p-4">
-                      <div className="flex items-center justify-between gap-2">
-                        <h4 className="truncate capitalize font-black">{formatName(item.name)}</h4>
-                        <span className="text-cyan-400 opacity-0 transition group-hover:opacity-100">→</span>
-                      </div>
-
-                      <div className="mt-3 min-h-[22px]">
-                        {isLoadingType ? (
-                          <span className="inline-block h-5 w-20 animate-pulse rounded-full bg-white/5" />
-                        ) : types.length > 0 ? (
-                          <div className="flex flex-wrap gap-1.5">
-                            {types.map((type) => (
-                              <span key={type} className={`rounded-full border px-2 py-1 text-[8px] font-black uppercase tracking-wider ${typeStyles[type] ?? "border-white/10 bg-white/5 text-zinc-400"}`}>{type}</span>
-                            ))}
-                          </div>
-                        ) : (
-                          <span className="text-[8px] font-bold uppercase tracking-widest text-zinc-700">Tipo indisponível</span>
-                        )}
-                      </div>
-
-                      <div className="mt-3 flex items-center justify-between border-t border-white/5 pt-3">
-                        <span className="text-[8px] font-bold uppercase tracking-widest text-zinc-600">Registro #{String(id).padStart(4, "0")}</span>
-                        <span className="text-[8px] font-black uppercase tracking-widest text-cyan-500/70">Dados →</span>
-                      </div>
+                    <div className="mt-4 flex h-36 items-center justify-center rounded-xl bg-gradient-to-b from-white/[0.04] to-transparent">
+                      <img src={image} alt={item.name} className="h-32 w-32 object-contain drop-shadow-2xl transition duration-300 group-hover:scale-110" />
                     </div>
-                  </a>
+                    <h4 className="mt-4 truncate text-sm font-black capitalize text-white">{formatName(item.name)}</h4>
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      {pokemonTypes.map((type) => <span key={type} className={`rounded-full border px-2 py-1 text-[8px] font-black uppercase tracking-wider ${typeStyles[type] ?? "border-white/10 bg-white/5 text-zinc-400"}`}>{type}</span>)}
+                    </div>
+                  </article>
                 );
               })}
             </div>
+          )}
 
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-2">
-              <button disabled={currentPage === 1} onClick={() => changePage(currentPage - 1)} className="rounded-xl border border-white/10 bg-white/[0.025] px-5 py-3 text-xs font-black uppercase tracking-widest text-zinc-400 hover:border-cyan-400/30 hover:text-cyan-400 disabled:cursor-not-allowed disabled:opacity-30">← Anterior</button>
-              {Array.from({ length: Math.min(totalPages, 7) }, (_, index) => {
-                let page = index + 1;
-                if (totalPages > 7) {
-                  if (currentPage <= 4) page = index + 1;
-                  else if (currentPage >= totalPages - 3) page = totalPages - 6 + index;
-                  else page = currentPage - 3 + index;
-                }
-                return <button key={page} onClick={() => changePage(page)} className={`h-11 min-w-11 rounded-xl text-xs font-black ${currentPage === page ? "bg-red-600 text-white shadow-[0_0_25px_rgba(239,68,68,0.25)]" : "border border-white/10 bg-white/[0.025] text-zinc-500 hover:border-cyan-400/30 hover:text-cyan-400"}`}>{page}</button>;
-              })}
-              <button disabled={currentPage === totalPages} onClick={() => changePage(currentPage + 1)} className="rounded-xl border border-white/10 bg-white/[0.025] px-5 py-3 text-xs font-black uppercase tracking-widest text-zinc-400 hover:border-cyan-400/30 hover:text-cyan-400 disabled:cursor-not-allowed disabled:opacity-30">Próxima →</button>
+          {!loading && (
+            <div className="mt-10 flex items-center justify-center gap-2">
+              <button onClick={() => changePage(currentPage - 1)} disabled={currentPage === 1} className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-400 disabled:opacity-30">Anterior</button>
+              <button onClick={() => changePage(currentPage + 1)} disabled={currentPage === totalPages} className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-400 disabled:opacity-30">Próxima</button>
             </div>
-            <p className="mt-5 text-center text-[10px] font-bold uppercase tracking-widest text-zinc-700">Página {currentPage} / {totalPages} • {filteredPokemon.length} registros</p>
-          </>
-        )}
+          )}
+        </div>
       </section>
 
-      <section id="tcg" className="relative overflow-hidden border-y border-red-500/10 bg-gradient-to-br from-red-950/30 via-[#08080d] to-cyan-950/20">
-        <div className="relative mx-auto max-w-7xl px-6 py-20">
-          <div className="flex items-center gap-3"><span className="text-[10px] font-black uppercase tracking-[0.3em] text-red-400">03 // TCG DATABASE</span><span className="h-px w-16 bg-red-500/30" /></div>
-          <h3 className="mt-5 text-4xl font-black md:text-5xl">Seu Pokémon.<span className="block text-red-500">Suas cartas.</span></h3>
-          <p className="mt-5 max-w-2xl leading-7 text-zinc-400">Cada Pokémon possui sua própria página com informações, evoluções e cartas Pokémon TCG relacionadas.</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href="/pokemon/25" className="rounded-xl bg-red-600 px-6 py-3 text-xs font-black uppercase tracking-widest">Explorar Pikachu →</a>
-            <a href="/pokemon/6" className="rounded-xl border border-white/10 bg-white/[0.03] px-6 py-3 text-xs font-black uppercase tracking-widest text-zinc-400 hover:border-cyan-400/30 hover:text-cyan-400">Explorar Charizard</a>
+      <section id="tcg" className="relative z-10 border-t border-white/10 bg-[#070908] py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent p-8 md:p-12">
+            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-red-400">Trading Card Game</p>
+            <div className="mt-3 flex flex-col justify-between gap-8 md:flex-row md:items-end">
+              <div>
+                <h3 className="text-3xl font-black tracking-tight text-white md:text-5xl">TCG <span className="text-red-500">Database.</span></h3>
+                <p className="mt-4 max-w-2xl text-sm leading-6 text-zinc-500">Cartas, coleções e informações do universo Pokémon TCG em uma área dedicada.</p>
+              </div>
+              <div className="rounded-2xl border border-red-500/20 bg-red-500/5 px-5 py-4 text-right">
+                <p className="text-2xl font-black text-red-400">NEXUS</p>
+                <p className="mt-1 text-[9px] font-black uppercase tracking-[0.25em] text-zinc-600">CARD SYSTEM</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-
-      <footer className="border-t border-white/5 bg-[#030304] px-6 py-10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:flex-row">
-          <div><p className="text-sm font-black tracking-[0.2em]">POKÉDEX</p><p className="mt-1 text-[9px] font-bold uppercase tracking-widest text-zinc-700">Nexus Database</p></div>
-          <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-700">Pokémon TCG • Next.js • PokéAPI</p>
-        </div>
-      </footer>
     </main>
   );
 }
