@@ -1,0 +1,169 @@
+/* HOME HERO FINAL V2 — CLEAN / TYPOGRAPHY / NO DUPLICATE PANELS */
+
+main.min-h-screen > section:first-of-type {
+  position: relative !important;
+  min-height: 350px !important;
+  overflow: hidden !important;
+  border-bottom: 1px solid rgba(23,54,44,.22) !important;
+  background-color: #e6ebd2 !important;
+  background-image:
+    linear-gradient(rgba(23,54,44,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23,54,44,.045) 1px, transparent 1px) !important;
+  background-size: 16px 16px !important;
+}
+
+main.min-h-screen > section:first-of-type::before,
+main.min-h-screen > section:first-of-type::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Hero container: no card inside another card. */
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl {
+  width: 100% !important;
+  max-width: 1240px !important;
+  margin: 0 auto !important;
+  padding: 42px 28px 34px !important;
+}
+
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid {
+  display: block !important;
+  width: 100% !important;
+  max-width: 1080px !important;
+  margin: 0 auto !important;
+}
+
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child {
+  display: block !important;
+  width: 100% !important;
+  max-width: 1080px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  overflow: visible !important;
+}
+
+/* Remove the legacy terminal/status blocks. */
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div:first-child,
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:nth-child(2),
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div:last-child {
+  display: none !important;
+}
+
+/* Remove old location/eyebrow copy. */
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > p:first-of-type,
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div:nth-child(2) > p:first-child {
+  display: none !important;
+}
+
+/* Title is the hero focus. */
+main.min-h-screen > section:first-of-type h2 {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  font-size: 0 !important;
+  line-height: 1 !important;
+  color: transparent !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+main.min-h-screen > section:first-of-type h2::before {
+  content: "POKEDEX D'MELO" !important;
+  display: block !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  font-family: Arial Black, Arial, Helvetica, sans-serif !important;
+  font-size: clamp(3rem, 6.2vw, 5.9rem) !important;
+  line-height: .96 !important;
+  font-weight: 900 !important;
+  letter-spacing: -.045em !important;
+  color: #123d31 !important;
+  text-shadow: 3px 3px 0 rgba(7,27,18,.12) !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+main.min-h-screen > section:first-of-type h2::after {
+  content: none !important;
+  display: none !important;
+}
+
+main.min-h-screen > section:first-of-type h2 span {
+  display: none !important;
+}
+
+/* Hide the verbose sentence so the search becomes the second visual anchor. */
+main.min-h-screen > section:first-of-type h2 + p {
+  display: none !important;
+}
+
+/* Search: wider, clean, aligned with title. */
+main.min-h-screen > section:first-of-type .group.relative {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 690px !important;
+  margin: 28px 0 0 !important;
+}
+
+main.min-h-screen > section:first-of-type .group.relative > div:last-child {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  min-height: 60px !important;
+  padding: 4px !important;
+  border: 3px solid #173d2c !important;
+  border-radius: 10px !important;
+  background: #f7f2d8 !important;
+  box-shadow: inset 0 0 0 1px #b8c0a8, 6px 6px 0 #173d2c !important;
+}
+
+main.min-h-screen > section:first-of-type .group.relative > div:first-child {
+  display: none !important;
+}
+
+main.min-h-screen > section:first-of-type .group.relative input {
+  min-width: 0 !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+  letter-spacing: .01em !important;
+  color: #173b31 !important;
+}
+
+main.min-h-screen > section:first-of-type .group.relative button {
+  min-height: 50px !important;
+  padding: 0 26px !important;
+  border-radius: 7px !important;
+  background: #e52521 !important;
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,.22), 2px 3px 0 #8d1715 !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  letter-spacing: .04em !important;
+}
+
+@media (max-width: 768px) {
+  main.min-h-screen > section:first-of-type {
+    min-height: 300px !important;
+  }
+  main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl {
+    padding: 34px 18px 30px !important;
+  }
+  main.min-h-screen > section:first-of-type h2::before {
+    white-space: normal !important;
+    font-size: clamp(2.7rem, 11vw, 4.2rem) !important;
+  }
+  main.min-h-screen > section:first-of-type .group.relative {
+    max-width: 100% !important;
+    margin-top: 22px !important;
+  }
+}
