@@ -1,109 +1,19 @@
-/* FINAL HERO RESET — last stylesheet wins */
-
-/* Restore the real React heading and prevent every legacy pseudo-title rule. */
-main > section:first-of-type h2 {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  width: auto !important;
-  height: auto !important;
-  overflow: visible !important;
-  position: static !important;
-  font-size: clamp(3.2rem, 6vw, 5.8rem) !important;
-  line-height: .92 !important;
-  font-weight: 900 !important;
-  letter-spacing: -.06em !important;
-  text-transform: none !important;
-  color: #f8f5df !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  text-shadow: 5px 5px 0 #06180f, 0 0 28px rgba(0,0,0,.45) !important;
-}
-
-main > section:first-of-type h2::before,
-main > section:first-of-type h2::after {
-  content: none !important;
-  display: none !important;
-}
-
-main > section:first-of-type h2 span {
-  display: inline !important;
-  color: #ed252d !important;
-}
-
-/* The actual title block in page.tsx is the second child of the left column. */
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  margin-top: 20px !important;
-}
-
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) p:first-child {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  color: #49d8ff !important;
-  margin: 0 0 8px !important;
-  font: 900 10px/1 var(--font-geist-mono),monospace !important;
-  letter-spacing: .35em !important;
-}
-
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) p:last-child {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  color: #dfe4de !important;
-  max-width: 650px !important;
-  margin: 14px 0 0 !important;
-  font-size: 15px !important;
-  line-height: 1.55 !important;
-}
-
-/* Do NOT hide the status row: style it as a compact label instead. */
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:first-child {
-  display: flex !important;
-  width: fit-content !important;
-  max-width: 100% !important;
-  min-height: 0 !important;
-  align-items: center !important;
-  gap: 12px !important;
-  padding: 8px 14px !important;
-  margin: 0 !important;
-  border: 1px solid rgba(64,157,93,.45) !important;
-  border-radius: 6px !important;
-  background: rgba(2,30,18,.75) !important;
-  box-shadow: none !important;
-}
-
-/* Remove the old pseudo-generated city label. */
-main > section:first-of-type > div > div > div:first-child::before {
-  content: none !important;
-  display: none !important;
-}
-
-/* Search immediately below the title. */
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(3) {
-  display: block !important;
-  margin-top: 22px !important;
-  max-width: 700px !important;
-}
-
-/* Counters below search. */
-main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(4) {
-  display: flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  margin-top: 22px !important;
-}
-
-/* Keep the hero at a comfortable height. */
-main > section:first-of-type {
-  min-height: 540px !important;
-}
-
-@media (max-width: 768px) {
-  main > section:first-of-type h2 {
-    font-size: clamp(2.6rem, 13vw, 4.6rem) !important;
-  }
-}
+/* HOME HERO — FINAL CLEAN PASS */
+main.min-h-screen > section:first-of-type{position:relative!important;min-height:0!important;height:auto!important;overflow:hidden!important;margin:0!important;padding:0!important;border:0!important;background:#eef1dc!important;background-image:linear-gradient(rgba(18,61,48,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(18,61,48,.035) 1px,transparent 1px)!important;background-size:24px 24px!important}
+main.min-h-screen > section:first-of-type::before,main.min-h-screen > section:first-of-type::after{content:none!important;display:none!important}
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl{width:100%!important;max-width:1120px!important;margin:0 auto!important;padding:48px 28px 52px!important}
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid{display:block!important;width:100%!important;max-width:100%!important;margin:0!important;padding:0!important}
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child{display:block!important;width:100%!important;max-width:920px!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;backdrop-filter:none!important}
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div:first-child,main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > p,main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div.mt-6 > p:first-child{display:none!important}
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div.mt-7 > .mt-2,main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div.mt-8,main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:nth-child(2){display:none!important}
+main.min-h-screen > section:first-of-type h2{display:block!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;font-size:0!important;line-height:1!important;text-align:left!important;white-space:nowrap!important;color:transparent!important;text-shadow:none!important;-webkit-text-stroke:0!important;text-stroke:0!important}
+main.min-h-screen > section:first-of-type h2 span{display:none!important}
+main.min-h-screen > section:first-of-type h2::before{content:"POKEDEX D'MELO"!important;display:block!important;width:fit-content!important;max-width:100%!important;font-family:Arial,Helvetica,sans-serif!important;font-size:clamp(3.4rem,6vw,5.8rem)!important;line-height:.95!important;font-weight:900!important;letter-spacing:-.055em!important;color:#123d31!important;text-shadow:3px 4px 0 rgba(18,61,49,.12)!important}
+main.min-h-screen > section:first-of-type h2::after{content:none!important;display:none!important}
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl .group.relative{display:block!important;width:min(680px,100%)!important;max-width:680px!important;margin:24px 0 0!important}
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl .group.relative > .absolute{display:none!important}
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl .group.relative > div.relative{display:flex!important;align-items:center!important;width:100%!important;min-height:58px!important;padding:4px!important;border:2px solid #173d2c!important;border-radius:8px!important;background:#f7f2d8!important;box-shadow:4px 4px 0 #071b12!important}
+main.min-h-screen > section:first-of-type input{min-width:0!important;font-family:Arial,Helvetica,sans-serif!important;font-size:14px!important;font-weight:600!important;color:#173b31!important}
+main.min-h-screen > section:first-of-type input::placeholder{color:#718078!important;opacity:1!important}
+main.min-h-screen > section:first-of-type button{min-height:48px!important;padding-left:22px!important;padding-right:22px!important;border-radius:6px!important;background:#e52521!important;box-shadow:inset 0 -3px 0 rgba(0,0,0,.22),2px 2px 0 #8d1715!important;font-family:Arial,Helvetica,sans-serif!important;font-size:10px!important;font-weight:900!important;letter-spacing:.04em!important}
+@media(max-width:768px){main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl{padding:38px 18px 42px!important}main.min-h-screen > section:first-of-type h2::before{font-size:clamp(2.7rem,11vw,4.2rem)!important;white-space:normal!important}main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl .group.relative{margin-top:20px!important}}
