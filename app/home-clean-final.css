@@ -1,9 +1,125 @@
-/* HOME — CLEAN HERO */
-section:first-of-type{min-height:0!important;height:auto!important;padding-bottom:42px!important}
-section:first-of-type h1,section:first-of-type h2{margin:0!important;max-width:900px!important;font-family:Arial,Helvetica,sans-serif!important;font-size:clamp(52px,6vw,88px)!important;line-height:.92!important;letter-spacing:-.045em!important;font-weight:900!important;color:#103f31!important;text-shadow:2px 3px 0 rgba(7,34,27,.16)!important;-webkit-text-stroke:0!important}
-section:first-of-type h1::before,section:first-of-type h1::after,section:first-of-type h2::before,section:first-of-type h2::after{content:none!important;display:none!important}
-section:first-of-type h1 span,section:first-of-type h2 span{color:#e5232d!important}
-section:first-of-type form,section:first-of-type [role=search]{width:min(100%,680px)!important;margin-top:28px!important}
-section:first-of-type input{font-family:Arial,Helvetica,sans-serif!important;font-size:16px!important;font-weight:600!important;letter-spacing:.01em!important}
-section:first-of-type button{font-family:Arial,Helvetica,sans-serif!important;font-weight:800!important;letter-spacing:.02em!important}
-@media(max-width:900px){section:first-of-type{padding:34px 20px!important}section:first-of-type h1,section:first-of-type h2{font-size:clamp(42px,10vw,68px)!important}}
+/* HOME CLEAN FINAL — title + search only */
+
+main > section:first-of-type {
+  min-height: 430px !important;
+  background: #f4f0d8 !important;
+  color: #123d31 !important;
+  border-bottom: 0 !important;
+}
+
+main > section:first-of-type > .absolute {
+  opacity: .04 !important;
+}
+
+main > section:first-of-type > .relative.mx-auto {
+  padding-top: 54px !important;
+  padding-bottom: 58px !important;
+}
+
+main > section:first-of-type .grid {
+  display: block !important;
+}
+
+main > section:first-of-type .grid > div:first-child {
+  width: min(900px, 100%) !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+}
+
+/* Remove SYSTEM // ONLINE strip. */
+main > section:first-of-type .grid > div:first-child > div:first-child {
+  display: none !important;
+}
+
+/* Remove the right terminal. */
+main > section:first-of-type .grid > div:last-child {
+  display: none !important;
+}
+
+main > section:first-of-type .grid > div:first-child > div.mt-6 {
+  margin-top: 0 !important;
+  max-width: 900px !important;
+}
+
+/* Remove eyebrow. */
+main > section:first-of-type .grid > div:first-child > div.mt-6 > p:first-child {
+  display: none !important;
+}
+
+/* Brand title: replace the old JSX text visually. */
+main > section:first-of-type h2 {
+  margin: 0 !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 0 !important;
+  line-height: .94 !important;
+  letter-spacing: -.055em !important;
+  font-weight: 900 !important;
+  color: #123d31 !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+main > section:first-of-type h2::before,
+main > section:first-of-type h2::after {
+  content: none !important;
+}
+
+main > section:first-of-type h2::after {
+  content: "POKEDEX D'MELO" !important;
+  display: block !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: clamp(3.1rem, 7vw, 6.4rem) !important;
+  line-height: .94 !important;
+  letter-spacing: -.055em !important;
+  font-weight: 900 !important;
+  color: #123d31 !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+/* Remove the descriptive sentence. */
+main > section:first-of-type .grid > div:first-child > div.mt-6 > p:last-child {
+  display: none !important;
+}
+
+/* Search is the only secondary focal point. */
+main > section:first-of-type .grid > div:first-child > div.mt-7 {
+  width: min(760px, 100%) !important;
+  max-width: 760px !important;
+  margin: 38px auto 0 !important;
+}
+
+/* Remove search helper text. */
+main > section:first-of-type .grid > div:first-child > div.mt-7 > .mt-2 {
+  display: none !important;
+}
+
+/* Remove metrics: 1025 / 09 / TCG. */
+main > section:first-of-type .grid > div:first-child > div.mt-8 {
+  display: none !important;
+}
+
+main > section:first-of-type input {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+}
+
+main > section:first-of-type .grid > div:first-child > div.mt-7 .absolute {
+  opacity: 0 !important;
+}
+
+@media (max-width: 768px) {
+  main > section:first-of-type {
+    min-height: 350px !important;
+  }
+
+  main > section:first-of-type > .relative.mx-auto {
+    padding-top: 44px !important;
+    padding-bottom: 48px !important;
+  }
+
+  main > section:first-of-type h2::after {
+    font-size: clamp(2.8rem, 12vw, 4.5rem) !important;
+  }
+}
