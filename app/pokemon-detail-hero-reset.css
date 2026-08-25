@@ -1,0 +1,128 @@
+/* DETAIL PAGE RESET
+   The homepage hero overrides are intentionally broad because the homepage
+   and detail page share <main> and <section> elements. This file is loaded
+   last and restores the real detail-page composition whenever the first
+   section contains the detail grid.
+*/
+
+main > section:first-of-type:has(> div > div.grid) {
+  min-height: 0 !important;
+  height: auto !important;
+  overflow: visible !important;
+  background: #dfe6cf !important;
+  background-image: none !important;
+  background-size: auto !important;
+  background-position: initial !important;
+  border-bottom: 0 !important;
+}
+
+main > section:first-of-type:has(> div > div.grid) > div {
+  width: 100% !important;
+  max-width: 80rem !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+main > section:first-of-type:has(> div > div.grid) > div > div.grid {
+  display: grid !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  grid-template-columns: 45% 55% !important;
+  gap: 0 !important;
+  align-items: stretch !important;
+  padding: 0 !important;
+  border-radius: 1rem !important;
+  overflow: hidden !important;
+  background: #f7f2d8 !important;
+}
+
+/* Restore the actual artwork panel instead of the homepage dark hero card. */
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:first-child {
+  display: flex !important;
+  width: auto !important;
+  max-width: none !important;
+  min-height: 430px !important;
+  height: auto !important;
+  padding: 1.5rem !important;
+  border: 0 !important;
+  border-right: 3px solid #71816f !important;
+  border-bottom: 0 !important;
+  border-radius: 0 !important;
+  background: #e7edcf !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  overflow: hidden !important;
+}
+
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:first-child img {
+  width: 100% !important;
+  max-width: none !important;
+  max-height: 500px !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 22px 12px rgba(23,54,44,.24)) !important;
+}
+
+/* Restore the real information panel. */
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) {
+  display: block !important;
+  width: auto !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  padding: 2.5rem !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: #f7f2d8 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  overflow: visible !important;
+}
+
+main > section:first-of-type:has(> div > div.grid) h1 {
+  color: #173f31 !important;
+  text-shadow: none !important;
+}
+
+main > section:first-of-type:has(> div > div.grid) h1::before,
+main > section:first-of-type:has(> div > div.grid) h1::after {
+  content: none !important;
+  display: none !important;
+}
+
+main > section:first-of-type:has(> div > div.grid)::after {
+  content: none !important;
+  display: none !important;
+}
+
+@media (min-width: 769px) {
+  main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:first-child {
+    min-height: 610px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  main > section:first-of-type:has(> div > div.grid) {
+    min-height: 0 !important;
+  }
+
+  main > section:first-of-type:has(> div > div.grid) > div > div.grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:first-child {
+    min-height: 300px !important;
+    border-right: 0 !important;
+    border-bottom: 3px solid #71816f !important;
+  }
+
+  main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) {
+    padding: 1.25rem !important;
+  }
+}
