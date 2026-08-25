@@ -81,9 +81,7 @@ export default function Home() {
         const data = await response.json();
         setPokemon(data.results);
       } catch (error) {
-        if ((error as Error).name !== "AbortError") {
-          console.error("Erro ao carregar Pokémon:", error);
-        }
+        if ((error as Error).name !== "AbortError") console.error("Erro ao carregar Pokémon:", error);
       } finally {
         if (!controller.signal.aborted) setLoading(false);
       }
@@ -116,7 +114,6 @@ export default function Home() {
     () => paginatedPokemon.map((item) => getPokemonId(item.url)),
     [paginatedPokemon]
   );
-
   const selected = generations[selectedGeneration];
 
   useEffect(() => {
@@ -124,10 +121,16 @@ export default function Home() {
   }, [search, selectedGeneration]);
 
   useEffect(() => {
-    if (!pageIds.length) return;
+    if (!pageIds.length) {
+      setDetailsLoading(false);
+      return;
+    }
 
     const missingIds = pageIds.filter((id) => !loadedDetailIds.current.has(id));
-    if (!missingIds.length) return;
+    if (!missingIds.length) {
+      setDetailsLoading(false);
+      return;
+    }
 
     const controller = new AbortController();
     setDetailsLoading(true);
@@ -143,7 +146,7 @@ export default function Home() {
           const data: PokemonDetails = await response.json();
           return [id, data.types.map((entry) => entry.type.name)] as const;
         } catch (error) {
-          if ((error as Error).name !== "AbortError") return [id, []] as const;
+          if ((error as Error).name === "AbortError") return [id, []] as const;
           return [id, []] as const;
         }
       })
@@ -214,11 +217,7 @@ export default function Home() {
                       className="w-full bg-transparent px-4 py-3 outline-none placeholder:text-[#718078]"
                     />
                     {search && (
-                      <button
-                        type="button"
-                        onClick={() => setSearch("")}
-                        className="mr-1 hidden rounded px-3 py-2 text-[9px] font-black uppercase tracking-wider text-[#52655e] sm:block"
-                      >
+                      <button type="button" onClick={() => setSearch("")} className="mr-1 hidden rounded px-3 py-2 text-[9px] font-black uppercase tracking-wider text-[#52655e] sm:block">
                         Limpar
                       </button>
                     )}
@@ -245,17 +244,7 @@ export default function Home() {
             {generations.map((generation) => {
               const active = selectedGeneration === generation.id;
               return (
-                <button
-                  key={generation.id}
-                  type="button"
-                  onClick={() => setSelectedGeneration(generation.id)}
-                  aria-pressed={active}
-                  className={`group relative overflow-hidden rounded-2xl border p-5 text-left transition ${
-                    active
-                      ? "border-red-500/60 bg-red-500/10 shadow-[0_0_30px_rgba(239,68,68,0.08)]"
-                      : "border-white/10 bg-white/[0.02] hover:border-emerald-500/30 hover:bg-emerald-500/[0.03]"
-                  }`}
-                >
+                <button key={generation.id} type="button" onClick={() => setSelectedGeneration(generation.id)} aria-pressed={active} className={`group relative overflow-hidden rounded-2xl border p-5 text-left transition ${active ? "border-red-500/60 bg-red-500/10 shadow-[0_0_30px_rgba(239,68,68,0.08)]" : "border-white/10 bg-white/[0.02] hover:border-emerald-500/30 hover:bg-emerald-500/[0.03]"}`}>
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-black uppercase tracking-widest text-zinc-600">GEN {generation.roman || "ALL"}</span>
                     {active && <span className="text-[9px] font-black uppercase tracking-widest text-red-400">● ACTIVE</span>}
@@ -300,21 +289,11 @@ export default function Home() {
                       <span className="text-[9px] font-black uppercase tracking-widest text-zinc-700">{selected.region}</span>
                     </div>
                     <div className="mt-4 flex items-center justify-center rounded-xl">
-                      <img
-                        src={image}
-                        alt={formatName(item.name)}
-                        loading="lazy"
-                        decoding="async"
-                        className="object-contain"
-                      />
+                      <img src={image} alt={formatName(item.name)} loading="lazy" decoding="async" className="object-contain" />
                     </div>
                     <h4 className="mt-4 truncate text-sm font-black capitalize">{formatName(item.name)}</h4>
                     <div className="mt-2 flex flex-wrap gap-1.5">
-                      {pokemonTypes.map((type) => (
-                        <span key={type} className={`rounded-full border px-2 py-1 text-[8px] font-black uppercase tracking-wider ${typeStyles[type] ?? "border-white/10 bg-white/5 text-zinc-400"}`}>
-                          {type}
-                        </span>
-                      ))}
+                      {pokemonTypes.map((type) => <span key={type} className={`rounded-full border px-2 py-1 text-[8px] font-black uppercase tracking-wider ${typeStyles[type] ?? "border-white/10 bg-white/5 text-zinc-400"}`}>{type}</span>)}
                     </div>
                   </article>
                 );
