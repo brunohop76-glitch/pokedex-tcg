@@ -1,108 +1,140 @@
-/* HOME FINAL POLISH v2 — targets the REAL hero content wrapper */
+/* HOME HERO — FINAL CLEAN LAYOUT */
 
+main.min-h-screen > section:first-of-type {
+  min-height: 0 !important;
+  height: auto !important;
+  overflow: hidden !important;
+  border-bottom: 5px solid #0b251a !important;
+  background-image:
+    linear-gradient(90deg, rgba(3,20,12,.92) 0%, rgba(3,20,12,.78) 38%, rgba(3,20,12,.42) 72%, rgba(3,20,12,.22) 100%),
+    url("https://archives.bulbagarden.net/wiki/Special:Redirect/file/Viridian_City_FRLG.png") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* REAL HERO WRAPPER */
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl {
   position: relative !important;
-  z-index: 3 !important;
+  z-index: 5 !important;
+  display: block !important;
   width: 100% !important;
   max-width: 1280px !important;
   min-height: 0 !important;
+  height: auto !important;
   margin: 0 auto !important;
-  padding: 58px 32px 48px !important;
+  padding: 44px 32px 42px !important;
 }
 
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid {
   display: grid !important;
-  grid-template-columns: minmax(0, 1.35fr) minmax(270px, .65fr) !important;
+  grid-template-columns: minmax(0, 1fr) 320px !important;
   align-items: start !important;
-  gap: 52px !important;
+  gap: 48px !important;
   width: 100% !important;
-  max-width: 1180px !important;
+  max-width: 1160px !important;
   min-height: 0 !important;
+  height: auto !important;
   margin: 0 auto !important;
 }
 
-/* LEFT: never turn this into a giant card */
+/* LEFT COLUMN — force it to be transparent and unrestricted */
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child {
+  display: block !important;
+  position: relative !important;
   width: 100% !important;
   max-width: 760px !important;
+  min-width: 0 !important;
   min-height: 0 !important;
+  height: auto !important;
   margin: 0 !important;
   padding: 0 !important;
-  align-self: start !important;
-  justify-self: start !important;
   border: 0 !important;
   border-radius: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
+  overflow: visible !important;
+  transform: none !important;
 }
 
-/* STATUS */
+/* STATUS BAR */
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div:first-child {
   display: flex !important;
-  align-items: center !important;
+  position: relative !important;
   width: fit-content !important;
+  max-width: 100% !important;
   min-height: 0 !important;
-  margin: 0 !important;
-  padding: 10px 16px !important;
+  height: auto !important;
+  margin: 0 0 22px !important;
+  padding: 9px 15px !important;
+  align-items: center !important;
   gap: 12px !important;
-  border: 1px solid rgba(68,169,101,.55) !important;
-  border-radius: 9px !important;
-  background: rgba(2,28,17,.82) !important;
-  box-shadow: 0 8px 24px rgba(0,0,0,.25) !important;
+  border: 1px solid rgba(64,157,93,.55) !important;
+  border-radius: 8px !important;
+  background: rgba(2,27,16,.84) !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,.22) !important;
 }
 
-/* REAL H2 — older overrides are neutralized here */
+/* TITLE */
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl h2 {
   display: block !important;
-  width: auto !important;
+  position: relative !important;
+  width: 100% !important;
+  max-width: 720px !important;
+  min-width: 0 !important;
   height: auto !important;
-  margin: 18px 0 0 !important;
+  margin: 0 !important;
   padding: 0 !important;
-  font-family: var(--font-geist-mono), monospace !important;
-  font-size: clamp(3.5rem, 6.5vw, 6.8rem) !important;
-  line-height: .88 !important;
-  font-weight: 900 !important;
+  overflow: visible !important;
+  font-family: var(--font-geist-sans), Arial, sans-serif !important;
+  font-size: clamp(3.25rem, 5.2vw, 5.35rem) !important;
+  line-height: .9 !important;
+  font-weight: 950 !important;
   letter-spacing: -.065em !important;
   text-transform: none !important;
-  color: #f8f5df !important;
-  text-shadow: 5px 5px 0 #071b12, 0 0 26px rgba(0,0,0,.45) !important;
+  color: #f7f3dc !important;
+  text-shadow: 4px 4px 0 #071b12, 0 0 24px rgba(0,0,0,.35) !important;
 }
 
-main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl h2::before,
-main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl h2::after {
+main.min-h-screen > section:first-of-type h2::before,
+main.min-h-screen > section:first-of-type h2::after {
   content: none !important;
   display: none !important;
 }
 
-main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl h2 span {
+main.min-h-screen > section:first-of-type h2 span {
   display: inline !important;
   color: #ed2b2b !important;
 }
 
-main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl h2 + p {
+/* DESCRIPTION */
+main.min-h-screen > section:first-of-type h2 + p {
   display: block !important;
+  width: 100% !important;
   max-width: 650px !important;
-  margin: 18px 0 0 !important;
+  margin: 16px 0 0 !important;
   color: #f1f0df !important;
-  font-size: 16px !important;
-  line-height: 1.6 !important;
-  text-shadow: 2px 2px 0 rgba(0,0,0,.55) !important;
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+  text-shadow: 1px 1px 0 rgba(0,0,0,.5) !important;
 }
 
 /* SEARCH */
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl .group.relative {
-  max-width: 720px !important;
-  margin-top: 26px !important;
+  width: 100% !important;
+  max-width: 700px !important;
+  margin: 24px 0 0 !important;
 }
 
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl .group.relative > div:last-child {
-  min-height: 66px !important;
-  padding: 5px !important;
-  border: 4px solid #173d2c !important;
+  display: flex !important;
+  min-height: 62px !important;
+  padding: 4px !important;
+  border: 3px solid #173d2c !important;
   border-radius: 10px !important;
   background: #f7f2d8 !important;
-  box-shadow: inset 0 0 0 2px #b4bea5, 6px 6px 0 #071b12, 0 0 26px rgba(0,0,0,.25) !important;
+  box-shadow: inset 0 0 0 2px #b4bea5, 6px 6px 0 #071b12 !important;
 }
 
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl .group.relative input {
@@ -111,28 +143,39 @@ main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl .group.r
 }
 
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl .group.relative button {
-  min-height: 52px !important;
+  min-height: 50px !important;
   border-radius: 7px !important;
   background: #e52521 !important;
   box-shadow: inset 0 -3px 0 rgba(0,0,0,.22), 2px 3px 0 #8d1715 !important;
 }
 
-/* COUNTERS */
+/* HINT */
+main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl .group.relative + div {
+  color: rgba(235,239,226,.78) !important;
+}
+
+/* COUNTERS — direct fourth child of left column */
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div:last-child {
   display: flex !important;
-  flex-wrap: nowrap !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  min-height: 0 !important;
+  margin: 26px 0 0 !important;
+  padding: 0 !important;
   gap: 0 !important;
-  margin-top: 28px !important;
   border: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
 }
 
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div:last-child > div {
-  min-width: 120px !important;
-  padding: 0 24px !important;
+  display: block !important;
+  min-width: 112px !important;
+  min-height: 0 !important;
+  padding: 0 22px !important;
   border: 0 !important;
-  border-right: 1px solid rgba(255,255,255,.15) !important;
+  border-right: 1px solid rgba(255,255,255,.16) !important;
+  border-radius: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
 }
@@ -140,22 +183,31 @@ main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid 
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div:last-child > div:first-child { padding-left: 0 !important; }
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div:last-child > div:last-child { border-right: 0 !important; }
 
-/* TERMINAL */
+/* RIGHT TERMINAL */
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:nth-child(2) {
   display: block !important;
+  position: relative !important;
   width: 100% !important;
-  max-width: 330px !important;
+  max-width: 320px !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
   margin: 0 !important;
+  padding: 0 !important;
   justify-self: end !important;
   align-self: start !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
 }
 
-/* Keep the terminal's own card; only polish its outer shell */
 main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:nth-child(2) > div {
+  width: 100% !important;
   border: 1px solid rgba(68,169,101,.48) !important;
   border-radius: 13px !important;
-  background: rgba(5,18,12,.90) !important;
-  box-shadow: 0 18px 45px rgba(0,0,0,.40), inset 0 0 0 1px rgba(255,255,255,.025) !important;
+  background: rgba(5,18,12,.92) !important;
+  box-shadow: 0 18px 45px rgba(0,0,0,.40) !important;
 }
 
 #generations, #pokemon, #tcg { scroll-margin-top: 76px !important; }
@@ -174,10 +226,6 @@ main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid 
     padding: 32px 18px 34px !important;
   }
   main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl h2 {
-    font-size: clamp(2.8rem, 13vw, 4.6rem) !important;
-  }
-  main.min-h-screen > section:first-of-type > .relative.mx-auto.max-w-7xl > .grid > div:first-child > div:last-child > div {
-    min-width: 0 !important;
-    padding: 0 12px !important;
+    font-size: clamp(2.75rem, 12.5vw, 4.4rem) !important;
   }
 }
