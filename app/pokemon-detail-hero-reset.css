@@ -1,9 +1,5 @@
-/* DETAIL PAGE RESET
-   The homepage hero overrides are intentionally broad because the homepage
-   and detail page share <main> and <section> elements. This file is loaded
-   last and restores the real detail-page composition whenever the first
-   section contains the detail grid.
-*/
+/* DETAIL PAGE RESET + TYPOGRAPHY PASS
+   Loaded last so the detail page is isolated from homepage hero rules. */
 
 main > section:first-of-type:has(> div > div.grid) {
   min-height: 0 !important;
@@ -39,9 +35,10 @@ main > section:first-of-type:has(> div > div.grid) > div > div.grid {
   border-radius: 1rem !important;
   overflow: hidden !important;
   background: #f7f2d8 !important;
+  box-shadow: 0 12px 30px rgba(23,63,49,.13) !important;
 }
 
-/* Restore the actual artwork panel instead of the homepage dark hero card. */
+/* ARTWORK */
 main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:first-child {
   display: flex !important;
   width: auto !important;
@@ -53,7 +50,11 @@ main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:first-
   border-right: 3px solid #71816f !important;
   border-bottom: 0 !important;
   border-radius: 0 !important;
-  background: #e7edcf !important;
+  background:
+    linear-gradient(rgba(23,54,44,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23,54,44,.045) 1px, transparent 1px),
+    #e7edcf !important;
+  background-size: 8px 8px !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
   overflow: hidden !important;
@@ -69,60 +70,207 @@ main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:first-
   filter: drop-shadow(0 22px 12px rgba(23,54,44,.24)) !important;
 }
 
-/* Restore the real information panel. */
+/* INFORMATION PANEL — remove all homepage dark-card styling */
 main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) {
   display: block !important;
   width: auto !important;
   max-width: none !important;
   min-width: 0 !important;
   min-height: 0 !important;
-  padding: 2.5rem !important;
+  padding: 2.25rem 2.5rem !important;
+  background: #f7f2d8 !important;
+  color: #173f31 !important;
   border: 0 !important;
   border-radius: 0 !important;
-  background: #f7f2d8 !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
   overflow: visible !important;
 }
 
-main > section:first-of-type:has(> div > div.grid) h1 {
+/* Header: clean readable hierarchy */
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:first-child {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:first-child p {
+  color: #e52521 !important;
+  font-family: var(--font-geist-mono), monospace !important;
+  font-size: 10px !important;
+  line-height: 1.2 !important;
+  font-weight: 900 !important;
+  letter-spacing: .20em !important;
+  text-transform: uppercase !important;
+}
+
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) h1 {
+  display: block !important;
+  margin: 6px 0 0 !important;
+  padding: 0 !important;
+  color: #123b30 !important;
+  font-family: var(--font-geist-sans), Arial, sans-serif !important;
+  font-size: clamp(2.8rem, 5vw, 4.6rem) !important;
+  line-height: .94 !important;
+  font-weight: 900 !important;
+  letter-spacing: -.045em !important;
+  text-transform: uppercase !important;
+  text-shadow: 3px 3px 0 #c7ccb9 !important;
+  white-space: normal !important;
+}
+
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) h1::before,
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) h1::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Small red rule under the name */
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) h1 + p {
+  margin-top: 10px !important;
+  color: #e52521 !important;
+  font-family: var(--font-geist-mono), monospace !important;
+  font-size: 10px !important;
+  line-height: 1.2 !important;
+  font-weight: 900 !important;
+  letter-spacing: .18em !important;
+  text-transform: uppercase !important;
+}
+
+/* Type badges row: no dark strip behind them */
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(2) {
+  display: flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  margin-top: 14px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Description */
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(3) {
+  display: block !important;
+  margin-top: 14px !important;
+  padding: 13px 15px !important;
+  background: #e7edcf !important;
+  border: 2px solid #71816f !important;
+  border-radius: 10px !important;
+  box-shadow: 3px 3px 0 #8d9582 !important;
+}
+
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(3) p {
+  color: #36594b !important;
+  font-family: var(--font-geist-sans), Arial, sans-serif !important;
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+  font-weight: 600 !important;
+}
+
+/* Information tiles */
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(4) {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+  margin-top: 11px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(4) > div {
+  display: block !important;
+  min-width: 0 !important;
+  min-height: 62px !important;
+  padding: 9px 10px !important;
+  background: #faf6df !important;
+  border: 1px solid #c5cbb8 !important;
+  border-radius: 8px !important;
+  box-shadow: 1px 2px 0 rgba(141,149,130,.45) !important;
+}
+
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(4) > div p:first-child {
+  color: #718078 !important;
+  font-family: var(--font-geist-mono), monospace !important;
+  font-size: 8px !important;
+  font-weight: 900 !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase !important;
+}
+
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(4) > div p:last-child {
+  margin-top: 5px !important;
   color: #173f31 !important;
-  text-shadow: none !important;
+  font-family: var(--font-geist-sans), Arial, sans-serif !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+  font-weight: 800 !important;
 }
 
-main > section:first-of-type:has(> div > div.grid) h1::before,
-main > section:first-of-type:has(> div > div.grid) h1::after {
-  content: none !important;
-  display: none !important;
+/* Abilities + moves: clean sections, no dark background */
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(5) {
+  display: grid !important;
+  grid-template-columns: minmax(120px, .8fr) minmax(0, 1.2fr) !important;
+  gap: 14px !important;
+  margin-top: 13px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
-main > section:first-of-type:has(> div > div.grid)::after {
-  content: none !important;
-  display: none !important;
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(5) > div {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
+
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(5) p {
+  margin: 0 0 7px !important;
+  color: #718078 !important;
+  font-family: var(--font-geist-mono), monospace !important;
+  font-size: 8px !important;
+  font-weight: 900 !important;
+  letter-spacing: .16em !important;
+  text-transform: uppercase !important;
+}
+
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(5) span {
+  color: #173f31 !important;
+  font-family: var(--font-geist-sans), Arial, sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+}
+
+/* Keep the lower sections untouched. */
+main > section:nth-of-type(2) { padding-top: 8px !important; }
 
 @media (min-width: 769px) {
-  main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:first-child {
-    min-height: 610px !important;
-  }
+  main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:first-child { min-height: 610px !important; }
+}
+
+@media (max-width: 1100px) and (min-width: 769px) {
+  main > section:first-of-type:has(> div > div.grid) > div > div.grid { grid-template-columns: 42% 58% !important; }
+  main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) { padding: 1.75rem 1.5rem !important; }
+  main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) h1 { font-size: clamp(2.5rem, 5vw, 3.7rem) !important; }
 }
 
 @media (max-width: 768px) {
-  main > section:first-of-type:has(> div > div.grid) {
-    min-height: 0 !important;
-  }
-
-  main > section:first-of-type:has(> div > div.grid) > div > div.grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:first-child {
-    min-height: 300px !important;
-    border-right: 0 !important;
-    border-bottom: 3px solid #71816f !important;
-  }
-
-  main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) {
-    padding: 1.25rem !important;
-  }
+  main > section:first-of-type:has(> div > div.grid) { min-height: 0 !important; }
+  main > section:first-of-type:has(> div > div.grid) > div > div.grid { grid-template-columns: 1fr !important; }
+  main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:first-child { min-height: 300px !important; border-right: 0 !important; border-bottom: 3px solid #71816f !important; }
+  main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) { padding: 1.25rem !important; }
+  main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) h1 { font-size: 2.8rem !important; }
+  main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(4) { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(5) { grid-template-columns: 1fr !important; }
 }
