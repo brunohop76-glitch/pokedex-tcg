@@ -11,7 +11,7 @@ import "./pokemon-detail-polish.css";
 import "./home-final-polish.css";
 import "./home-typography-final.css";
 import "./home-clean-final.css";
-import "./home-hero-final-v2.css";
+import "./home-hero-final.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
