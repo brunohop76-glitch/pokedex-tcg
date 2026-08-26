@@ -1,0 +1,192 @@
+/*
+ * HOME — single source of truth for the homepage hero.
+ * Keep the hero isolated from detail-page CSS so layout fixes never leak.
+ */
+
+main > section[aria-labelledby="home-title"] {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  min-height: 0 !important;
+  height: auto !important;
+  overflow: visible !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-bottom: 4px solid var(--green-dark) !important;
+  background:
+    linear-gradient(rgba(247,242,216,.96), rgba(223,229,201,.96)),
+    linear-gradient(rgba(18,61,48,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18,61,48,.055) 1px, transparent 1px),
+    var(--bg) !important;
+  background-size: auto, 16px 16px, 16px 16px, auto !important;
+}
+
+/* Reset every structural wrapper created by the Tailwind classes in page.tsx. */
+main > section[aria-labelledby="home-title"] > div,
+main > section[aria-labelledby="home-title"] > div > div,
+main > section[aria-labelledby="home-title"] > div > div > div {
+  display: block !important;
+  position: relative !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+main > section[aria-labelledby="home-title"] > div {
+  width: min(1120px, calc(100% - 48px)) !important;
+  margin-inline: auto !important;
+  padding: 52px 0 46px !important;
+}
+
+main > section[aria-labelledby="home-title"] h2#home-title {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  font-family: Arial Black, Arial, Helvetica, sans-serif !important;
+  font-size: clamp(3.2rem, 6.5vw, 6rem) !important;
+  line-height: .92 !important;
+  font-weight: 900 !important;
+  letter-spacing: -.055em !important;
+  color: var(--green-dark) !important;
+  text-shadow: 4px 5px 0 #b8c2aa !important;
+}
+
+main > section[aria-labelledby="home-title"] h2#home-title::before,
+main > section[aria-labelledby="home-title"] h2#home-title::after {
+  content: none !important;
+  display: none !important;
+}
+
+main > section[aria-labelledby="home-title"] form.group.relative {
+  display: block !important;
+  width: min(720px, 100%) !important;
+  max-width: 720px !important;
+  margin: 34px 0 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+main > section[aria-labelledby="home-title"] form.group.relative > div:first-child {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 60px !important;
+  padding: 4px !important;
+  border: 3px solid #173d2c !important;
+  border-radius: 8px !important;
+  background: var(--paper-light) !important;
+  box-shadow: inset 0 0 0 1px #b8c0a8, 5px 5px 0 var(--green-dark) !important;
+}
+
+main > section[aria-labelledby="home-title"] form.group.relative > div:first-child > div:first-child {
+  display: flex !important;
+  flex: 0 0 48px !important;
+  width: 48px !important;
+  height: 50px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-right: 1px solid #d6d0b6 !important;
+  color: var(--red) !important;
+}
+
+main > section[aria-labelledby="home-title"] input[type="search"] {
+  display: block !important;
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 50px !important;
+  padding: 0 16px !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  color: var(--green-dark) !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+}
+
+main > section[aria-labelledby="home-title"] input[type="search"]::placeholder {
+  color: #68756d !important;
+  opacity: 1 !important;
+}
+
+main > section[aria-labelledby="home-title"] form.group.relative button[type="submit"] {
+  display: block !important;
+  flex: 0 0 auto !important;
+  width: 118px !important;
+  min-width: 118px !important;
+  height: 50px !important;
+  min-height: 50px !important;
+  margin: 0 !important;
+  padding: 0 20px !important;
+  border: 2px solid #8d1715 !important;
+  border-radius: 6px !important;
+  background: var(--red) !important;
+  color: #fff !important;
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,.18), 2px 2px 0 var(--red-dark) !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+}
+
+main > section[aria-labelledby="home-title"] form.group.relative button[type="submit"]:hover {
+  background: #ee2b27 !important;
+}
+
+@media (max-width: 768px) {
+  main > section[aria-labelledby="home-title"] > div {
+    width: calc(100% - 28px) !important;
+    padding: 34px 0 34px !important;
+  }
+
+  main > section[aria-labelledby="home-title"] h2#home-title {
+    font-size: clamp(2.5rem, 12vw, 4.4rem) !important;
+    line-height: .95 !important;
+    white-space: normal !important;
+  }
+
+  main > section[aria-labelledby="home-title"] form.group.relative {
+    margin-top: 26px !important;
+  }
+
+  main > section[aria-labelledby="home-title"] form.group.relative > div:first-child {
+    min-height: 54px !important;
+  }
+
+  main > section[aria-labelledby="home-title"] form.group.relative > div:first-child > div:first-child {
+    flex-basis: 42px !important;
+    width: 42px !important;
+    height: 44px !important;
+  }
+
+  main > section[aria-labelledby="home-title"] input[type="search"] {
+    height: 44px !important;
+    padding-inline: 10px !important;
+    font-size: 14px !important;
+  }
+
+  main > section[aria-labelledby="home-title"] form.group.relative button[type="submit"] {
+    width: 96px !important;
+    min-width: 96px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    padding-inline: 12px !important;
+  }
+}
