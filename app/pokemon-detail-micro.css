@@ -1,0 +1,86 @@
+/* POKEMON DETAIL — MICRO FINISH
+   Small visual improvements only. No layout redesign. */
+
+/* Main dossier: cleaner depth and slightly sharper retro framing. */
+main > section:first-of-type:has(> div > div.grid) > div > div.grid {
+  background-image: linear-gradient(rgba(23,63,50,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(23,63,50,.025) 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+
+/* Artwork side gets a subtle terminal-style frame without changing the artwork size. */
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:first-child::after {
+  content: "VISUAL DATABASE // VERIFIED";
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  padding: 5px 8px;
+  border: 1px solid rgba(113,129,111,.55);
+  border-radius: 4px;
+  background: rgba(247,242,216,.78);
+  color: #718078;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+/* Name block: slightly tighter and more intentional. */
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:first-child {
+  padding-bottom: 2px;
+}
+
+/* Type chips feel more like system tags. */
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(2) span {
+  box-shadow: 2px 2px 0 rgba(23,63,50,.16);
+  border: 1px solid rgba(23,63,50,.16);
+}
+
+/* Info cards: tiny top rule gives them a database/ficha feel. */
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(4) > div {
+  position: relative;
+  overflow: hidden;
+}
+
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(4) > div::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: #173f32;
+  opacity: .9;
+}
+
+/* Lower dossier modules: make section labels easier to scan. */
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(5) h2 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:nth-child(2) > div:nth-child(5) h2::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  background: #e52521;
+  box-shadow: 2px 2px 0 #a5ac9b;
+  flex: 0 0 auto;
+}
+
+/* Stat / secondary panels below the hero. */
+main > section:nth-of-type(n+2) > div {
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+main > section:nth-of-type(n+2) > div:hover {
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 0 #8d9582 !important;
+}
+
+@media (max-width: 760px) {
+  main > section:first-of-type:has(> div > div.grid) > div > div.grid > div:first-child::after {
+    right: 12px;
+    bottom: 12px;
+    font-size: 6px;
+  }
+}
