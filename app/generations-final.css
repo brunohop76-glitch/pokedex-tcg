@@ -1,7 +1,7 @@
-/* GENERATIONS — retro premium finish v4 */
+/* GENERATIONS — retro premium finish v5 */
 #generations {
-  padding-top: 38px !important;
-  padding-bottom: 44px !important;
+  padding-top: 36px !important;
+  padding-bottom: 42px !important;
   background:
     linear-gradient(rgba(245,242,216,.98), rgba(226,231,207,.99)),
     linear-gradient(90deg, rgba(23,54,44,.055) 1px, transparent 1px),
@@ -15,14 +15,12 @@
   max-width: 1180px !important;
   padding-left: 24px !important;
   padding-right: 24px !important;
+  border-right: 0 !important;
+  box-shadow: none !important;
 }
 
-#generations::before {
-  content: none !important;
-  display: none !important;
-}
+#generations::before { content: none !important; display: none !important; }
 
-/* Header: compact, clear and intentionally retro. */
 #generations .mb-8 {
   position: relative !important;
   margin-bottom: 18px !important;
@@ -40,23 +38,19 @@
   letter-spacing: .2em !important;
 }
 
-#generations .mb-8 > div:first-child > p:first-child {
-  display: none !important;
-}
+#generations .mb-8 > div:first-child > p:first-child { display: none !important; }
 
 #generations h3 {
   margin-top: 0 !important;
   font-family: Arial Black, Arial, Helvetica, sans-serif !important;
-  font-size: clamp(2.15rem, 3.8vw, 3.05rem) !important;
+  font-size: clamp(2.1rem, 3.7vw, 3rem) !important;
   line-height: .92 !important;
   letter-spacing: -.055em !important;
   color: #12382b !important;
   text-shadow: 3px 3px 0 #c2c8b2 !important;
 }
 
-#generations h3 .text-red-500 {
-  color: #d71920 !important;
-}
+#generations h3 .text-red-500 { color: #d71920 !important; }
 
 #generations .mb-8 > div:last-child > p {
   max-width: 370px !important;
@@ -69,7 +63,6 @@
   line-height: 1.45 !important;
 }
 
-/* Generation grid. */
 #generations > div > .grid {
   grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
   gap: 9px !important;
@@ -103,6 +96,16 @@
   border-radius: 5px 5px 0 0 !important;
 }
 
+#generations button::after {
+  content: "▶" !important;
+  position: absolute !important;
+  right: 9px !important;
+  bottom: 8px !important;
+  color: #aeb5a1 !important;
+  font-size: 7px !important;
+  opacity: .9 !important;
+}
+
 #generations button:hover {
   transform: translateY(-3px) !important;
   border-color: #168b65 !important;
@@ -114,7 +117,6 @@
   box-shadow: 4px 5px 0 #899487, 0 0 0 2px rgba(22,139,101,.08) !important;
 }
 
-/* Active generation / All card. */
 #generations button[class*="border-red-500"] {
   border-color: #d71920 !important;
   background:
@@ -125,10 +127,8 @@
   box-shadow: 3px 4px 0 #a2a18e, 0 0 0 2px rgba(215,25,32,.08) !important;
 }
 
-#generations button[class*="border-red-500"]::before {
-  background: #d71920 !important;
-  opacity: 1 !important;
-}
+#generations button[class*="border-red-500"]::before { background: #d71920 !important; opacity: 1 !important; }
+#generations button[class*="border-red-500"]::after { color: #d71920 !important; }
 
 #generations button span:first-child {
   color: #6d7a70 !important;
@@ -167,46 +167,18 @@
   color: #168b65 !important;
 }
 
-#generations button[class*="border-red-500"] p.mt-4 {
-  color: #c71920 !important;
-}
+#generations button[class*="border-red-500"] p.mt-4 { color: #c71920 !important; }
 
 @media (max-width: 900px) {
-  #generations > div > .grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  }
+  #generations > div > .grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
 }
 
 @media (max-width: 600px) {
-  #generations {
-    padding-top: 32px !important;
-    padding-bottom: 36px !important;
-  }
-
-  #generations > div {
-    padding-left: 14px !important;
-    padding-right: 14px !important;
-  }
-
-  #generations .mb-8 {
-    margin-bottom: 16px !important;
-  }
-
-  #generations .mb-8 > div:last-child > p {
-    display: none !important;
-  }
-
-  #generations > div > .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 8px !important;
-  }
-
-  #generations button {
-    min-height: 108px !important;
-    padding: 11px !important;
-  }
-
-  #generations button:hover {
-    transform: none !important;
-  }
+  #generations { padding-top: 32px !important; padding-bottom: 36px !important; }
+  #generations > div { padding-left: 14px !important; padding-right: 14px !important; }
+  #generations .mb-8 { margin-bottom: 16px !important; }
+  #generations .mb-8 > div:last-child > p { display: none !important; }
+  #generations > div > .grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 8px !important; }
+  #generations button { min-height: 108px !important; padding: 11px !important; }
+  #generations button:hover { transform: none !important; }
 }
