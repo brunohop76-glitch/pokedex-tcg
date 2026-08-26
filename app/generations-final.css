@@ -1,9 +1,9 @@
-/* GENERATIONS — micro polish v3 */
+/* GENERATIONS — retro premium finish v4 */
 #generations {
-  padding-top: 42px !important;
-  padding-bottom: 48px !important;
+  padding-top: 38px !important;
+  padding-bottom: 44px !important;
   background:
-    linear-gradient(rgba(245,242,216,.97), rgba(226,231,207,.99)),
+    linear-gradient(rgba(245,242,216,.98), rgba(226,231,207,.99)),
     linear-gradient(90deg, rgba(23,54,44,.055) 1px, transparent 1px),
     linear-gradient(rgba(23,54,44,.045) 1px, transparent 1px),
     #dfe5c9 !important;
@@ -17,21 +17,22 @@
   padding-right: 24px !important;
 }
 
-/* Remove the duplicated pseudo-label coming from the older generation theme. */
 #generations::before {
   content: none !important;
   display: none !important;
 }
 
+/* Header: compact, clear and intentionally retro. */
 #generations .mb-8 {
-  margin-bottom: 20px !important;
-  padding: 0 0 15px !important;
+  position: relative !important;
+  margin-bottom: 18px !important;
+  padding: 0 0 14px !important;
   border-bottom: 2px solid #17362c !important;
   align-items: end !important;
 }
 
 #generations .mb-8 > div:first-child::before {
-  content: "REGION / GENERATION INDEX";
+  content: "01 / REGION SELECT";
   display: block !important;
   margin-bottom: 6px !important;
   color: #168b65 !important;
@@ -46,108 +47,166 @@
 #generations h3 {
   margin-top: 0 !important;
   font-family: Arial Black, Arial, Helvetica, sans-serif !important;
-  font-size: clamp(2.2rem, 4vw, 3.25rem) !important;
+  font-size: clamp(2.15rem, 3.8vw, 3.05rem) !important;
   line-height: .92 !important;
-  letter-spacing: -.06em !important;
+  letter-spacing: -.055em !important;
   color: #12382b !important;
   text-shadow: 3px 3px 0 #c2c8b2 !important;
 }
 
-#generations h3 .text-red-500 { color: #d71920 !important; }
+#generations h3 .text-red-500 {
+  color: #d71920 !important;
+}
 
 #generations .mb-8 > div:last-child > p {
-  max-width: 390px !important;
-  margin-bottom: 1px !important;
-  padding-left: 14px !important;
+  max-width: 370px !important;
+  margin-bottom: 0 !important;
+  padding: 7px 0 7px 14px !important;
   border-left: 3px solid #d71920 !important;
   color: #657169 !important;
   font-family: Arial, Helvetica, sans-serif !important;
-  font-size: 11px !important;
+  font-size: 10px !important;
   line-height: 1.45 !important;
 }
 
+/* Generation grid. */
 #generations > div > .grid {
   grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-  gap: 10px !important;
+  gap: 9px !important;
 }
 
 #generations button {
-  min-height: 126px !important;
-  padding: 14px 14px 13px !important;
+  position: relative !important;
+  min-height: 118px !important;
+  padding: 13px 13px 12px !important;
   border: 2px solid #687b70 !important;
-  border-radius: 8px !important;
-  background: linear-gradient(180deg, #fffdf0 0%, #eee8cf 100%) !important;
+  border-radius: 7px !important;
+  background:
+    linear-gradient(rgba(255,253,240,.96), rgba(238,232,207,.98)),
+    linear-gradient(90deg, rgba(23,54,44,.045) 1px, transparent 1px),
+    linear-gradient(rgba(23,54,44,.04) 1px, transparent 1px) !important;
+  background-size: auto, 8px 8px, 8px 8px !important;
   color: #17362c !important;
-  box-shadow: 3px 4px 0 #a0a695, inset 0 0 0 1px rgba(255,255,255,.9) !important;
-  transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease, background .16s ease !important;
+  box-shadow: 3px 3px 0 #a0a695, inset 0 0 0 1px rgba(255,255,255,.9) !important;
+  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease, background .15s ease !important;
+}
+
+#generations button::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  right: 0 !important;
+  height: 3px !important;
+  background: #168b65 !important;
+  opacity: .65 !important;
+  border-radius: 5px 5px 0 0 !important;
 }
 
 #generations button:hover {
   transform: translateY(-3px) !important;
   border-color: #168b65 !important;
-  background: linear-gradient(180deg, #fffef5 0%, #edf5df 100%) !important;
-  box-shadow: 4px 6px 0 #899487, 0 0 0 2px rgba(22,139,101,.08) !important;
+  background:
+    linear-gradient(rgba(255,254,245,.98), rgba(237,245,223,.99)),
+    linear-gradient(90deg, rgba(23,54,44,.045) 1px, transparent 1px),
+    linear-gradient(rgba(23,54,44,.04) 1px, transparent 1px) !important;
+  background-size: auto, 8px 8px, 8px 8px !important;
+  box-shadow: 4px 5px 0 #899487, 0 0 0 2px rgba(22,139,101,.08) !important;
 }
 
+/* Active generation / All card. */
 #generations button[class*="border-red-500"] {
   border-color: #d71920 !important;
-  background: linear-gradient(180deg, #fff9ed 0%, #f6ddd2 100%) !important;
+  background:
+    linear-gradient(rgba(255,249,237,.98), rgba(246,221,210,.98)),
+    linear-gradient(90deg, rgba(215,25,32,.035) 1px, transparent 1px),
+    linear-gradient(rgba(215,25,32,.035) 1px, transparent 1px) !important;
+  background-size: auto, 8px 8px, 8px 8px !important;
   box-shadow: 3px 4px 0 #a2a18e, 0 0 0 2px rgba(215,25,32,.08) !important;
 }
 
 #generations button[class*="border-red-500"]::before {
-  top: 8px !important;
-  right: 9px !important;
-  font-size: 7px !important;
-}
-
-#generations button::after {
-  right: 9px !important;
-  bottom: 8px !important;
-  font-size: 8px !important;
+  background: #d71920 !important;
+  opacity: 1 !important;
 }
 
 #generations button span:first-child {
-  color: #7b8477 !important;
+  color: #6d7a70 !important;
+  font-family: var(--font-geist-mono), monospace !important;
   font-size: 8px !important;
-  letter-spacing: .18em !important;
+  font-weight: 900 !important;
+  letter-spacing: .16em !important;
 }
 
 #generations button p.mt-3 {
-  margin-top: 11px !important;
+  margin-top: 10px !important;
   font-family: Arial, Helvetica, sans-serif !important;
-  font-size: 15px !important;
+  font-size: 14px !important;
   line-height: 1 !important;
   font-weight: 900 !important;
+  letter-spacing: -.02em !important;
   color: #17362c !important;
 }
 
 #generations button p.mt-1 {
   margin-top: 5px !important;
   font-family: Arial, Helvetica, sans-serif !important;
-  font-size: 10px !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
   color: #68766b !important;
 }
 
 #generations button p.mt-4 {
-  margin-top: 14px !important;
+  margin-top: 12px !important;
+  padding-top: 7px !important;
+  border-top: 1px dashed rgba(23,54,44,.25) !important;
   font-family: var(--font-geist-mono), monospace !important;
-  font-size: 8px !important;
+  font-size: 7px !important;
   font-weight: 900 !important;
-  letter-spacing: .04em !important;
+  letter-spacing: .05em !important;
   color: #168b65 !important;
 }
 
+#generations button[class*="border-red-500"] p.mt-4 {
+  color: #c71920 !important;
+}
+
 @media (max-width: 900px) {
-  #generations > div > .grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  #generations > div > .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
 }
 
 @media (max-width: 600px) {
-  #generations { padding-top: 34px !important; padding-bottom: 38px !important; }
-  #generations > div { padding-left: 14px !important; padding-right: 14px !important; }
-  #generations .mb-8 { margin-bottom: 17px !important; }
-  #generations .mb-8 > div:last-child > p { display: none !important; }
-  #generations > div > .grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 8px !important; }
-  #generations button { min-height: 110px !important; padding: 11px !important; }
-  #generations button:hover { transform: none !important; }
+  #generations {
+    padding-top: 32px !important;
+    padding-bottom: 36px !important;
+  }
+
+  #generations > div {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  #generations .mb-8 {
+    margin-bottom: 16px !important;
+  }
+
+  #generations .mb-8 > div:last-child > p {
+    display: none !important;
+  }
+
+  #generations > div > .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  #generations button {
+    min-height: 108px !important;
+    padding: 11px !important;
+  }
+
+  #generations button:hover {
+    transform: none !important;
+  }
 }
