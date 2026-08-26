@@ -9,6 +9,7 @@ import "./pokemon-detail-hero-reset.css";
 import "./pokemon-detail-polish.css";
 import "./home.css";
 import "./home-final.css";
+import "./generations-final.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
