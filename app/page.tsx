@@ -5,6 +5,14 @@ import Link from "next/link";
 
 type Pokemon = { name: string; url: string };
 type PokemonDetails = { types: { type: { name: string } }[] };
+type TCGSuggestion = {
+  id: string;
+  localId: string;
+  name: string;
+  image?: string;
+  rarity?: string;
+  set?: { id: string; name: string };
+};
 type Generation = {
   id: number;
   name: string;
@@ -59,6 +67,10 @@ function formatName(name: string) {
   return name.replace(/-/g, " ");
 }
 
+function normalizeSearch(value: string) {
+  return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().toLowerCase();
+}
+
 export default function Home() {
   const [pokemon, setPokemon] = useState<Pokemon[]>([]);
   const [details, setDetails] = useState<Record<number, string[]>>({});
@@ -67,6 +79,9 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [detailsLoading, setDetailsLoading] = useState(false);
+  const [smartResults, setSmartResults] = useState<TCGSuggestion[]>([]);
+  const [smartLoading, setSmartLoading] = useState(false);
+  const [smartOpen, setSmartOpen] = useState(false);
   const loadedDetailIds = useRef(new Set<number>());
 
   useEffect(() => {
@@ -87,12 +102,53 @@ export default function Home() {
     return () => controller.abort();
   }, []);
 
+  const smartPokemon = useMemo(() => {
+    const term = normalizeSearch(search);
+    if (!term || term.length < 2) return [];
+    return pokemon
+      .filter((item) => {
+        const name = normalizeSearch(item.name);
+        const id = String(getPokemonId(item.url));
+        return name.includes(term) || id.includes(term.replace(/^#/, ""));
+      })
+      .slice(0, 6);
+  }, [pokemon, search]);
+
+  useEffect(() => {
+    const term = search.trim();
+    if (term.length < 2) {
+      setSmartResults([]);
+      setSmartLoading(false);
+      return;
+    }
+
+    const controller = new AbortController();
+    const timer = window.setTimeout(async () => {
+      setSmartLoading(true);
+      try {
+        const response = await fetch(`/api/tcg?q=${encodeURIComponent(term)}&limit=6`, { signal: controller.signal });
+        if (!response.ok) throw new Error("Busca TCG indisponível");
+        const data = await response.json();
+        setSmartResults(Array.isArray(data.cards) ? data.cards.slice(0, 6) : []);
+      } catch (error) {
+        if ((error as Error).name !== "AbortError") setSmartResults([]);
+      } finally {
+        if (!controller.signal.aborted) setSmartLoading(false);
+      }
+    }, 350);
+
+    return () => {
+      window.clearTimeout(timer);
+      controller.abort();
+    };
+  }, [search]);
+
   const filteredPokemon = useMemo(() => {
     const generation = generations[selectedGeneration];
     const searchTerm = search.toLowerCase().trim();
     return pokemon.filter((item) => {
       const id = getPokemonId(item.url);
-      if (searchTerm) return item.name.toLowerCase().includes(searchTerm) || String(id).includes(searchTerm);
+      if (searchTerm) return item.name.toLowerCase().includes(searchTerm) || String(id).includes(searchTerm.replace(/^#/, ""));
       return id >= generation.start && id <= generation.end;
     });
   }, [pokemon, search, selectedGeneration]);
@@ -138,6 +194,8 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  const hasSmartResults = smartPokemon.length > 0 || smartResults.length > 0;
+
   return (
     <main className="min-h-screen">
       <header>
@@ -156,14 +214,55 @@ export default function Home() {
       <section aria-labelledby="home-title">
         <div className="relative mx-auto max-w-7xl"><div className="grid"><div>
           <h2 id="home-title">POKEDEX D'MELO</h2>
-          <div className="mt-7 max-w-3xl"><form className="group relative" onSubmit={(event) => { event.preventDefault(); setCurrentPage(1); }}>
-            <div className="relative flex items-center">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center border-r border-[#d6d0b6] text-lg text-red-600" aria-hidden="true">⌕</div>
-              <input type="search" aria-label="Pesquisar Pokémon ou número" placeholder="Pesquisar Pokémon ou número..." value={search} onChange={(event) => setSearch(event.target.value)} className="w-full bg-transparent px-4 py-3 outline-none placeholder:text-[#718078]" />
-              {search && <button type="button" onClick={() => setSearch("")} className="mr-1 hidden rounded px-3 py-2 text-[9px] font-black uppercase tracking-wider text-[#52655e] sm:block">Limpar</button>}
-              <button type="submit" className="shrink-0 px-5 py-3">Buscar</button>
-            </div>
-          </form></div>
+          <div className="mt-7 max-w-3xl">
+            <form className="group relative" onSubmit={(event) => { event.preventDefault(); setCurrentPage(1); setSmartOpen(false); }}>
+              <div className="relative flex items-center">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center border-r border-[#d6d0b6] text-lg text-red-600" aria-hidden="true">⌕</div>
+                <input
+                  type="search"
+                  aria-label="Pesquisar Pokémon ou número"
+                  aria-expanded={smartOpen && search.trim().length >= 2}
+                  aria-controls="smart-search-results"
+                  autoComplete="off"
+                  placeholder="Pesquisar Pokémon, número ou carta..."
+                  value={search}
+                  onFocus={() => setSmartOpen(true)}
+                  onChange={(event) => { setSearch(event.target.value); setSmartOpen(true); }}
+                  onKeyDown={(event) => { if (event.key === "Escape") setSmartOpen(false); }}
+                  className="w-full bg-transparent px-4 py-3 outline-none placeholder:text-[#718078]"
+                />
+                {search && <button type="button" onClick={() => { setSearch(""); setSmartOpen(false); }} className="mr-1 hidden rounded px-3 py-2 text-[9px] font-black uppercase tracking-wider text-[#52655e] sm:block">Limpar</button>}
+                <button type="submit" className="shrink-0 px-5 py-3">Buscar</button>
+              </div>
+
+              {smartOpen && search.trim().length >= 2 && (
+                <div id="smart-search-results" className="absolute left-0 right-0 top-[calc(100%+10px)] z-50 overflow-hidden rounded-2xl border border-white/10 bg-[#101614]/95 shadow-2xl shadow-black/40 backdrop-blur-xl">
+                  <div className="grid divide-y divide-white/10 md:grid-cols-2 md:divide-x md:divide-y-0">
+                    <div className="p-3">
+                      <div className="flex items-center justify-between px-2 pb-2"><span className="text-[9px] font-black uppercase tracking-[0.25em] text-emerald-400">Pokémon</span><span className="text-[9px] text-zinc-600">{smartPokemon.length} sugestões</span></div>
+                      {smartPokemon.length ? smartPokemon.map((item) => {
+                        const id = getPokemonId(item.url);
+                        return <Link key={id} href={`/pokemon/${id}`} onClick={() => setSmartOpen(false)} className="flex items-center gap-3 rounded-xl px-2 py-2 transition hover:bg-white/[0.06]">
+                          <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`} alt="" className="h-12 w-12 object-contain" />
+                          <div className="min-w-0"><p className="truncate text-sm font-black capitalize">{formatName(item.name)}</p><p className="font-mono text-[9px] text-zinc-600">#{String(id).padStart(4, "0")}</p></div>
+                          <span className="ml-auto text-zinc-700">→</span>
+                        </Link>;
+                      }) : <p className="px-2 py-5 text-xs text-zinc-600">Nenhum Pokémon correspondente.</p>}
+                    </div>
+
+                    <div className="p-3">
+                      <div className="flex items-center justify-between px-2 pb-2"><span className="text-[9px] font-black uppercase tracking-[0.25em] text-red-400">Cartas TCG</span>{smartLoading ? <span className="animate-pulse text-[9px] text-red-400">CONSULTANDO...</span> : <span className="text-[9px] text-zinc-600">{smartResults.length} resultados</span>}</div>
+                      {smartResults.length ? smartResults.map((card) => <div key={card.id} className="flex items-center gap-3 rounded-xl px-2 py-2 transition hover:bg-white/[0.06]">
+                        {card.image ? <img src={card.image} alt="" className="h-14 w-10 rounded-md object-cover" loading="lazy" /> : <div className="h-14 w-10 rounded-md bg-white/5" />}
+                        <div className="min-w-0"><p className="truncate text-sm font-black">{card.name}</p><p className="truncate text-[9px] text-zinc-600">{card.set?.name ?? "Coleção desconhecida"} · {card.rarity ?? "Raridade não informada"}</p></div>
+                      </div>) : <p className="px-2 py-5 text-xs text-zinc-600">{smartLoading ? "Procurando cartas na base TCG..." : "Nenhuma carta encontrada para esta busca."}</p>}
+                    </div>
+                  </div>
+                  <div className="border-t border-white/10 bg-white/[0.02] px-4 py-2.5 text-[9px] font-bold uppercase tracking-widest text-zinc-600">ENTER para buscar · ESC para fechar</div>
+                </div>
+              )}
+            </form>
+          </div>
         </div></div></div>
       </section>
 
