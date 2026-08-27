@@ -1,16 +1,19 @@
-/* DATABASE HERO — isolated final layout */
-#database-page-hero {
+/* DATABASE HERO — final layout */
+html body main section.database-hero {
   width: 100% !important;
   min-height: 360px !important;
   height: auto !important;
   overflow: hidden !important;
-  position: relative !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
   box-sizing: border-box !important;
-  background: linear-gradient(rgba(247,242,216,.96), rgba(223,229,201,.96)), linear-gradient(rgba(18,61,48,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(18,61,48,.055) 1px, transparent 1px), #dfe5c9 !important;
-  background-size: auto, 16px 16px, 16px 16px, auto !important;
+  border-bottom: 4px solid #17362c !important;
+  background: #e7edc9 !important;
 }
 
-#database-page-hero .database-page-hero-inner {
+html body main section.database-hero > .database-hero-inner {
+  position: relative !important;
   width: calc(100% - 80px) !important;
   max-width: 1240px !important;
   min-width: 0 !important;
@@ -19,39 +22,45 @@
   box-sizing: border-box !important;
 }
 
-#database-page-hero .database-page-hero-grid {
-  width: 100% !important;
-  min-width: 0 !important;
-  min-height: 250px !important;
+html body main section.database-hero .database-hero-grid {
+  position: relative !important;
   display: grid !important;
   grid-template-columns: minmax(0, 1fr) 270px !important;
   align-items: center !important;
   gap: 56px !important;
+  width: 100% !important;
+  min-height: 250px !important;
   margin: 0 !important;
   padding: 0 !important;
+  box-sizing: border-box !important;
 }
 
-#database-page-hero .database-page-hero-copy {
+html body main section.database-hero .database-hero-copy {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
   width: auto !important;
-  min-width: 0 !important;
   max-width: 820px !important;
-  display: block !important;
+  min-width: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
+  text-align: left !important;
+  box-sizing: border-box !important;
 }
 
-#database-page-hero .database-page-hero-copy > p:first-child {
+html body main section.database-hero .database-hero-copy > p:first-child {
+  display: block !important;
   width: auto !important;
   margin: 0 0 12px !important;
+  padding: 0 !important;
   white-space: nowrap !important;
 }
 
-#database-page-hero .database-page-hero-title {
+html body main section.database-hero .database-hero-title {
   display: block !important;
-  width: auto !important;
+  width: max-content !important;
   max-width: none !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -66,22 +75,37 @@
   text-shadow: 3px 4px 0 #b8c2aa !important;
 }
 
-#database-page-hero .database-page-hero-title span { color: #d71920 !important; }
+html body main section.database-hero .database-hero-title span { color: #d71920 !important; }
 
-#database-page-hero .database-page-status {
+html body main section.database-hero .database-hero-description {
+  display: block !important;
+  width: min(620px, 100%) !important;
+  max-width: 620px !important;
+  min-width: 0 !important;
+  margin: 14px 0 0 !important;
+  padding: 0 !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  white-space: normal !important;
+  color: #52655e !important;
+}
+
+html body main section.database-hero .database-page-status {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  position: relative !important;
+  justify-self: end !important;
+  align-self: center !important;
+  display: block !important;
   width: 270px !important;
   min-width: 270px !important;
   max-width: 270px !important;
   height: 78px !important;
   min-height: 78px !important;
   max-height: 78px !important;
-  justify-self: end !important;
-  align-self: center !important;
-  display: flex !important;
-  align-items: center !important;
-  box-sizing: border-box !important;
   margin: 0 !important;
   padding: 16px 20px !important;
+  box-sizing: border-box !important;
   border: 2px solid #71816f !important;
   border-radius: 8px !important;
   background: #f7f2d8 !important;
@@ -93,14 +117,44 @@
   line-height: 1.5 !important;
   letter-spacing: .12em !important;
   text-transform: uppercase !important;
+  z-index: 2 !important;
 }
 
-#database-page-hero .database-page-status span { color: #28704d !important; }
+html body main section.database-hero .database-page-status span { color: #28704d !important; }
 
 @media (max-width: 900px) {
-  #database-page-hero { min-height: 0 !important; }
-  #database-page-hero .database-page-hero-inner { width: calc(100% - 32px) !important; padding: 40px 0 38px !important; }
-  #database-page-hero .database-page-hero-grid { grid-template-columns: 1fr !important; min-height: 0 !important; gap: 24px !important; }
-  #database-page-hero .database-page-hero-title { white-space: normal !important; font-size: clamp(3rem, 11vw, 4.6rem) !important; }
-  #database-page-hero .database-page-status { justify-self: start !important; }
+  html body main section.database-hero {
+    min-height: 0 !important;
+  }
+
+  html body main section.database-hero > .database-hero-inner {
+    width: calc(100% - 32px) !important;
+    padding: 40px 0 38px !important;
+  }
+
+  html body main section.database-hero .database-hero-grid {
+    grid-template-columns: 1fr !important;
+    min-height: 0 !important;
+    gap: 24px !important;
+  }
+
+  html body main section.database-hero .database-hero-copy {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    max-width: 100% !important;
+  }
+
+  html body main section.database-hero .database-hero-title {
+    width: auto !important;
+    max-width: 100% !important;
+    font-size: clamp(3rem, 11vw, 4.6rem) !important;
+    white-space: normal !important;
+  }
+
+  html body main section.database-hero .database-page-status {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    justify-self: start !important;
+    width: 270px !important;
+  }
 }
