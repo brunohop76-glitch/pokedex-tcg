@@ -18,7 +18,6 @@
     .dmelo-search-item img{width:42px;height:42px;object-fit:contain;flex:0 0 auto}
     .dmelo-search-name{font-size:12px;font-weight:900;text-transform:capitalize;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .dmelo-search-meta{margin-top:2px;font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#758078}
-    .dmelo-search-card-img{width:34px!important;height:48px!important;border-radius:4px;object-fit:cover!important}
     .dmelo-search-empty{padding:16px 6px;font-size:11px;color:#758078}
     .dmelo-search-footer{display:flex;align-items:center;justify-content:center;padding:9px 12px;border-top:1px solid #d6d0b6;background:#f1edd5;font-size:9px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#9e1017;text-decoration:none;cursor:pointer}
     @media(max-width:700px){.dmelo-search-grid{grid-template-columns:1fr}.dmelo-search-col+.dmelo-search-col{border-left:0;border-top:1px solid #d6d0b6}.dmelo-search-panel{left:14px!important;right:14px!important;width:auto!important;max-height:70vh;overflow:auto}}
@@ -57,15 +56,15 @@
     const rect = input.getBoundingClientRect();
     const gap = 8;
     const maxWidth = Math.min(rect.width, window.innerWidth - 28);
-    panel.style.width = `${maxWidth}px`;
     let left = rect.left;
     if (left + maxWidth > window.innerWidth - 14) left = window.innerWidth - maxWidth - 14;
     if (left < 14) left = 14;
-    let top = rect.bottom + gap;
+    const top = rect.bottom + gap;
     const maxHeight = Math.min(520, window.innerHeight - top - 14);
+    panel.style.width = `${maxWidth}px`;
     panel.style.left = `${left}px`;
     panel.style.top = `${top}px`;
-    if (maxHeight > 180) panel.style.maxHeight = `${maxHeight}px`;
+    panel.style.maxHeight = `${Math.max(180, maxHeight)}px`;
   }
 
   function makeItem({ href, image, name, meta }) {
@@ -133,7 +132,7 @@
     }
 
     try {
-      const response = await fetch(`/api/tcg?q=${encodeURIComponent(query)}&limit=5`, { signal });
+      const response = await fetch(`/api/tcg?name=${encodeURIComponent(query)}`, { signal });
       if (!response.ok) throw new Error('TCG unavailable');
       const data = await response.json();
       const cards = data.cards || [];
