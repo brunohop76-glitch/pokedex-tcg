@@ -29,13 +29,13 @@ export default function DatabasePage() {
 
       <section id="database-hero" className="database-hero border-b-4 border-[#17362c] bg-[#e7edc9] px-5 py-10 md:px-8 md:py-12">
         <div className="database-hero-inner mx-auto w-full max-w-7xl">
-          <div className="database-hero-grid w-full">
-            <div className="database-hero-copy min-w-0 text-left">
+          <div className="database-hero-grid w-full" style={{display:"grid",gridTemplateColumns:"minmax(0,1fr) 270px",alignItems:"center",gap:"48px"}}>
+            <div className="database-hero-copy min-w-0 text-left" style={{gridColumn:"1",gridRow:"1",minWidth:0}}>
               <p className="font-mono text-[9px] font-black uppercase tracking-[.32em] text-[#d71920]">05 // Nexus Database</p>
-              <h1 className="mt-2 database-hero-title whitespace-nowrap font-black leading-[.9] tracking-[-.055em] text-[#102d23] [text-shadow:3px_4px_0_#b8c2aa] text-[clamp(2.9rem,5vw,4.8rem)]">Nexus <span className="text-[#d71920]">Database.</span></h1>
+              <h1 className="database-hero-title whitespace-nowrap font-black leading-[.9] tracking-[-.055em] text-[#102d23] [text-shadow:3px_4px_0_#b8c2aa] text-[clamp(2.9rem,5vw,4.8rem)]">Nexus <span className="text-[#d71920]">Database.</span></h1>
               <p className="mt-3 max-w-[620px] text-[13px] leading-6 text-[#52655e]">Um painel central para acompanhar o tamanho da Pokédex D'Melo, gerações, tipos e universo TCG.</p>
             </div>
-            <div className="database-page-status w-full max-w-[270px] justify-self-start rounded-lg border-2 border-[#71816f] bg-[#f7f2d8] px-5 py-4 font-mono text-[9px] font-black uppercase leading-5 tracking-[.14em] text-[#17362c] shadow-[5px_5px_0_#71816f] md:justify-self-end">
+            <div className="database-page-status rounded-lg border-2 border-[#71816f] bg-[#f7f2d8] px-5 py-4 font-mono text-[9px] font-black uppercase leading-5 tracking-[.14em] text-[#17362c] shadow-[5px_5px_0_#71816f]" style={{gridColumn:"2",gridRow:"1",width:"270px",minWidth:"270px",justifySelf:"end",alignSelf:"center",position:"relative",zIndex:2}}>
               <span className="text-[#28704d]">SYSTEM STATUS</span><br />ONLINE / INDEXED
             </div>
           </div>
