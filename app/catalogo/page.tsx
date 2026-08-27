@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type Pokemon = { name: string; url: string };
 type Generation = { id: string; label: string; region: string; start: number; end: number };
@@ -43,6 +43,31 @@ export default function CatalogoPage() {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [typeLoading, setTypeLoading] = useState(false);
+  const restoredRef = useRef(false);
+  const skipResetRef = useRef(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const urlSearch = params.get("search");
+    const urlGeneration = params.get("generation");
+    const urlTypes = params.get("types");
+    const urlSort = params.get("sort");
+    const urlPage = Number(params.get("page"));
+
+    if (urlSearch !== null) setSearch(urlSearch);
+    if (urlGeneration && generations.some((item) => item.id === urlGeneration)) setGeneration(urlGeneration);
+    if (urlTypes) setSelectedTypes(urlTypes.split(",").filter((item) => types.includes(item) && item !== "Todos"));
+    if (urlSort && ["number-asc", "number-desc", "name-asc", "name-desc"].includes(urlSort)) setSort(urlSort);
+    if (Number.isFinite(urlPage) && urlPage > 0) setPage(Math.floor(urlPage));
+
+    skipResetRef.current = true;
+    restoredRef.current = true;
+
+    const savedScroll = Number(sessionStorage.getItem("catalog-scroll-y"));
+    if (Number.isFinite(savedScroll) && savedScroll > 0 && (urlSearch !== null || urlGeneration || urlTypes || urlSort || urlPage > 1)) {
+      window.setTimeout(() => window.scrollTo({ top: savedScroll, behavior: "instant" as ScrollBehavior }), 120);
+    }
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -89,8 +114,27 @@ export default function CatalogoPage() {
   const visible = filtered.slice((safePage - 1) * perPage, safePage * perPage);
   const currentGeneration = generations.find((g) => g.id === generation) ?? generations[0];
 
-  useEffect(() => { setPage(1); }, [search, generation, selectedTypes, sort]);
+  useEffect(() => {
+    if (skipResetRef.current) {
+      skipResetRef.current = false;
+      return;
+    }
+    setPage(1);
+  }, [search, generation, selectedTypes, sort]);
+
   useEffect(() => { if (page > totalPages) setPage(totalPages); }, [page, totalPages]);
+
+  useEffect(() => {
+    if (!restoredRef.current) return;
+    const params = new URLSearchParams();
+    if (search) params.set("search", search);
+    if (generation !== "all") params.set("generation", generation);
+    if (selectedTypes.length) params.set("types", selectedTypes.join(","));
+    if (sort !== "number-asc") params.set("sort", sort);
+    if (safePage > 1) params.set("page", String(safePage));
+    const query = params.toString();
+    window.history.replaceState(null, "", query ? `/catalogo?${query}` : "/catalogo");
+  }, [search, generation, selectedTypes, sort, safePage]);
 
   useEffect(() => {
     const missing = visible.map((item) => pokemonId(item.url)).filter((id) => !details[id]);
@@ -111,8 +155,28 @@ export default function CatalogoPage() {
     if (item === "Todos") { setSelectedTypes([]); return; }
     setSelectedTypes((current) => current.includes(item) ? current.filter((type) => type !== item) : [...current, item]);
   }
+
   function clearFilters() { setSearch(""); setGeneration("all"); setSelectedTypes([]); setSort("number-asc"); setPage(1); }
-  function goTo(target: number) { setPage(Math.max(1, Math.min(totalPages, target))); window.scrollTo({ top: 0, behavior: "smooth" }); }
+
+  function goTo(target: number) {
+    setPage(Math.max(1, Math.min(totalPages, target)));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function pokemonHref(id: number) {
+    const params = new URLSearchParams();
+    if (search) params.set("search", search);
+    if (generation !== "all") params.set("generation", generation);
+    if (selectedTypes.length) params.set("types", selectedTypes.join(","));
+    if (sort !== "number-asc") params.set("sort", sort);
+    if (safePage > 1) params.set("page", String(safePage));
+    const query = params.toString();
+    return `/pokemon/${id}${query ? `?from=catalogo&${query}` : "?from=catalogo"}`;
+  }
+
+  function rememberScroll() {
+    sessionStorage.setItem("catalog-scroll-y", String(window.scrollY));
+  }
 
   return (
     <main className="min-h-screen bg-[#dfe5c9] text-[#17362c]">
@@ -124,7 +188,7 @@ export default function CatalogoPage() {
 
         <div className="mt-6 flex flex-col gap-3 border-b-2 border-[#17362c] pb-4 sm:flex-row sm:items-end sm:justify-between"><div><p className="font-mono text-[8px] font-black uppercase tracking-[.25em] text-[#0b9f78]">Database / {currentGeneration.region}</p><h2 className="mt-1 text-2xl font-black tracking-tight">Pokémon catalogados.</h2></div><div className="flex items-center gap-3"><span className="rounded-full border border-[#71816f]/50 bg-[#f7f2d8] px-3 py-1.5 font-mono text-[9px] font-black uppercase tracking-wider">{loading ? "Consultando..." : `${filtered.length} registros`}</span><span className="font-mono text-[9px] font-black uppercase tracking-widest text-[#71816f]">Página {safePage}/{totalPages}</span></div></div>
 
-        {loading ? <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">{Array.from({ length: 12 }, (_, i) => <div key={i} className="h-72 animate-pulse rounded-xl border-2 border-[#71816f]/30 bg-[#f7f2d8]/60" />)}</div> : visible.length ? <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">{visible.map((item) => { const id = pokemonId(item.url); const cardTypes = details[id] ?? []; return <Link key={id} href={`/pokemon/${id}`} className="group relative overflow-hidden rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] p-3 shadow-[3px_4px_0_rgba(23,54,44,.18)] transition duration-300 hover:-translate-y-2 hover:border-[#0b9f78] hover:shadow-[7px_10px_0_rgba(23,54,44,.25)]"><div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[#0b9f78]/10 blur-2xl transition duration-300 group-hover:bg-[#d71920]/15"/><div className="flex items-center justify-between font-mono text-[7px] font-black uppercase text-[#71816f]"><span>#{String(id).padStart(4,"0")}</span><span>{regionFor(id)}</span></div><div className="mt-2 flex aspect-square items-center justify-center overflow-hidden rounded-lg border border-[#17362c]/10 bg-[#e7edc9] bg-[radial-gradient(circle_at_center,rgba(11,159,120,.12),transparent_62%)]"><img src={artwork(id)} alt={prettyName(item.name)} loading="lazy" className="h-[88%] w-[88%] object-contain drop-shadow-[0_7px_3px_rgba(23,54,44,.18)] transition duration-300 group-hover:scale-110 group-hover:-translate-y-1"/></div><div className="mt-3"><div className="flex items-center justify-between gap-2"><h3 className="truncate text-sm font-black capitalize text-[#123d30]">{prettyName(item.name)}</h3><span className="shrink-0 font-mono text-[8px] font-black text-[#0b9f78] transition group-hover:translate-x-0.5 group-hover:text-[#d71920]">↗</span></div><div className="mt-2 flex min-h-5 flex-wrap gap-1">{cardTypes.length ? cardTypes.map((type) => <span key={type} className={`rounded border px-1.5 py-0.5 font-mono text-[7px] font-black uppercase tracking-wider ${typeBadge[type] ?? "border-[#71816f] bg-[#eef0df] text-[#52655e]"}`}>{type}</span>) : <span className="h-4 w-12 animate-pulse rounded bg-[#dfe5c9]"/>}</div></div></Link>; })}</div> : <div className="mt-5 rounded-xl border-2 border-dashed border-[#71816f] bg-[#f7f2d8] p-14 text-center"><p className="font-black">Nenhum Pokémon encontrado.</p><p className="mt-2 text-sm text-[#71816f]">Tente outro nome, número, geração ou combinação de tipos.</p><button type="button" onClick={clearFilters} className="mt-4 rounded border-2 border-[#17362c] bg-[#17362c] px-4 py-2 font-mono text-[9px] font-black uppercase tracking-widest text-white">Limpar filtros</button></div>}
+        {loading ? <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">{Array.from({ length: 12 }, (_, i) => <div key={i} className="h-72 animate-pulse rounded-xl border-2 border-[#71816f]/30 bg-[#f7f2d8]/60" />)}</div> : visible.length ? <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">{visible.map((item) => { const id = pokemonId(item.url); const cardTypes = details[id] ?? []; return <Link key={id} href={pokemonHref(id)} onClick={rememberScroll} className="group relative overflow-hidden rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] p-3 shadow-[3px_4px_0_rgba(23,54,44,.18)] transition duration-300 hover:-translate-y-2 hover:border-[#0b9f78] hover:shadow-[7px_10px_0_rgba(23,54,44,.25)]"><div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[#0b9f78]/10 blur-2xl transition duration-300 group-hover:bg-[#d71920]/15"/><div className="flex items-center justify-between font-mono text-[7px] font-black uppercase text-[#71816f]"><span>#{String(id).padStart(4,"0")}</span><span>{regionFor(id)}</span></div><div className="mt-2 flex aspect-square items-center justify-center overflow-hidden rounded-lg border border-[#17362c]/10 bg-[#e7edc9] bg-[radial-gradient(circle_at_center,rgba(11,159,120,.12),transparent_62%)]"><img src={artwork(id)} alt={prettyName(item.name)} loading="lazy" className="h-[88%] w-[88%] object-contain drop-shadow-[0_7px_3px_rgba(23,54,44,.18)] transition duration-300 group-hover:scale-110 group-hover:-translate-y-1"/></div><div className="mt-3"><div className="flex items-center justify-between gap-2"><h3 className="truncate text-sm font-black capitalize text-[#123d30]">{prettyName(item.name)}</h3><span className="shrink-0 font-mono text-[8px] font-black text-[#0b9f78] transition group-hover:translate-x-0.5 group-hover:text-[#d71920]">↗</span></div><div className="mt-2 flex min-h-5 flex-wrap gap-1">{cardTypes.length ? cardTypes.map((type) => <span key={type} className={`rounded border px-1.5 py-0.5 font-mono text-[7px] font-black uppercase tracking-wider ${typeBadge[type] ?? "border-[#71816f] bg-[#eef0df] text-[#52655e]"}`}>{type}</span>) : <span className="h-4 w-12 animate-pulse rounded bg-[#dfe5c9]"/>}</div></div></Link>; })}</div> : <div className="mt-5 rounded-xl border-2 border-dashed border-[#71816f] bg-[#f7f2d8] p-14 text-center"><p className="font-black">Nenhum Pokémon encontrado.</p><p className="mt-2 text-sm text-[#71816f]">Tente outro nome, número, geração ou combinação de tipos.</p><button type="button" onClick={clearFilters} className="mt-4 rounded border-2 border-[#17362c] bg-[#17362c] px-4 py-2 font-mono text-[9px] font-black uppercase tracking-widest text-white">Limpar filtros</button></div>}
 
         {!loading && totalPages > 1 && <div className="mt-8 flex flex-wrap items-center justify-center gap-2 pb-8"><button type="button" disabled={safePage === 1} onClick={() => goTo(1)} className="rounded border-2 border-[#17362c] bg-[#f7f2d8] px-3 py-2 font-mono text-[9px] font-black uppercase transition hover:bg-[#17362c] hover:text-white disabled:cursor-not-allowed disabled:opacity-35">« Primeiro</button><button type="button" disabled={safePage === 1} onClick={() => goTo(safePage - 1)} className="rounded border-2 border-[#17362c] bg-[#f7f2d8] px-3 py-2 font-mono text-[9px] font-black uppercase transition hover:bg-[#17362c] hover:text-white disabled:cursor-not-allowed disabled:opacity-35">← Anterior</button><div className="rounded border-2 border-[#d71920] bg-[#d71920] px-4 py-2 font-mono text-[9px] font-black text-white">{safePage} / {totalPages}</div><button type="button" disabled={safePage === totalPages} onClick={() => goTo(safePage + 1)} className="rounded border-2 border-[#17362c] bg-[#f7f2d8] px-3 py-2 font-mono text-[9px] font-black uppercase transition hover:bg-[#17362c] hover:text-white disabled:cursor-not-allowed disabled:opacity-35">Próxima →</button><button type="button" disabled={safePage === totalPages} onClick={() => goTo(totalPages)} className="rounded border-2 border-[#17362c] bg-[#f7f2d8] px-3 py-2 font-mono text-[9px] font-black uppercase transition hover:bg-[#17362c] hover:text-white disabled:cursor-not-allowed disabled:opacity-35">Última »</button></div>}
       </section>
