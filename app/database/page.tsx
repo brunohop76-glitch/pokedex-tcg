@@ -6,105 +6,51 @@ import { useEffect, useMemo, useState } from "react";
 type SetItem = { id: string; name: string; total?: number; official?: number };
 
 const generations = [
-  { name: "Geração I", region: "Kanto", count: 151 },
-  { name: "Geração II", region: "Johto", count: 100 },
-  { name: "Geração III", region: "Hoenn", count: 135 },
-  { name: "Geração IV", region: "Sinnoh", count: 107 },
-  { name: "Geração V", region: "Unova", count: 156 },
-  { name: "Geração VI", region: "Kalos", count: 72 },
-  { name: "Geração VII", region: "Alola", count: 88 },
-  { name: "Geração VIII", region: "Galar", count: 96 },
-  { name: "Geração IX", region: "Paldea", count: 120 },
+  { name: "Geração I", region: "Kanto", count: 151 }, { name: "Geração II", region: "Johto", count: 100 }, { name: "Geração III", region: "Hoenn", count: 135 }, { name: "Geração IV", region: "Sinnoh", count: 107 }, { name: "Geração V", region: "Unova", count: 156 }, { name: "Geração VI", region: "Kalos", count: 72 }, { name: "Geração VII", region: "Alola", count: 88 }, { name: "Geração VIII", region: "Galar", count: 96 }, { name: "Geração IX", region: "Paldea", count: 120 },
 ];
-
 const types = ["Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy"];
 
 export default function DatabasePage() {
   const [sets, setSets] = useState<SetItem[]>([]);
   const [loadingSets, setLoadingSets] = useState(true);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    fetch("/api/tcg/catalog?mode=sets", { signal: controller.signal })
-      .then((response) => response.json())
-      .then((data) => setSets(data.sets ?? []))
-      .catch(() => setSets([]))
-      .finally(() => { if (!controller.signal.aborted) setLoadingSets(false); });
-    return () => controller.abort();
-  }, []);
-
+  useEffect(() => { const c = new AbortController(); fetch("/api/tcg/catalog?mode=sets", { signal: c.signal }).then(r => r.json()).then(d => setSets(d.sets ?? [])).catch(() => setSets([])).finally(() => { if (!c.signal.aborted) setLoadingSets(false); }); return () => c.abort(); }, []);
   const totalCards = useMemo(() => sets.reduce((sum, set) => sum + Number(set.total || 0), 0), [sets]);
-  const maxGeneration = Math.max(...generations.map((generation) => generation.count));
+  const maxGeneration = Math.max(...generations.map(g => g.count));
 
   return (
     <main className="min-h-screen bg-[#dfe5c9] text-[#17362c]">
       <header className="sticky top-0 z-50 border-b-4 border-[#081c15] bg-[#102d23] text-white shadow-[0_4px_0_#6f796b]">
         <div className="mx-auto flex min-h-[70px] max-w-7xl items-center justify-between gap-5 px-5 md:px-8">
-          <Link href="/" className="flex items-center gap-3" aria-label="Voltar para a Pokédex">
-            <span className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-[#f7f2d8] bg-[#d71920] text-lg shadow-[3px_3px_0_#071b14]">⚡</span>
-            <span><strong className="block font-mono text-sm tracking-[.18em]">POKÉDEX</strong><small className="font-mono text-[7px] uppercase tracking-[.25em] text-[#a9c0ad]">D'Melo / Nexus Database</small></span>
-          </Link>
-          <nav className="hidden gap-7 font-mono text-[10px] font-black uppercase tracking-widest md:flex">
-            <Link href="/">Pokédex</Link><Link href="/geracoes">Gerações</Link><Link href="/catalogo">Catálogo</Link><Link href="/database" className="text-[#f5c94a]">Database</Link><Link href="/tcg">TCG</Link>
-          </nav>
+          <Link href="/" className="flex items-center gap-3" aria-label="Voltar para a Pokédex"><span className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-[#f7f2d8] bg-[#d71920] text-lg shadow-[3px_3px_0_#071b14]">⚡</span><span><strong className="block font-mono text-sm tracking-[.18em]">POKÉDEX</strong><small className="font-mono text-[7px] uppercase tracking-[.25em] text-[#a9c0ad]">D'Melo / Nexus Database</small></span></Link>
+          <nav className="hidden gap-7 font-mono text-[10px] font-black uppercase tracking-widest md:flex"><Link href="/">Pokédex</Link><Link href="/geracoes">Gerações</Link><Link href="/catalogo">Catálogo</Link><Link href="/database" className="text-[#f5c94a]">Database</Link><Link href="/tcg">TCG</Link></nav>
           <Link href="/" className="rounded-full border border-[#f5c94a]/30 px-3 py-2 font-mono text-[8px] font-black uppercase tracking-widest text-[#f5c94a]">← Voltar</Link>
         </div>
       </header>
 
-      <section className="database-hero relative min-h-0 border-b-4 border-[#17362c] bg-[#e7edc9] px-5 py-7 md:px-10 md:py-9">
-        <div className="relative mx-auto min-h-[210px] max-w-7xl md:min-h-[225px]">
-          <div className="flex h-full max-w-[780px] flex-col justify-center pr-0 lg:pr-6">
-            <p className="!m-0 font-mono text-[9px] font-black uppercase tracking-[.32em] text-[#d71920]">05 // Nexus Database</p>
-            <h1 className="!m-0 mt-3 text-5xl font-black leading-[.9] tracking-[-.055em] drop-shadow-[3px_4px_0_#b8c2aa] md:text-7xl">Nexus <span className="text-[#d71920]">Database.</span></h1>
-            <p className="!m-0 mt-4 !w-full max-w-[700px] text-sm leading-6 text-[#52655e]">Um painel central para acompanhar o tamanho da Pokédex D'Melo, gerações, tipos e universo TCG.</p>
-          </div>
-          <div className="mt-6 w-full max-w-[270px] rounded border border-[#71816f] bg-[#f7f2d8] px-5 py-4 font-mono text-[9px] font-black uppercase tracking-widest shadow-[4px_4px_0_#71816f] lg:absolute lg:right-0 lg:top-1/2 lg:mt-0 lg:-translate-y-1/2">
-            <span className="text-[#28704d]">● SYSTEM STATUS</span><br />ONLINE / INDEXED
+      <section className="database-hero border-b-4 border-[#17362c] bg-[#e7edc9] px-5 md:px-8" style={{minHeight: 230, paddingTop: 28, paddingBottom: 28, overflow: "hidden"}}>
+        <div className="mx-auto max-w-7xl" style={{width: "min(1200px, calc(100% - 56px))", maxWidth: 1200, margin: "0 auto"}}>
+          <div style={{display: "grid", gridTemplateColumns: "minmax(0, 1fr) 250px", alignItems: "center", gap: 36, width: "100%"}}>
+            <div style={{minWidth: 0, maxWidth: 760, textAlign: "left"}}>
+              <p className="font-mono text-[9px] font-black uppercase tracking-[.32em] text-[#d71920]">05 // Nexus Database</p>
+              <h1 style={{display: "block", margin: "6px 0 0", padding: 0, fontFamily: "Arial Black, Arial, Helvetica, sans-serif", fontSize: "clamp(3.2rem, 5vw, 4.8rem)", lineHeight: .9, fontWeight: 900, letterSpacing: "-.055em", whiteSpace: "nowrap", color: "#102d23", textShadow: "3px 4px 0 #b8c2aa"}}>Nexus <span style={{color: "#d71920"}}>Database.</span></h1>
+              <p style={{marginTop: 10, maxWidth: 560, fontSize: 13, lineHeight: 1.55, color: "#52655e"}}>Um painel central para acompanhar o tamanho da Pokédex D'Melo, gerações, tipos e universo TCG.</p>
+            </div>
+            <div style={{width: 250, minWidth: 250, justifySelf: "end", alignSelf: "center", border: "1px solid #71816f", borderRadius: 6, background: "#f7f2d8", padding: "15px 18px", fontFamily: "monospace", fontSize: 9, fontWeight: 900, textTransform: "uppercase", letterSpacing: ".14em", boxShadow: "4px 4px 0 #71816f"}}><span style={{color: "#28704d"}}>SYSTEM STATUS</span><br/>ONLINE / INDEXED</div>
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-6 md:px-8">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            ["1.025", "Pokémon catalogados", "POKÉDEX"],
-            ["9", "Gerações indexadas", "REGIONS"],
-            ["18", "Tipos disponíveis", "TYPES"],
-            [loadingSets ? "..." : String(sets.length), "Coleções TCG", "TCG NEXUS"],
-          ].map(([value, label, code]) => (
-            <div key={code} className="relative overflow-hidden rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] p-5 shadow-[5px_5px_0_rgba(23,54,44,.18)]">
-              <div className="absolute right-4 top-4 text-4xl opacity-[.07]">{code === "POKÉDEX" ? "◉" : code === "REGIONS" ? "◎" : code === "TYPES" ? "✦" : "▱"}</div>
-              <p className="font-mono text-[8px] font-black uppercase tracking-[.25em] text-[#d71920]">{code}</p>
-              <p className="mt-2 text-4xl font-black tracking-tight">{value}</p>
-              <p className="mt-1 text-xs font-bold text-[#71816f]">{label}</p>
-            </div>
-          ))}
+          {[["1.025", "Pokémon catalogados", "POKÉDEX"], ["9", "Gerações indexadas", "REGIONS"], ["18", "Tipos disponíveis", "TYPES"], [loadingSets ? "..." : String(sets.length), "Coleções TCG", "TCG NEXUS"]].map(([value,label,code]) => <div key={code} className="rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] p-5 shadow-[5px_5px_0_rgba(23,54,44,.18)]"><p className="font-mono text-[8px] font-black uppercase tracking-[.25em] text-[#d71920]">{code}</p><p className="mt-2 text-4xl font-black tracking-tight">{value}</p><p className="mt-1 text-xs font-bold text-[#71816f]">{label}</p></div>)}
         </div>
-
         <div className="mt-5 grid gap-5 lg:grid-cols-[1.35fr_.65fr]">
-          <section className="rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] p-5 shadow-[5px_5px_0_rgba(23,54,44,.15)]">
-            <div className="flex items-end justify-between border-b border-[#71816f]/30 pb-4"><div><p className="font-mono text-[8px] font-black uppercase tracking-[.25em] text-[#28704d]">Pokédex / distribuição</p><h2 className="text-2xl font-black">Pokémon por geração.</h2></div><span className="font-mono text-[8px] font-black uppercase text-[#71816f]">1025 TOTAL</span></div>
-            <div className="mt-5 space-y-3">
-              {generations.map((generation) => <div key={generation.name} className="grid grid-cols-[92px_1fr_42px] items-center gap-3"><div><p className="font-mono text-[8px] font-black uppercase">{generation.name}</p><p className="text-[9px] uppercase text-[#71816f]">{generation.region}</p></div><div className="h-3 overflow-hidden rounded-full border border-[#b8c2aa] bg-[#e4e9d0]"><div className="h-full rounded-full bg-[#17362c]" style={{ width: `${(generation.count / maxGeneration) * 100}%` }} /></div><strong className="text-right font-mono text-[9px]">{generation.count}</strong></div>)}
-            </div>
-          </section>
-
-          <section className="rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] p-5 shadow-[5px_5px_0_rgba(23,54,44,.15)]">
-            <p className="font-mono text-[8px] font-black uppercase tracking-[.25em] text-[#d71920]">Pokédex / taxonomy</p><h2 className="mt-1 text-2xl font-black">18 tipos.</h2>
-            <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">{types.map((type) => <span key={type} className="rounded-lg border border-[#b8c2aa] bg-[#fffceb] px-3 py-2 font-mono text-[7px] font-black uppercase tracking-wider text-[#52655e]">{type}</span>)}</div>
-            <div className="mt-6 border-t border-[#71816f]/30 pt-4"><p className="font-mono text-[8px] font-black uppercase tracking-[.2em] text-[#28704d]">Coverage</p><p className="mt-1 text-sm font-bold">Todas as regiões da Pokédex estão disponíveis para consulta.</p></div>
-          </section>
+          <section className="rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] p-5 shadow-[5px_5px_0_rgba(23,54,44,.15)]"><div className="flex items-end justify-between border-b border-[#71816f]/30 pb-4"><div><p className="font-mono text-[8px] font-black uppercase tracking-[.25em] text-[#28704d]">Pokédex / distribuição</p><h2 className="text-2xl font-black">Pokémon por geração.</h2></div><span className="font-mono text-[8px] font-black uppercase text-[#71816f]">1025 TOTAL</span></div><div className="mt-5 space-y-3">{generations.map(g => <div key={g.name} className="grid grid-cols-[92px_1fr_42px] items-center gap-3"><div><p className="font-mono text-[8px] font-black uppercase">{g.name}</p><p className="text-[9px] uppercase text-[#71816f]">{g.region}</p></div><div className="h-3 overflow-hidden rounded-full border border-[#b8c2aa] bg-[#e4e9d0]"><div className="h-full rounded-full bg-[#17362c]" style={{width:`${g.count/maxGeneration*100}%`}} /></div><strong className="text-right font-mono text-[9px]">{g.count}</strong></div>)}</div></section>
+          <section className="rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] p-5 shadow-[5px_5px_0_rgba(23,54,44,.15)]"><p className="font-mono text-[8px] font-black uppercase tracking-[.25em] text-[#d71920]">Pokédex / taxonomy</p><h2 className="mt-1 text-2xl font-black">18 tipos.</h2><div className="mt-5 grid grid-cols-3 gap-2">{types.map(type => <span key={type} className="rounded-lg border border-[#b8c2aa] bg-[#fffceb] px-2 py-2 font-mono text-[7px] font-black uppercase tracking-wider text-[#52655e]">{type}</span>)}</div><div className="mt-6 border-t border-[#71816f]/30 pt-4"><p className="font-mono text-[8px] font-black uppercase tracking-[.2em] text-[#28704d]">Coverage</p><p className="mt-1 text-sm font-bold">Todas as regiões da Pokédex estão disponíveis para consulta.</p></div></section>
         </div>
-
-        <section className="mt-5 rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] p-5 shadow-[5px_5px_0_rgba(23,54,44,.15)]">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><p className="font-mono text-[8px] font-black uppercase tracking-[.25em] text-[#d71920]">TCG / index overview</p><h2 className="text-2xl font-black">Universo TCG.</h2></div><span className="font-mono text-[8px] font-black uppercase text-[#71816f]">{loadingSets ? "CONSULTANDO" : `${sets.length} COLEÇÕES INDEXADAS`}</span></div>
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
-            <div className="rounded-lg border border-[#b8c2aa] bg-[#fffceb] p-4"><p className="font-mono text-[7px] font-black uppercase text-[#28704d]">Coleções</p><p className="mt-2 text-3xl font-black">{loadingSets ? "…" : sets.length}</p></div>
-            <div className="rounded-lg border border-[#b8c2aa] bg-[#fffceb] p-4"><p className="font-mono text-[7px] font-black uppercase text-[#28704d]">Cartas indexadas</p><p className="mt-2 text-3xl font-black">{loadingSets ? "…" : totalCards.toLocaleString("pt-BR")}</p></div>
-            <div className="rounded-lg border border-[#b8c2aa] bg-[#fffceb] p-4"><p className="font-mono text-[7px] font-black uppercase text-[#28704d]">Catálogo</p><Link href="/tcg" className="mt-2 inline-block text-sm font-black text-[#d71920] hover:underline">Abrir catálogo TCG ↗</Link></div>
-          </div>
-        </section>
+        <section className="mt-5 rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] p-5 shadow-[5px_5px_0_rgba(23,54,44,.15)]"><div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><p className="font-mono text-[8px] font-black uppercase tracking-[.25em] text-[#d71920]">TCG / index overview</p><h2 className="text-2xl font-black">Universo TCG.</h2></div><span className="font-mono text-[8px] font-black uppercase text-[#71816f]">{loadingSets ? "CONSULTANDO" : `${sets.length} COLEÇÕES INDEXADAS`}</span></div><div className="mt-5 grid gap-3 sm:grid-cols-3"><div className="rounded-lg border border-[#b8c2aa] bg-[#fffceb] p-4"><p className="font-mono text-[7px] font-black uppercase text-[#28704d]">Coleções</p><p className="mt-2 text-3xl font-black">{loadingSets ? "…" : sets.length}</p></div><div className="rounded-lg border border-[#b8c2aa] bg-[#fffceb] p-4"><p className="font-mono text-[7px] font-black uppercase text-[#28704d]">Cartas indexadas</p><p className="mt-2 text-3xl font-black">{loadingSets ? "…" : totalCards.toLocaleString("pt-BR")}</p></div><div className="rounded-lg border border-[#b8c2aa] bg-[#fffceb] p-4"><p className="font-mono text-[7px] font-black uppercase text-[#28704d]">Catálogo</p><Link href="/tcg" className="mt-2 inline-block text-sm font-black text-[#d71920] hover:underline">Abrir catálogo TCG ↗</Link></div></div></section>
       </section>
+      <style jsx global>{`@media (max-width: 768px){.database-hero > div > div{grid-template-columns:1fr!important;gap:18px!important}.database-hero h1{white-space:normal!important;font-size:clamp(2.8rem,12vw,4rem)!important}.database-hero > div > div > div:last-child{justify-self:start!important;width:250px!important;min-width:250px!important}}`}</style>
     </main>
   );
 }
