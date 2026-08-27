@@ -13,7 +13,7 @@ const types = ["Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting"
 export default function DatabasePage() {
   const [sets, setSets] = useState<SetItem[]>([]);
   const [loadingSets, setLoadingSets] = useState(true);
-  useEffect(() => { const c = new AbortController(); fetch("/api/tcg/catalog?mode=sets", { signal: c.signal }).then(r => r.json()).then(d => setSets(d.sets ?? [])).catch(() => setSets([])).finally(() => { if (!c.signal.aborted) setLoadingSets(false); }); return () => c.abort(); }, []); 
+  useEffect(() => { const c = new AbortController(); fetch("/api/tcg/catalog?mode=sets", { signal: c.signal }).then(r => r.json()).then(d => setSets(d.sets ?? [])).catch(() => setSets([])).finally(() => { if (!c.signal.aborted) setLoadingSets(false); }); return () => c.abort(); }, []);
   const totalCards = useMemo(() => sets.reduce((sum, set) => sum + Number(set.total || 0), 0), [sets]);
   const maxGeneration = Math.max(...generations.map(g => g.count));
 
@@ -27,15 +27,15 @@ export default function DatabasePage() {
         </div>
       </header>
 
-      <section className="database-hero border-b-4 border-[#17362c] bg-[#e7edc9] px-5 py-10 md:px-8 md:py-12">
-        <div className="mx-auto w-full max-w-7xl">
-          <div className="grid w-full grid-cols-1 items-center gap-7 md:grid-cols-[minmax(0,1fr)_270px] md:gap-10">
-            <div className="min-w-0 text-left">
+      <section id="database-page-hero" className="database-page-hero border-b-4 border-[#17362c] bg-[#e7edc9] px-5 py-10 md:px-8 md:py-12">
+        <div className="database-page-hero-inner mx-auto w-full max-w-7xl">
+          <div className="database-page-hero-grid w-full">
+            <div className="database-page-hero-copy min-w-0 text-left">
               <p className="font-mono text-[9px] font-black uppercase tracking-[.32em] text-[#d71920]">05 // Nexus Database</p>
-              <h1 className="mt-2 whitespace-nowrap font-black leading-[.9] tracking-[-.055em] text-[#102d23] [text-shadow:3px_4px_0_#b8c2aa] text-[clamp(2.9rem,5vw,4.8rem)]">Nexus <span className="text-[#d71920]">Database.</span></h1>
+              <h1 className="mt-2 database-page-hero-title whitespace-nowrap font-black leading-[.9] tracking-[-.055em] text-[#102d23] [text-shadow:3px_4px_0_#b8c2aa] text-[clamp(2.9rem,5vw,4.8rem)]">Nexus <span className="text-[#d71920]">Database.</span></h1>
               <p className="mt-3 max-w-[620px] text-[13px] leading-6 text-[#52655e]">Um painel central para acompanhar o tamanho da Pokédex D'Melo, gerações, tipos e universo TCG.</p>
             </div>
-            <div className="w-full max-w-[270px] justify-self-start rounded-lg border-2 border-[#71816f] bg-[#f7f2d8] px-5 py-4 font-mono text-[9px] font-black uppercase leading-5 tracking-[.14em] text-[#17362c] shadow-[5px_5px_0_#71816f] md:justify-self-end">
+            <div className="database-page-status w-full max-w-[270px] justify-self-start rounded-lg border-2 border-[#71816f] bg-[#f7f2d8] px-5 py-4 font-mono text-[9px] font-black uppercase leading-5 tracking-[.14em] text-[#17362c] shadow-[5px_5px_0_#71816f] md:justify-self-end">
               <span className="text-[#28704d]">SYSTEM STATUS</span><br />ONLINE / INDEXED
             </div>
           </div>
