@@ -1,25 +1,65 @@
-/* TCG catalog visual polish — keeps the database layout compact and aligned. */
+/* TCG catalog visual polish — compact, balanced hero. */
 
 @media (min-width: 1024px) {
-  /* Prevent the TCG hero title from breaking into two lines on desktop. */
-  main > section:first-of-type h1 {
-    white-space: nowrap;
-  }
-
-  /* Give the hero a cleaner, tighter rhythm once the title fits. */
+  /* Keep the hero short and structured like a real database header. */
   main > section:first-of-type {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
+    min-height: 0 !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
   }
 
-  /* Keep the descriptive copy readable without competing with the title. */
+  main > section:first-of-type > div {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 3rem !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Left side: title + description. */
+  main > section:first-of-type > div > div:first-child {
+    flex: 1 1 auto !important;
+    width: auto !important;
+    max-width: 720px !important;
+  }
+
+  main > section:first-of-type h1 {
+    white-space: nowrap !important;
+    margin: 0 !important;
+  }
+
   main > section:first-of-type p:last-child {
-    max-width: 42rem;
+    max-width: 42rem !important;
+    margin-top: .7rem !important;
+  }
+
+  /* Right side: compact Nexus information card. */
+  main > section:first-of-type > div > div:last-child {
+    flex: 0 0 300px !important;
+    width: 300px !important;
+    max-width: 300px !important;
+    min-height: 58px !important;
+    padding: .8rem 1rem !important;
+    margin: 0 !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  main > section:first-of-type {
+    min-height: 0 !important;
   }
 }
 
 @media (max-width: 767px) {
   main > section:first-of-type h1 {
-    font-size: clamp(2.75rem, 13vw, 4rem);
+    font-size: clamp(2.75rem, 13vw, 4rem) !important;
+    white-space: normal !important;
+  }
+
+  main > section:first-of-type > div > div:last-child {
+    width: 100% !important;
+    max-width: none !important;
   }
 }
