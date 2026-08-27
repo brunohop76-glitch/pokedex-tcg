@@ -27,15 +27,17 @@ export default function DatabasePage() {
         </div>
       </header>
 
-      <section className="database-hero border-b-4 border-[#17362c] bg-[#e7edc9] px-5 md:px-8" style={{minHeight: 230, paddingTop: 28, paddingBottom: 28, overflow: "hidden"}}>
-        <div className="mx-auto max-w-7xl" style={{width: "min(1200px, calc(100% - 56px))", maxWidth: 1200, margin: "0 auto"}}>
-          <div style={{display: "grid", gridTemplateColumns: "minmax(0, 1fr) 250px", alignItems: "center", gap: 36, width: "100%"}}>
-            <div style={{minWidth: 0, maxWidth: 760, textAlign: "left"}}>
+      <section className="database-hero-main border-b-4 border-[#17362c] bg-[#e7edc9] px-5 py-10 md:px-8 md:py-12">
+        <div className="mx-auto w-full max-w-7xl">
+          <div className="grid w-full grid-cols-1 items-center gap-7 md:grid-cols-[minmax(0,1fr)_270px] md:gap-10">
+            <div className="min-w-0 text-left">
               <p className="font-mono text-[9px] font-black uppercase tracking-[.32em] text-[#d71920]">05 // Nexus Database</p>
-              <h1 style={{display: "block", margin: "6px 0 0", padding: 0, fontFamily: "Arial Black, Arial, Helvetica, sans-serif", fontSize: "clamp(3.2rem, 5vw, 4.8rem)", lineHeight: .9, fontWeight: 900, letterSpacing: "-.055em", whiteSpace: "nowrap", color: "#102d23", textShadow: "3px 4px 0 #b8c2aa"}}>Nexus <span style={{color: "#d71920"}}>Database.</span></h1>
-              <p style={{marginTop: 10, maxWidth: 560, fontSize: 13, lineHeight: 1.55, color: "#52655e"}}>Um painel central para acompanhar o tamanho da Pokédex D'Melo, gerações, tipos e universo TCG.</p>
+              <h1 className="mt-2 whitespace-nowrap font-black leading-[.9] tracking-[-.055em] text-[#102d23] [text-shadow:3px_4px_0_#b8c2aa] text-[clamp(2.9rem,5vw,4.8rem)]">Nexus <span className="text-[#d71920]">Database.</span></h1>
+              <p className="mt-3 max-w-[620px] text-[13px] leading-6 text-[#52655e]">Um painel central para acompanhar o tamanho da Pokédex D'Melo, gerações, tipos e universo TCG.</p>
             </div>
-            <div style={{width: 250, minWidth: 250, justifySelf: "end", alignSelf: "center", border: "1px solid #71816f", borderRadius: 6, background: "#f7f2d8", padding: "15px 18px", fontFamily: "monospace", fontSize: 9, fontWeight: 900, textTransform: "uppercase", letterSpacing: ".14em", boxShadow: "4px 4px 0 #71816f"}}><span style={{color: "#28704d"}}>SYSTEM STATUS</span><br/>ONLINE / INDEXED</div>
+            <div className="w-full max-w-[270px] justify-self-start rounded-lg border-2 border-[#71816f] bg-[#f7f2d8] px-5 py-4 font-mono text-[9px] font-black uppercase leading-5 tracking-[.14em] text-[#17362c] shadow-[5px_5px_0_#71816f] md:justify-self-end">
+              <span className="text-[#28704d]">SYSTEM STATUS</span><br />ONLINE / INDEXED
+            </div>
           </div>
         </div>
       </section>
@@ -50,7 +52,13 @@ export default function DatabasePage() {
         </div>
         <section className="mt-5 rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] p-5 shadow-[5px_5px_0_rgba(23,54,44,.15)]"><div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><p className="font-mono text-[8px] font-black uppercase tracking-[.25em] text-[#d71920]">TCG / index overview</p><h2 className="text-2xl font-black">Universo TCG.</h2></div><span className="font-mono text-[8px] font-black uppercase text-[#71816f]">{loadingSets ? "CONSULTANDO" : `${sets.length} COLEÇÕES INDEXADAS`}</span></div><div className="mt-5 grid gap-3 sm:grid-cols-3"><div className="rounded-lg border border-[#b8c2aa] bg-[#fffceb] p-4"><p className="font-mono text-[7px] font-black uppercase text-[#28704d]">Coleções</p><p className="mt-2 text-3xl font-black">{loadingSets ? "…" : sets.length}</p></div><div className="rounded-lg border border-[#b8c2aa] bg-[#fffceb] p-4"><p className="font-mono text-[7px] font-black uppercase text-[#28704d]">Cartas indexadas</p><p className="mt-2 text-3xl font-black">{loadingSets ? "…" : totalCards.toLocaleString("pt-BR")}</p></div><div className="rounded-lg border border-[#b8c2aa] bg-[#fffceb] p-4"><p className="font-mono text-[7px] font-black uppercase text-[#28704d]">Catálogo</p><Link href="/tcg" className="mt-2 inline-block text-sm font-black text-[#d71920] hover:underline">Abrir catálogo TCG ↗</Link></div></div></section>
       </section>
-      <style jsx global>{`@media (max-width: 768px){.database-hero > div > div{grid-template-columns:1fr!important;gap:18px!important}.database-hero h1{white-space:normal!important;font-size:clamp(2.8rem,12vw,4rem)!important}.database-hero > div > div > div:last-child{justify-self:start!important;width:250px!important;min-width:250px!important}}`}</style>
+
+      <style jsx global>{`
+        .database-hero-main h1 { font-family: Arial Black, Arial, Helvetica, sans-serif; }
+        @media (max-width: 767px) {
+          .database-hero-main h1 { white-space: normal; }
+        }
+      `}</style>
     </main>
   );
 }
