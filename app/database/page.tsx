@@ -51,15 +51,17 @@ export default function DatabasePage() {
         </div>
       </header>
 
-      <section className="border-b-4 border-[#17362c] bg-[#e7edc9] px-5 py-10 md:px-8 md:py-12">
+      <section className="database-hero border-b-4 border-[#17362c] bg-[#e7edc9] px-5 py-8 md:px-8 md:py-9">
         <div className="mx-auto max-w-7xl">
-          <p className="font-mono text-[9px] font-black uppercase tracking-[.32em] text-[#d71920]">05 // Nexus Database</p>
-          <div className="mt-2 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div className="flex flex-col gap-5 lg:grid lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
             <div>
-              <h1 className="text-5xl font-black leading-none tracking-[-.055em] drop-shadow-[3px_4px_0_#b8c2aa] md:text-7xl">Nexus <span className="text-[#d71920]">Database.</span></h1>
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-[#52655e]">Um painel central para acompanhar o tamanho da Pokédex D'Melo, gerações, tipos e universo TCG.</p>
+              <p className="font-mono text-[9px] font-black uppercase tracking-[.32em] text-[#d71920]">05 // Nexus Database</p>
+              <h1 className="mt-2 text-5xl font-black leading-[.9] tracking-[-.055em] drop-shadow-[3px_4px_0_#b8c2aa] md:text-7xl">Nexus <span className="text-[#d71920]">Database.</span></h1>
+              <p className="mt-3 max-w-xl text-sm leading-6 text-[#52655e]">Um painel central para acompanhar o tamanho da Pokédex D'Melo, gerações, tipos e universo TCG.</p>
             </div>
-            <div className="w-fit rounded border border-[#71816f] bg-[#f7f2d8] px-5 py-3 font-mono text-[9px] font-black uppercase tracking-widest shadow-[4px_4px_0_#71816f]"><span className="text-[#28704d]">SYSTEM STATUS</span><br />ONLINE / INDEXED</div>
+            <div className="w-full max-w-[270px] justify-self-end rounded border border-[#71816f] bg-[#f7f2d8] px-5 py-4 font-mono text-[9px] font-black uppercase tracking-widest shadow-[4px_4px_0_#71816f]">
+              <span className="text-[#28704d]">SYSTEM STATUS</span><br />ONLINE / INDEXED
+            </div>
           </div>
         </div>
       </section>
