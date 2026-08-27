@@ -27,8 +27,8 @@ export default function CardGallery({ cards }: { cards: Card[] }) {
     const y = event.clientY - rect.top;
     setHoveredId(id);
     setRotation({
-      x: -((y / rect.height) - 0.5) * 12,
-      y: ((x / rect.width) - 0.5) * 12,
+      x: -((y / rect.height) - 0.5) * 10,
+      y: ((x / rect.width) - 0.5) * 10,
     });
   }
 
@@ -79,10 +79,11 @@ export default function CardGallery({ cards }: { cards: Card[] }) {
 
   return (
     <>
-      <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+      <div className="mt-7 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {cards.map((card) => {
           if (!card.image) return null;
           const isHovered = hoveredId === card.id;
+          const cardNumber = card.localId || card.id.split("-").slice(1).join("-");
 
           return (
             <article
@@ -90,39 +91,42 @@ export default function CardGallery({ cards }: { cards: Card[] }) {
               onMouseMove={(event) => handleMove(event, card.id)}
               onMouseLeave={resetRotation}
               onClick={() => setSelected(card)}
-              className="group relative cursor-pointer overflow-visible rounded-2xl bg-white text-zinc-900"
+              className="group relative cursor-pointer overflow-visible rounded-2xl border-2 border-[#c7cbb5] bg-[#f7f2d8] p-2 text-[#17362c]"
               style={{
                 transform: isHovered
-                  ? `perspective(900px) translateY(-16px) scale(1.045) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`
+                  ? `perspective(900px) translateY(-10px) scale(1.025) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`
                   : "perspective(900px) translateY(0) scale(1) rotateX(0deg) rotateY(0deg)",
                 zIndex: isHovered ? 50 : 1,
-                transition: "transform 180ms ease-out, box-shadow 180ms ease-out",
+                transition: "transform 180ms ease-out, box-shadow 180ms ease-out, border-color 180ms ease-out",
                 boxShadow: isHovered
-                  ? "0 28px 55px rgba(0,0,0,.32)"
-                  : "0 12px 25px rgba(0,0,0,.14)",
+                  ? "0 24px 45px rgba(16,45,35,.28)"
+                  : "4px 5px 0 rgba(23,54,44,.12)",
               }}
             >
-              <div className="relative overflow-hidden rounded-t-2xl bg-zinc-100 p-2">
+              <div className="relative overflow-hidden rounded-xl border border-[#d4d8c2] bg-[#ecefd2] p-1.5">
                 <img
                   src={card.image}
                   alt={card.name}
                   loading="lazy"
                   className="block w-full rounded-lg transition duration-300 group-hover:scale-[1.025]"
                 />
-                <div className="pointer-events-none absolute inset-0 rounded-t-2xl bg-gradient-to-br from-white/40 via-transparent to-black/25 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-600 px-5 py-3 text-[10px] font-black uppercase tracking-wider text-white opacity-0 shadow-[0_8px_25px_rgba(0,0,0,.35)] transition-all duration-300 group-hover:scale-105 group-hover:opacity-100">
+                <div className="pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-br from-white/45 via-transparent to-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="pointer-events-none absolute inset-x-2 bottom-2 rounded-lg border border-white/40 bg-[#102d23]/90 px-2 py-2 text-center font-mono text-[8px] font-black uppercase tracking-widest text-white opacity-0 shadow-lg backdrop-blur-sm transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 translate-y-2">
                   VER CARTA ↗
                 </div>
               </div>
 
-              <div className="p-4">
-                <h4 className="font-black">{card.name}</h4>
-                <p className="mt-2 text-xs font-semibold text-zinc-500">{card.set?.name || "Coleção TCG"}</p>
-                <div className="mt-3 flex items-center justify-between gap-2 text-xs">
-                  <span className="rounded-full bg-zinc-100 px-3 py-1 font-bold">#{card.localId || card.id.split("-").slice(1).join("-")}</span>
-                  {card.rarity && <span className="text-right font-semibold text-zinc-500">{card.rarity}</span>}
+              <div className="px-1 pb-1 pt-3">
+                <div className="flex items-start justify-between gap-2">
+                  <h4 className="min-w-0 truncate text-sm font-black leading-tight" title={card.name}>{card.name}</h4>
+                  <span className="shrink-0 font-mono text-[7px] font-black text-[#28704d]">#{cardNumber}</span>
                 </div>
-                {card.illustrator && <p className="mt-3 text-xs text-zinc-400">Artista: {card.illustrator}</p>}
+                <p className="mt-1 truncate text-[9px] font-bold uppercase tracking-wide text-[#71816f]" title={card.set?.name || "Coleção TCG"}>{card.set?.name || "Coleção TCG"}</p>
+                <div className="mt-2 flex items-center justify-between gap-2">
+                  <span className="rounded-full border border-[#bfc6ae] bg-[#fffceb] px-2 py-1 font-mono text-[7px] font-black uppercase tracking-wide text-[#52655e]">TCG</span>
+                  {card.rarity && <span className="truncate text-right text-[8px] font-bold text-[#758078]" title={card.rarity}>{card.rarity}</span>}
+                </div>
+                {card.illustrator && <p className="mt-2 truncate text-[7px] font-medium text-[#9aa397]" title={card.illustrator}>ARTISTA: {card.illustrator}</p>}
               </div>
             </article>
           );
