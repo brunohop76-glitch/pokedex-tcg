@@ -1,0 +1,186 @@
+/* FINAL HERO RESET — last stylesheet wins */
+
+main > section:first-of-type h2,
+main > section:first-of-type h2 span {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  position: static !important;
+  font-size: clamp(3.2rem, 6vw, 5.8rem) !important;
+  line-height: .92 !important;
+  font-weight: 900 !important;
+  letter-spacing: -.06em !important;
+  text-transform: none !important;
+  color: #f8f5df !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-shadow: 5px 5px 0 #06180f, 0 0 28px rgba(0,0,0,.45) !important;
+}
+
+main > section:first-of-type h2::before,
+main > section:first-of-type h2::after {
+  content: none !important;
+  display: none !important;
+}
+
+main > section:first-of-type h2 span {
+  display: inline !important;
+  color: #ed252d !important;
+}
+
+/* The actual title block in page.tsx is the second child of the left column. */
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  margin-top: 20px !important;
+}
+
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) p:first-child {
+  display: block !important;
+  color: #49d8ff !important;
+  margin: 0 !important;
+  font: 900 10px/1 var(--font-geist-mono),monospace !important;
+  letter-spacing: .35em !important;
+}
+
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(2) p:last-child {
+  display: block !important;
+  color: #f8f5df !important;
+  max-width: 650px !important;
+  margin: 14px 0 0 !important;
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+}
+
+/* Remove legacy rules that hide or replace the real hero heading. */
+main > section:first-of-type > div > div > div:first-child > div:first-child,
+main > section:first-of-type > div > div > div:first-child::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* Keep search immediately below title and counters below search. */
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(3) {
+  display: block !important;
+  margin-top: 22px !important;
+  max-width: 700px !important;
+}
+
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:nth-child(4) {
+  display: flex !important;
+  margin-top: 22px !important;
+}
+
+/* The hero should not start with an empty status box. */
+main > section:first-of-type > div.relative > div.grid > div:first-child {
+  padding-top: 28px !important;
+}
+
+@media (max-width: 768px) {
+  main > section:first-of-type h2,
+  main > section:first-of-type h2 span {
+    font-size: clamp(2.6rem, 13vw, 4.6rem) !important;
+  }
+}
+
+/* =========================================================
+   HERO FINAL FIX — RESTAURA TITULO PRINCIPAL
+   ========================================================= */
+
+main > section:first-of-type h2 {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 30 !important;
+
+  width: auto !important;
+  max-width: 760px !important;
+
+  margin: 18px 0 12px !important;
+  padding: 0 !important;
+
+  font-size: clamp(3.2rem, 6vw, 5.8rem) !important;
+  line-height: .88 !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.055em !important;
+
+  color: #f7f3dc !important;
+  text-shadow: 5px 5px 0 #061b12 !important;
+
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+main > section:first-of-type h2::before,
+main > section:first-of-type h2::after {
+  content: none !important;
+  display: none !important;
+}
+
+main > section:first-of-type h2 span {
+  display: inline !important;
+  color: #ed1c24 !important;
+}
+
+/* Deixa o SYSTEM // ONLINE apenas como etiqueta */
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:first-child {
+  width: fit-content !important;
+  max-width: max-content !important;
+
+  min-height: 0 !important;
+
+  margin: 0 0 10px !important;
+  padding: 8px 14px !important;
+
+  border: 1px solid rgba(65,180,105,.45) !important;
+  border-radius: 6px !important;
+
+  background: rgba(2,30,18,.72) !important;
+
+  box-shadow: none !important;
+}
+
+/* Não deixar o painel do status crescer horizontalmente */
+main > section:first-of-type > div.relative > div.grid > div:first-child {
+  width: 100% !important;
+  max-width: 760px !important;
+}
+
+/* Descrição do Hero */
+main > section:first-of-type h2 + p {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  max-width: 680px !important;
+
+  margin: 0 0 20px !important;
+
+  color: #d8d9c8 !important;
+
+  font-size: 16px !important;
+  line-height: 1.55 !important;
+}
+
+/* Busca */
+main > section:first-of-type .group.relative {
+  max-width: 680px !important;
+  margin-top: 18px !important;
+}
+
+/* Contadores */
+main > section:first-of-type > div.relative > div.grid > div:first-child > div:last-child {
+  margin-top: 22px !important;
+}
+
+/* Altura equilibrada do Hero */
+main > section:first-of-type {
+  min-height: 540px !important;
+}
+
