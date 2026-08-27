@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+import CardGallery from "../pokemon/[id]/CardGallery";
 
 type Pokemon = { name: string; url: string };
-type Card = { id: string; name?: string; localId?: string; image?: string; rarity?: string; set?: { id?: string; name?: string } };
+type Card = { id: string; name?: string; localId?: string; image?: string | null; rarity?: string; illustrator?: string; set?: { id?: string; name?: string } };
 
 function idFromUrl(url: string) {
   return Number(url.split("/").filter(Boolean).at(-1));
@@ -38,7 +39,9 @@ function getSeriesFromSetId(setId = "") {
 function getCardImageCandidates(card: Card) {
   const candidates: string[] = [];
   if (card.image) {
-    candidates.push(`${card.image}/high.webp`, `${card.image}/high.png`, `${card.image}/low.webp`, `${card.image}/low.png`);
+    const clean = card.image.replace(/\/$/, "");
+    if (/\.(png|webp|jpg)$/i.test(clean)) candidates.push(clean);
+    else candidates.push(`${clean}/high.webp`, `${clean}/high.png`, `${clean}/low.webp`, `${clean}/low.png`);
   }
   const setId = card.set?.id;
   const localId = card.localId;
@@ -64,7 +67,7 @@ function CardImage({ card }: { card: Card }) {
       src={src}
       alt={card.name ?? "Carta Pokémon"}
       className="max-h-56 object-contain transition group-hover:scale-[1.02]"
-      onError={() => setIndex((current) => current + 1)}
+      onError={() => setIndex((current) => Math.min(current + 1, candidates.length - 1))}
     />
   );
 }
@@ -133,7 +136,7 @@ export default function SearchPage() {
             </div>
           </div>
           <div className="mb-4 flex justify-end text-[10px] font-bold uppercase tracking-widest text-[#758078]">{loadingCards ? "Consultando..." : `${filteredCards.length} cartas exibidas`}</div>
-          {loadingCards ? <div className="rounded-2xl border border-[#71816f] bg-[#f7f2d8] p-8 text-sm">Consultando cartas TCG...</div> : filteredCards.length ? <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6">{filteredCards.map((card) => <article key={card.id} className="group overflow-hidden rounded-2xl border border-[#71816f]/60 bg-[#f7f2d8] p-3 transition hover:-translate-y-1 hover:border-[#d71920] hover:shadow-lg"><div className="flex min-h-56 items-center justify-center rounded-xl bg-black/5 p-2"><CardImage card={card} /></div><h3 className="mt-3 truncate text-xs font-black">{card.name ?? "Carta TCG"}</h3><p className="mt-1 truncate text-[8px] uppercase tracking-wider text-[#758078]">{[card.set?.name, card.rarity].filter(Boolean).join(" • ") || "Carta Pokémon TCG"}</p></article>)}</div> : <div className="rounded-2xl border border-dashed border-[#71816f] bg-[#f7f2d8] p-8 text-sm">Nenhuma carta TCG encontrada.</div>}
+          {loadingCards ? <div className="rounded-2xl border border-[#71816f] bg-[#f7f2d8] p-8 text-sm">Consultando cartas TCG...</div> : filteredCards.length ? <CardGallery cards={filteredCards as Card[]} /> : <div className="rounded-2xl border border-dashed border-[#71816f] bg-[#f7f2d8] p-8 text-sm">Nenhuma carta TCG encontrada.</div>}
         </section>
       </div>
     </main>
