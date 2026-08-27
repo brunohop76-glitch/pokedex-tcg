@@ -13,7 +13,7 @@ const types = ["Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting"
 export default function DatabasePage() {
   const [sets, setSets] = useState<SetItem[]>([]);
   const [loadingSets, setLoadingSets] = useState(true);
-  useEffect(() => { const c = new AbortController(); fetch("/api/tcg/catalog?mode=sets", { signal: c.signal }).then(r => r.json()).then(d => setSets(d.sets ?? [])).catch(() => setSets([])).finally(() => { if (!c.signal.aborted) setLoadingSets(false); }); return () => c.abort(); }, []);
+  useEffect(() => { const c = new AbortController(); fetch("/api/tcg/catalog?mode=sets", { signal: c.signal }).then(r => r.json()).then(d => setSets(d.sets ?? [])).catch(() => setSets([])).finally(() => { if (!c.signal.aborted) setLoadingSets(false); }); return () => c.abort(); }, []); 
   const totalCards = useMemo(() => sets.reduce((sum, set) => sum + Number(set.total || 0), 0), [sets]);
   const maxGeneration = Math.max(...generations.map(g => g.count));
 
@@ -27,7 +27,7 @@ export default function DatabasePage() {
         </div>
       </header>
 
-      <section className="database-hero-main border-b-4 border-[#17362c] bg-[#e7edc9] px-5 py-10 md:px-8 md:py-12">
+      <section className="database-hero border-b-4 border-[#17362c] bg-[#e7edc9] px-5 py-10 md:px-8 md:py-12">
         <div className="mx-auto w-full max-w-7xl">
           <div className="grid w-full grid-cols-1 items-center gap-7 md:grid-cols-[minmax(0,1fr)_270px] md:gap-10">
             <div className="min-w-0 text-left">
@@ -52,13 +52,6 @@ export default function DatabasePage() {
         </div>
         <section className="mt-5 rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] p-5 shadow-[5px_5px_0_rgba(23,54,44,.15)]"><div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><p className="font-mono text-[8px] font-black uppercase tracking-[.25em] text-[#d71920]">TCG / index overview</p><h2 className="text-2xl font-black">Universo TCG.</h2></div><span className="font-mono text-[8px] font-black uppercase text-[#71816f]">{loadingSets ? "CONSULTANDO" : `${sets.length} COLEÇÕES INDEXADAS`}</span></div><div className="mt-5 grid gap-3 sm:grid-cols-3"><div className="rounded-lg border border-[#b8c2aa] bg-[#fffceb] p-4"><p className="font-mono text-[7px] font-black uppercase text-[#28704d]">Coleções</p><p className="mt-2 text-3xl font-black">{loadingSets ? "…" : sets.length}</p></div><div className="rounded-lg border border-[#b8c2aa] bg-[#fffceb] p-4"><p className="font-mono text-[7px] font-black uppercase text-[#28704d]">Cartas indexadas</p><p className="mt-2 text-3xl font-black">{loadingSets ? "…" : totalCards.toLocaleString("pt-BR")}</p></div><div className="rounded-lg border border-[#b8c2aa] bg-[#fffceb] p-4"><p className="font-mono text-[7px] font-black uppercase text-[#28704d]">Catálogo</p><Link href="/tcg" className="mt-2 inline-block text-sm font-black text-[#d71920] hover:underline">Abrir catálogo TCG ↗</Link></div></div></section>
       </section>
-
-      <style jsx global>{`
-        .database-hero-main h1 { font-family: Arial Black, Arial, Helvetica, sans-serif; }
-        @media (max-width: 767px) {
-          .database-hero-main h1 { white-space: normal; }
-        }
-      `}</style>
     </main>
   );
 }
