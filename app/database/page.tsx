@@ -27,15 +27,15 @@ export default function DatabasePage() {
         </div>
       </header>
 
-      <section id="database-hero" className="database-hero">
-        <div className="database-hero-inner">
-          <div className="database-hero-grid">
-            <div className="database-hero-copy">
-              <p className="font-mono text-[9px] font-black uppercase tracking-[.32em] text-[#d71920]">05 // Nexus Database</p>
-              <h1 className="database-hero-title">Nexus <span>Database.</span></h1>
-              <p className="database-hero-description">Um painel central para acompanhar o tamanho da Pokédex D'Melo, gerações, tipos e universo TCG.</p>
+      <section id="database-hero-final" className="database-hero-final">
+        <div className="database-hero-final-inner">
+          <div className="database-hero-final-grid">
+            <div className="database-hero-final-copy">
+              <p>05 // Nexus Database</p>
+              <h1>Nexus <span>Database.</span></h1>
+              <p className="database-hero-final-description">Um painel central para acompanhar o tamanho da Pokédex D'Melo, gerações, tipos e universo TCG.</p>
             </div>
-            <div className="database-page-status"><span>SYSTEM STATUS</span><br />ONLINE / INDEXED</div>
+            <div className="database-status-final"><span>SYSTEM STATUS</span><strong>ONLINE / INDEXED</strong></div>
           </div>
         </div>
       </section>
