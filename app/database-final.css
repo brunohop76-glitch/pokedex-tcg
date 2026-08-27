@@ -1,10 +1,10 @@
-/* DATABASE HERO — V4 / viewport-anchored, isolated */
+/* DATABASE HERO — V5 / polished Pokemon database */
 html body main section#database-hero-final.database-hero-final {
   position: relative !important;
   width: 100% !important;
-  height: 360px !important;
-  min-height: 360px !important;
-  max-height: 360px !important;
+  height: 350px !important;
+  min-height: 350px !important;
+  max-height: 350px !important;
   overflow: hidden !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -13,8 +13,34 @@ html body main section#database-hero-final.database-hero-final {
   background: #e7edc9 !important;
 }
 
+html body main section#database-hero-final.database-hero-final::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  opacity: .22 !important;
+  background-image:
+    linear-gradient(rgba(23,54,44,.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23,54,44,.16) 1px, transparent 1px) !important;
+  background-size: 22px 22px !important;
+  mask-image: linear-gradient(90deg, black 0%, transparent 72%) !important;
+}
+
+html body main section#database-hero-final.database-hero-final::after {
+  content: "" !important;
+  position: absolute !important;
+  width: 180px !important;
+  height: 180px !important;
+  right: 100px !important;
+  top: 70px !important;
+  border: 2px solid rgba(23,54,44,.10) !important;
+  border-radius: 50% !important;
+  box-shadow: inset 0 0 0 22px rgba(23,54,44,.025) !important;
+  pointer-events: none !important;
+}
+
 html body main section#database-hero-final .database-hero-final-inner {
-  position: static !important;
+  position: relative !important;
   width: 100% !important;
   height: 100% !important;
   margin: 0 !important;
@@ -23,7 +49,7 @@ html body main section#database-hero-final .database-hero-final-inner {
 }
 
 html body main section#database-hero-final .database-hero-final-grid {
-  position: static !important;
+  position: relative !important;
   display: block !important;
   width: 100% !important;
   height: 100% !important;
@@ -38,26 +64,26 @@ html body main section#database-hero-final .database-hero-final-copy {
   top: 50% !important;
   transform: translateY(-50%) !important;
   width: 760px !important;
-  max-width: calc(100% - 400px) !important;
+  max-width: calc(100% - 390px) !important;
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
   box-sizing: border-box !important;
-  z-index: 2 !important;
+  z-index: 3 !important;
 }
 
 html body main section#database-hero-final .database-hero-final-copy > p:first-child {
   display: block !important;
   width: auto !important;
-  margin: 0 0 16px !important;
+  margin: 0 0 17px !important;
   padding: 0 !important;
   font-family: var(--font-geist-mono), monospace !important;
   font-size: 9px !important;
   font-weight: 900 !important;
   line-height: 1.2 !important;
-  letter-spacing: .32em !important;
+  letter-spacing: .34em !important;
   text-transform: uppercase !important;
   color: #d71920 !important;
   white-space: nowrap !important;
@@ -71,20 +97,22 @@ html body main section#database-hero-final h1 {
   padding: 0 !important;
   overflow: visible !important;
   font-family: Arial Black, Arial, Helvetica, sans-serif !important;
-  font-size: clamp(3rem, 5.2vw, 5.2rem) !important;
-  line-height: .92 !important;
+  font-size: clamp(3.4rem, 5.4vw, 5.4rem) !important;
+  line-height: .9 !important;
   font-weight: 900 !important;
-  letter-spacing: -.055em !important;
+  letter-spacing: -.058em !important;
   white-space: nowrap !important;
   color: #102d23 !important;
-  text-shadow: 4px 5px 0 #b8c2aa !important;
+  text-shadow: 5px 6px 0 #b8c2aa !important;
 }
 
-html body main section#database-hero-final h1 span { color: #d71920 !important; }
+html body main section#database-hero-final h1 span {
+  color: #d71920 !important;
+}
 
 html body main section#database-hero-final .database-hero-final-description {
   display: block !important;
-  width: 620px !important;
+  width: 650px !important;
   max-width: 100% !important;
   margin: 18px 0 0 !important;
   padding: 0 !important;
@@ -104,7 +132,7 @@ html body main section#database-hero-final .database-status-final {
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
-  gap: 4px !important;
+  gap: 5px !important;
   width: 280px !important;
   height: 82px !important;
   min-width: 280px !important;
@@ -112,10 +140,10 @@ html body main section#database-hero-final .database-status-final {
   max-width: 280px !important;
   max-height: 82px !important;
   margin: 0 !important;
-  padding: 16px 20px !important;
+  padding: 15px 19px !important;
   box-sizing: border-box !important;
   border: 2px solid #71816f !important;
-  border-radius: 9px !important;
+  border-radius: 10px !important;
   background: #f7f2d8 !important;
   box-shadow: 5px 5px 0 #71816f !important;
   font-family: var(--font-geist-mono), monospace !important;
@@ -125,11 +153,33 @@ html body main section#database-hero-final .database-status-final {
   letter-spacing: .12em !important;
   text-transform: uppercase !important;
   color: #17362c !important;
-  z-index: 10 !important;
+  z-index: 4 !important;
 }
 
-html body main section#database-hero-final .database-status-final span { display:block !important; color:#28704d !important; }
-html body main section#database-hero-final .database-status-final strong { display:block !important; color:#17362c !important; font-size:9px !important; }
+html body main section#database-hero-final .database-status-final::before {
+  content: "" !important;
+  width: 6px !important;
+  height: 6px !important;
+  position: absolute !important;
+  left: 10px !important;
+  top: 12px !important;
+  border-radius: 50% !important;
+  background: #28704d !important;
+  box-shadow: 0 0 0 3px rgba(40,112,77,.10) !important;
+}
+
+html body main section#database-hero-final .database-status-final span {
+  display: block !important;
+  padding-left: 8px !important;
+  color: #28704d !important;
+}
+
+html body main section#database-hero-final .database-status-final strong {
+  display: block !important;
+  padding-left: 8px !important;
+  color: #17362c !important;
+  font-size: 9px !important;
+}
 
 @media (max-width: 900px) {
   html body main section#database-hero-final.database-hero-final {
@@ -138,9 +188,13 @@ html body main section#database-hero-final .database-status-final strong { displ
     max-height: 430px !important;
   }
 
+  html body main section#database-hero-final.database-hero-final::after {
+    display: none !important;
+  }
+
   html body main section#database-hero-final .database-hero-final-copy {
     left: 16px !important;
-    top: 42px !important;
+    top: 48px !important;
     transform: none !important;
     width: calc(100% - 32px) !important;
     max-width: none !important;
