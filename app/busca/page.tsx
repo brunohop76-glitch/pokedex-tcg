@@ -32,7 +32,7 @@ export default function SearchPage() {
       .then((data) => setPokemon((data.results ?? []).filter((p: Pokemon) => normalize(p.name).includes(term) || String(idFromUrl(p.url)) === term).slice(0, 60)))
       .catch(() => setPokemon([]))
       .finally(() => { if (!controller.signal.aborted) setLoadingPokemon(false); });
-    fetch(`/api/tcg?q=${encodeURIComponent(query)}&limit=60`, { signal: controller.signal })
+    fetch(`/api/tcg?name=${encodeURIComponent(query)}`, { signal: controller.signal })
       .then((r) => r.json())
       .then((data) => setCards(data.cards ?? []))
       .catch(() => setCards([]))
