@@ -1,0 +1,105 @@
+/* Database page: final layout guard. This file intentionally loads last. */
+main > section.database-hero {
+  min-height: 0 !important;
+  height: auto !important;
+  overflow: visible !important;
+  position: relative !important;
+  display: block !important;
+  background: #e7edc9 !important;
+  border-bottom: 4px solid #17362c !important;
+  padding: 58px 24px 52px !important;
+}
+
+main > section.database-hero > div {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+main > section.database-hero > div > div {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 270px !important;
+  align-items: center !important;
+  gap: 56px !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+main > section.database-hero > div > div > div:first-child {
+  display: block !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+main > section.database-hero p:first-child {
+  margin: 0 0 10px !important;
+  white-space: nowrap !important;
+}
+
+main > section.database-hero h1 {
+  display: block !important;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  font-size: clamp(4rem, 7vw, 6.4rem) !important;
+  line-height: .92 !important;
+  font-weight: 900 !important;
+  letter-spacing: -.065em !important;
+  color: #17362c !important;
+  text-shadow: 4px 5px 0 #b8c2aa !important;
+}
+
+main > section.database-hero h1 span { color: #d71920 !important; }
+
+main > section.database-hero h1 + p {
+  display: block !important;
+  width: 100% !important;
+  max-width: 650px !important;
+  margin: 14px 0 0 !important;
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+  color: #52655e !important;
+}
+
+main > section.database-hero > div > div > div:last-child {
+  display: block !important;
+  width: 270px !important;
+  max-width: 270px !important;
+  min-width: 270px !important;
+  min-height: 76px !important;
+  margin: 0 !important;
+  padding: 20px 22px !important;
+  border: 2px solid #71816f !important;
+  border-radius: 8px !important;
+  background: #f7f2d8 !important;
+  box-shadow: 5px 5px 0 #71816f !important;
+  color: #17362c !important;
+  font: 900 9px/1.5 var(--font-geist-mono), monospace !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase !important;
+}
+
+main > section.database-hero > div > div > div:last-child span { color: #28704d !important; }
+
+@media (max-width: 900px) {
+  main > section.database-hero { padding: 42px 20px 44px !important; }
+  main > section.database-hero > div > div { grid-template-columns: 1fr !important; gap: 28px !important; }
+  main > section.database-hero h1 { white-space: normal !important; font-size: clamp(3.4rem, 11vw, 5.5rem) !important; }
+  main > section.database-hero > div > div > div:last-child { width: 100% !important; max-width: 320px !important; min-width: 0 !important; justify-self: start !important; }
+}
+
+@media (max-width: 520px) {
+  main > section.database-hero { padding: 34px 16px 38px !important; }
+  main > section.database-hero h1 { font-size: clamp(2.8rem, 14vw, 4rem) !important; }
+  main > section.database-hero p:first-child { white-space: normal !important; }
+}
