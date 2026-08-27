@@ -21,7 +21,7 @@ export default function DatabasePage() {
     <main className="min-h-screen bg-[#dfe5c9] text-[#17362c]">
       <header className="sticky top-0 z-50 border-b-4 border-[#081c15] bg-[#102d23] text-white shadow-[0_4px_0_#6f796b]">
         <div className="mx-auto flex min-h-[70px] max-w-7xl items-center justify-between gap-5 px-5 md:px-8">
-          <Link href="/" className="flex items-center gap-3" aria-label="Voltar para a Pokédex"><span className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-[#f7f2d8] bg-[#d71920] text-lg shadow-[3px_3px_0_#071b14]">⚡</span><span><strong className="block font-mono text-sm tracking-[.18em]">POKÉDEX</strong><small className="font-mono text-[7px] uppercase tracking-[.25em] text-[#a9c0ad]">D'Melo / Nexus Database</small></span></Link>
+          <Link href="/" className="flex items-center gap-3" aria-label="Voltar para a Pokédex"><span className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-[#f7f2d8] bg-[#d71920] text-lg shadow-[3px_3px_0_#071b14]">⚡</span><span><strong className="block font-mono text-sm tracking-[.18em]">POKÉDEX</strong><small className="font-mono text-[7px] uppercase tracking-[.25em] text-[#a9c0ad]">D'Melo / Pokémon Database</small></span></Link>
           <nav className="hidden gap-7 font-mono text-[10px] font-black uppercase tracking-widest md:flex"><Link href="/">Pokédex</Link><Link href="/geracoes">Gerações</Link><Link href="/catalogo">Catálogo</Link><Link href="/database" className="text-[#f5c94a]">Database</Link><Link href="/tcg">TCG</Link></nav>
           <Link href="/" className="rounded-full border border-[#f5c94a]/30 px-3 py-2 font-mono text-[8px] font-black uppercase tracking-widest text-[#f5c94a]">← Voltar</Link>
         </div>
@@ -31,8 +31,8 @@ export default function DatabasePage() {
         <div className="database-hero-final-inner">
           <div className="database-hero-final-grid">
             <div className="database-hero-final-copy">
-              <p>05 // Nexus Database</p>
-              <h1>Nexus <span>Database.</span></h1>
+              <p>05 // Pokémon Database</p>
+              <h1>Pokémon <span>Database.</span></h1>
               <p className="database-hero-final-description">Um painel central para acompanhar o tamanho da Pokédex D'Melo, gerações, tipos e universo TCG.</p>
             </div>
             <div className="database-status-final"><span>SYSTEM STATUS</span><strong>ONLINE / INDEXED</strong></div>
