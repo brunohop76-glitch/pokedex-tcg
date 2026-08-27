@@ -15,6 +15,7 @@ import "./pokemon-catalog-final.css";
 import "./pokemon-detail-micro.css";
 import "./tcg-polish.css";
 import "./database-fix.css";
+import "./database-final.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
