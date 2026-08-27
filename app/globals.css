@@ -38,7 +38,7 @@ main > header p { color: #a9c0ad !important; }
 main > header nav a { color: #d9e6ce !important; font-family: var(--font-geist-mono), monospace !important; letter-spacing: .08em !important; }
 main > header nav a:first-child { color: var(--yellow) !important; }
 
-/* Global legacy hero rules intentionally exclude the Database dashboard hero. */
+/* Generic hero rules used by the other pages. */
 main > section:first-of-type:not(.database-hero) { position: relative !important; min-height: 360px !important; overflow: hidden !important; border-bottom: 4px solid var(--green-dark) !important; background: linear-gradient(rgba(247,242,216,.96), rgba(223,229,201,.96)), linear-gradient(rgba(18,61,48,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(18,61,48,.055) 1px, transparent 1px), var(--bg) !important; background-size: auto, 16px 16px, 16px 16px, auto !important; }
 main > section:first-of-type:not(.database-hero)::before, main > section:first-of-type:not(.database-hero)::after { content: none !important; display: none !important; }
 main > section:first-of-type:not(.database-hero) > div { position: relative !important; z-index: 1 !important; width: min(1100px, calc(100% - 40px)) !important; max-width: 1100px !important; margin: 0 auto !important; padding: 42px 0 38px !important; }
@@ -54,6 +54,17 @@ main > section:first-of-type:not(.database-hero) input::placeholder { color: #6b
 main > section:first-of-type:not(.database-hero) button { min-height: 50px !important; padding: 0 26px !important; border: 2px solid #8d1715 !important; border-radius: 5px !important; background: var(--red) !important; color: #fff !important; box-shadow: inset 0 -3px 0 rgba(0,0,0,.18), 2px 2px 0 var(--red-dark) !important; font-family: Arial, Helvetica, sans-serif !important; font-size: 10px !important; font-weight: 900 !important; letter-spacing: .08em !important; }
 main > section:first-of-type:not(.database-hero) button:hover { background: #ee2b27 !important; }
 
+/* DATABASE: explicit hero layout so it cannot inherit the legacy hero layout. */
+.database-hero { position: relative !important; min-height: 300px !important; overflow: hidden !important; border-bottom: 4px solid var(--green-dark) !important; background: linear-gradient(rgba(247,242,216,.96), rgba(223,229,201,.96)), linear-gradient(rgba(18,61,48,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(18,61,48,.055) 1px, transparent 1px), var(--bg) !important; background-size: auto, 16px 16px, 16px 16px, auto !important; }
+.database-hero > div { position: relative !important; z-index: 1 !important; width: min(1200px, calc(100% - 56px)) !important; max-width: 1200px !important; margin: 0 auto !important; padding: 54px 0 48px !important; }
+.database-hero > div > div { display: grid !important; grid-template-columns: minmax(0, 1fr) 270px !important; align-items: center !important; gap: 64px !important; width: 100% !important; max-width: none !important; margin: 0 !important; }
+.database-hero > div > div > div:first-child { display: block !important; width: auto !important; max-width: 760px !important; margin: 0 !important; padding: 0 !important; border: 0 !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; }
+.database-hero h1 { display: block !important; width: auto !important; max-width: none !important; margin: 0 !important; padding: 0 !important; overflow: visible !important; font-family: Arial Black, Arial, Helvetica, sans-serif !important; font-size: clamp(3.8rem, 6vw, 5.6rem) !important; line-height: .9 !important; font-weight: 900 !important; letter-spacing: -.055em !important; white-space: nowrap !important; color: var(--green-dark) !important; text-shadow: 3px 4px 0 #b8c2aa !important; }
+.database-hero h1 span { color: var(--red) !important; }
+.database-hero > div > div > div:first-child > p:last-child { max-width: 640px !important; margin-top: 14px !important; }
+.database-hero > div > div > div:last-child { display: block !important; width: 270px !important; min-width: 270px !important; max-width: 270px !important; justify-self: end !important; align-self: center !important; margin: 0 !important; }
+.database-hero > div > div > div:last-child > div { display: block !important; width: 270px !important; min-width: 270px !important; max-width: 270px !important; min-height: 78px !important; padding: 17px 20px !important; }
+
 #generations, #pokemon, #tcg { scroll-margin-top: 76px !important; }
 #generations, #pokemon { color: var(--ink); }
 #generations h3, #pokemon h3 { color: var(--green-dark) !important; font-family: var(--font-geist-mono), monospace !important; font-weight: 900 !important; }
@@ -64,31 +75,10 @@ main > footer { background: var(--green-dark) !important; color: #b9c9b5 !import
 #generations > div { padding-top: 30px !important; padding-bottom: 30px !important; }
 #generations > div > div:first-child { margin-bottom: 14px !important; }
 #generations > div > div:first-child > div:last-child { display: none !important; }
-#generations .grid {
-  display: flex !important;
-  flex-wrap: nowrap !important;
-  gap: 4px !important;
-  width: 100% !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  padding: 2px 0 4px !important;
-  scrollbar-width: none !important;
-  -ms-overflow-style: none !important;
-}
+#generations .grid { display: flex !important; flex-wrap: nowrap !important; gap: 4px !important; width: 100% !important; overflow-x: auto !important; overflow-y: hidden !important; padding: 2px 0 4px !important; scrollbar-width: none !important; -ms-overflow-style: none !important; }
 #generations .grid::-webkit-scrollbar { display: none !important; }
-#generations .grid > button {
-  flex: 1 1 0 !important;
-  width: auto !important;
-  min-width: 96px !important;
-  min-height: 44px !important;
-  padding: 6px 9px !important;
-  border-radius: 7px !important;
-  border: 1px solid rgba(23,54,44,.40) !important;
-  background: rgba(247,242,216,.58) !important;
-  box-shadow: 1px 1px 0 rgba(16,45,35,.18) !important;
-}
-#generations .grid > button::before,
-#generations .grid > button::after { content: none !important; display: none !important; }
+#generations .grid > button { flex: 1 1 0 !important; width: auto !important; min-width: 96px !important; min-height: 44px !important; padding: 6px 9px !important; border-radius: 7px !important; border: 1px solid rgba(23,54,44,.40) !important; background: rgba(247,242,216,.58) !important; box-shadow: 1px 1px 0 rgba(16,45,35,.18) !important; }
+#generations .grid > button::before, #generations .grid > button::after { content: none !important; display: none !important; }
 #generations .grid > button > div { align-items: center !important; justify-content: center !important; min-height: 10px !important; }
 #generations .grid > button > div > span:first-child { display: none !important; }
 #generations .grid > button > div > span:last-child { position: absolute !important; top: 5px !important; right: 7px !important; font-size: 6px !important; }
@@ -106,6 +96,11 @@ main > footer { background: var(--green-dark) !important; color: #b9c9b5 !import
   main > section:first-of-type:not(.database-hero) h2 { font-size: clamp(2.25rem, 11vw, 4rem) !important; white-space: normal !important; }
   main > section:first-of-type:not(.database-hero) .group.relative { margin-top: 22px !important; }
   main > section:first-of-type:not(.database-hero) button { min-height: 48px !important; padding: 0 18px !important; }
+  .database-hero > div { width: calc(100% - 28px) !important; padding: 36px 0 34px !important; }
+  .database-hero > div > div { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .database-hero h1 { font-size: clamp(3rem, 12vw, 4.5rem) !important; white-space: normal !important; }
+  .database-hero > div > div > div:last-child { width: 100% !important; max-width: 270px !important; min-width: 0 !important; justify-self: start !important; }
+  .database-hero > div > div > div:last-child > div { width: 100% !important; max-width: 270px !important; min-width: 0 !important; }
   #generations > div { padding-top: 24px !important; padding-bottom: 24px !important; }
   #generations .grid { gap: 4px !important; }
   #generations .grid > button { flex: 0 0 auto !important; min-width: 104px !important; min-height: 42px !important; padding: 6px 9px !important; }
