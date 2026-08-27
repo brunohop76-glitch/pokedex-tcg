@@ -80,6 +80,7 @@ export default function SearchPage() {
   const [loadingPokemon, setLoadingPokemon] = useState(true);
   const [loadingCards, setLoadingCards] = useState(true);
   const [cardFilter, setCardFilter] = useState("all");
+  const [setFilter, setSetFilter] = useState("all");
 
   useEffect(() => {
     if (!query) {
@@ -101,7 +102,17 @@ export default function SearchPage() {
   }, [query]);
 
   const rarities = useMemo(() => Array.from(new Set(cards.map((card) => card.rarity).filter(Boolean) as string[])).sort(), [cards]);
-  const filteredCards = useMemo(() => cardFilter === "all" ? cards : cards.filter((card) => card.rarity === cardFilter), [cards, cardFilter]);
+  const collections = useMemo(() => Array.from(new Set(cards.map((card) => card.set?.name).filter(Boolean) as string[])).sort((a, b) => a.localeCompare(b)), [cards]);
+  const filteredCards = useMemo(() => cards.filter((card) => {
+    const rarityMatch = cardFilter === "all" || card.rarity === cardFilter;
+    const setMatch = setFilter === "all" || card.set?.name === setFilter;
+    return rarityMatch && setMatch;
+  }), [cards, cardFilter, setFilter]);
+
+  function clearFilters() {
+    setCardFilter("all");
+    setSetFilter("all");
+  }
 
   return (
     <main className="min-h-screen bg-[#dfe5c9] text-[#17362c]">
@@ -128,15 +139,19 @@ export default function SearchPage() {
         </section>
 
         <section>
-          <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div><p className="text-[9px] font-black uppercase tracking-[0.25em] text-[#d71920]">Trading Card Game</p><h2 className="text-2xl font-black">Cartas TCG</h2></div>
             <div className="flex max-w-full flex-wrap items-center gap-2">
-              <button type="button" onClick={() => setCardFilter("all")} className={`rounded-full border px-3 py-1.5 text-[8px] font-black uppercase tracking-widest transition ${cardFilter === "all" ? "border-[#d71920] bg-[#d71920] text-white" : "border-[#71816f]/50 bg-[#f7f2d8] text-[#52655e]"}`}>Todas</button>
+              <button type="button" onClick={clearFilters} className={`rounded-full border px-3 py-1.5 text-[8px] font-black uppercase tracking-widest transition ${cardFilter === "all" && setFilter === "all" ? "border-[#d71920] bg-[#d71920] text-white" : "border-[#71816f]/50 bg-[#f7f2d8] text-[#52655e]"}`}>Todas</button>
               {rarities.slice(0, 6).map((rarity) => <button key={rarity} type="button" onClick={() => setCardFilter(rarity)} className={`rounded-full border px-3 py-1.5 text-[8px] font-black uppercase tracking-widest transition ${cardFilter === rarity ? "border-[#d71920] bg-[#d71920] text-white" : "border-[#71816f]/50 bg-[#f7f2d8] text-[#52655e]"}`}>{rarity}</button>)}
+              <select value={setFilter} onChange={(event) => setSetFilter(event.target.value)} className="max-w-[230px] rounded-full border border-[#71816f]/50 bg-[#f7f2d8] px-3 py-1.5 text-[8px] font-black uppercase tracking-widest text-[#52655e] outline-none focus:border-[#d71920]">
+                <option value="all">Todas as coleções</option>
+                {collections.map((collection) => <option key={collection} value={collection}>{collection}</option>)}
+              </select>
             </div>
           </div>
-          <div className="mb-4 flex justify-end text-[10px] font-bold uppercase tracking-widest text-[#758078]">{loadingCards ? "Consultando..." : `${filteredCards.length} cartas exibidas`}</div>
-          {loadingCards ? <div className="rounded-2xl border border-[#71816f] bg-[#f7f2d8] p-8 text-sm">Consultando cartas TCG...</div> : filteredCards.length ? <CardGallery cards={filteredCards as Card[]} /> : <div className="rounded-2xl border border-dashed border-[#71816f] bg-[#f7f2d8] p-8 text-sm">Nenhuma carta TCG encontrada.</div>}
+          <div className="mb-4 flex items-center justify-between gap-4 text-[10px] font-bold uppercase tracking-widest text-[#758078]"><span>{cardFilter !== "all" || setFilter !== "all" ? "Filtros ativos" : "Todas as cartas"}</span><span>{loadingCards ? "Consultando..." : `${filteredCards.length} cartas exibidas`}</span></div>
+          {loadingCards ? <div className="rounded-2xl border border-[#71816f] bg-[#f7f2d8] p-8 text-sm">Consultando cartas TCG...</div> : filteredCards.length ? <CardGallery cards={filteredCards as Card[]} /> : <div className="rounded-2xl border border-dashed border-[#71816f] bg-[#f7f2d8] p-8 text-sm">Nenhuma carta TCG encontrada com esses filtros.</div>}
         </section>
       </div>
     </main>
