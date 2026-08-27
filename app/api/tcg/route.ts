@@ -4,29 +4,44 @@ type TCGCard = {
   id: string;
   localId: string;
   name: string;
-  image?: string;
+  image?: string | null;
 };
 
-type TCGCardDetails = {
-  id: string;
-  localId: string;
-  name: string;
-  image?: string;
+type TCGCardDetails = TCGCard & {
   rarity?: string;
   illustrator?: string;
   set?: {
-    id: string;
-    name: string;
+    id?: string;
+    name?: string;
     releaseDate?: string;
+    serie?: {
+      id?: string;
+      name?: string;
+    };
   };
 };
+
+function getCardImage(card: TCGCardDetails) {
+  if (card.image) {
+    const clean = card.image.replace(/\/$/, "");
+    if (/\.(png|webp|jpg)$/i.test(clean)) return clean;
+    return `${clean}/high.webp`;
+  }
+
+  const serieId = card.set?.serie?.id;
+  const setId = card.set?.id;
+  const localId = card.localId;
+
+  if (serieId && setId && localId) {
+    return `https://assets.tcgdex.net/en/${serieId}/${setId}/${localId}/high.png`;
+  }
+
+  return null;
+}
 
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-
-    // Aceita tanto ?name= quanto ?q= para manter a busca
-    // compatível com a Home e com a página completa de resultados.
     const name = searchParams.get("name")?.trim() || searchParams.get("q")?.trim();
 
     if (!name) {
@@ -38,7 +53,6 @@ export async function GET(request: Request) {
 
     const query = encodeURIComponent(name);
     const url = `https://api.tcgdex.net/v2/en/cards?name=${query}`;
-
     const response = await fetch(url, { cache: "no-store" });
 
     if (!response.ok) {
@@ -59,16 +73,29 @@ export async function GET(request: Request) {
           );
 
           if (!detailResponse.ok) return { ...card };
-          return await detailResponse.json();
+          const detail = await detailResponse.json();
+
+          return {
+            ...card,
+            ...detail,
+            image: detail.image || card.image || null,
+            localId: detail.localId || card.localId,
+            set: detail.set || card.set,
+          };
         } catch {
           return { ...card };
         }
       })
     );
 
+    const cards = detailedCards.map((card) => ({
+      ...card,
+      image: getCardImage(card),
+    }));
+
     return NextResponse.json({
-      cards: detailedCards,
-      total: detailedCards.length,
+      cards,
+      total: cards.length,
     });
   } catch (error) {
     console.error("Erro interno ao buscar cartas:", error);
