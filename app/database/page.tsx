@@ -51,17 +51,15 @@ export default function DatabasePage() {
         </div>
       </header>
 
-      <section className="database-hero border-b-4 border-[#17362c] bg-[#e7edc9] px-5 py-8 md:px-8 md:py-9">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col gap-5 lg:grid lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
-            <div>
-              <p className="font-mono text-[9px] font-black uppercase tracking-[.32em] text-[#d71920]">05 // Nexus Database</p>
-              <h1 className="mt-2 text-5xl font-black leading-[.9] tracking-[-.055em] drop-shadow-[3px_4px_0_#b8c2aa] md:text-7xl">Nexus <span className="text-[#d71920]">Database.</span></h1>
-              <p className="mt-3 max-w-xl text-sm leading-6 text-[#52655e]">Um painel central para acompanhar o tamanho da Pokédex D'Melo, gerações, tipos e universo TCG.</p>
-            </div>
-            <div className="w-full max-w-[270px] justify-self-end rounded border border-[#71816f] bg-[#f7f2d8] px-5 py-4 font-mono text-[9px] font-black uppercase tracking-widest shadow-[4px_4px_0_#71816f]">
-              <span className="text-[#28704d]">SYSTEM STATUS</span><br />ONLINE / INDEXED
-            </div>
+      <section className="database-hero relative min-h-0 border-b-4 border-[#17362c] bg-[#e7edc9] px-5 py-7 md:px-10 md:py-9">
+        <div className="relative mx-auto min-h-[210px] max-w-7xl md:min-h-[225px]">
+          <div className="flex h-full max-w-[780px] flex-col justify-center pr-0 lg:pr-6">
+            <p className="!m-0 font-mono text-[9px] font-black uppercase tracking-[.32em] text-[#d71920]">05 // Nexus Database</p>
+            <h1 className="!m-0 mt-3 text-5xl font-black leading-[.9] tracking-[-.055em] drop-shadow-[3px_4px_0_#b8c2aa] md:text-7xl">Nexus <span className="text-[#d71920]">Database.</span></h1>
+            <p className="!m-0 mt-4 !w-full max-w-[700px] text-sm leading-6 text-[#52655e]">Um painel central para acompanhar o tamanho da Pokédex D'Melo, gerações, tipos e universo TCG.</p>
+          </div>
+          <div className="mt-6 w-full max-w-[270px] rounded border border-[#71816f] bg-[#f7f2d8] px-5 py-4 font-mono text-[9px] font-black uppercase tracking-widest shadow-[4px_4px_0_#71816f] lg:absolute lg:right-0 lg:top-1/2 lg:mt-0 lg:-translate-y-1/2">
+            <span className="text-[#28704d]">● SYSTEM STATUS</span><br />ONLINE / INDEXED
           </div>
         </div>
       </section>
@@ -74,7 +72,8 @@ export default function DatabasePage() {
             ["18", "Tipos disponíveis", "TYPES"],
             [loadingSets ? "..." : String(sets.length), "Coleções TCG", "TCG NEXUS"],
           ].map(([value, label, code]) => (
-            <div key={code} className="rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] p-5 shadow-[5px_5px_0_rgba(23,54,44,.18)]">
+            <div key={code} className="relative overflow-hidden rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] p-5 shadow-[5px_5px_0_rgba(23,54,44,.18)]">
+              <div className="absolute right-4 top-4 text-4xl opacity-[.07]">{code === "POKÉDEX" ? "◉" : code === "REGIONS" ? "◎" : code === "TYPES" ? "✦" : "▱"}</div>
               <p className="font-mono text-[8px] font-black uppercase tracking-[.25em] text-[#d71920]">{code}</p>
               <p className="mt-2 text-4xl font-black tracking-tight">{value}</p>
               <p className="mt-1 text-xs font-bold text-[#71816f]">{label}</p>
@@ -92,7 +91,7 @@ export default function DatabasePage() {
 
           <section className="rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] p-5 shadow-[5px_5px_0_rgba(23,54,44,.15)]">
             <p className="font-mono text-[8px] font-black uppercase tracking-[.25em] text-[#d71920]">Pokédex / taxonomy</p><h2 className="mt-1 text-2xl font-black">18 tipos.</h2>
-            <div className="mt-5 flex flex-wrap gap-2">{types.map((type) => <span key={type} className="rounded-full border border-[#b8c2aa] bg-[#fffceb] px-3 py-2 font-mono text-[7px] font-black uppercase tracking-wider text-[#52655e]">{type}</span>)}</div>
+            <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">{types.map((type) => <span key={type} className="rounded-lg border border-[#b8c2aa] bg-[#fffceb] px-3 py-2 font-mono text-[7px] font-black uppercase tracking-wider text-[#52655e]">{type}</span>)}</div>
             <div className="mt-6 border-t border-[#71816f]/30 pt-4"><p className="font-mono text-[8px] font-black uppercase tracking-[.2em] text-[#28704d]">Coverage</p><p className="mt-1 text-sm font-bold">Todas as regiões da Pokédex estão disponíveis para consulta.</p></div>
           </section>
         </div>
