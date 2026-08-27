@@ -27,7 +27,7 @@ export default function DatabasePage() {
         </div>
       </header>
 
-      <section id="database-hero-final" className="database-hero">
+      <section id="database-hero-final" className="database-hero database-hero-final">
         <div className="database-hero-final-inner">
           <div className="database-hero-final-grid">
             <div className="database-hero-final-copy">
