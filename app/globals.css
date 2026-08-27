@@ -38,20 +38,21 @@ main > header p { color: #a9c0ad !important; }
 main > header nav a { color: #d9e6ce !important; font-family: var(--font-geist-mono), monospace !important; letter-spacing: .08em !important; }
 main > header nav a:first-child { color: var(--yellow) !important; }
 
-main > section:first-of-type { position: relative !important; min-height: 360px !important; overflow: hidden !important; border-bottom: 4px solid var(--green-dark) !important; background: linear-gradient(rgba(247,242,216,.96), rgba(223,229,201,.96)), linear-gradient(rgba(18,61,48,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(18,61,48,.055) 1px, transparent 1px), var(--bg) !important; background-size: auto, 16px 16px, 16px 16px, auto !important; }
-main > section:first-of-type::before, main > section:first-of-type::after { content: none !important; display: none !important; }
-main > section:first-of-type > div { position: relative !important; z-index: 1 !important; width: min(1100px, calc(100% - 40px)) !important; max-width: 1100px !important; margin: 0 auto !important; padding: 42px 0 38px !important; }
-main > section:first-of-type > div > div { display: block !important; width: 100% !important; max-width: none !important; margin: 0 !important; }
-main > section:first-of-type > div > div > div:first-child { display: block !important; width: 100% !important; max-width: none !important; margin: 0 !important; padding: 0 !important; border: 0 !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; }
-main > section:first-of-type h2 { display: block !important; width: 100% !important; max-width: 900px !important; margin: 0 !important; padding: 0 !important; overflow: visible !important; font-family: Arial Black, Arial, Helvetica, sans-serif !important; font-size: clamp(3rem, 7vw, 5.8rem) !important; line-height: .94 !important; font-weight: 900 !important; letter-spacing: -.055em !important; white-space: nowrap !important; color: var(--green-dark) !important; text-shadow: 3px 4px 0 #b8c2aa !important; -webkit-text-stroke: 0 !important; }
-main > section:first-of-type h2::before, main > section:first-of-type h2::after { content: none !important; display: none !important; }
-main > section:first-of-type .group.relative { position: relative !important; width: min(680px, 100%) !important; max-width: 680px !important; margin: 28px 0 0 !important; }
-main > section:first-of-type .group.relative > div:first-child { display: flex !important; }
-main > section:first-of-type .group.relative > div:last-child { display: flex !important; align-items: center !important; width: 100% !important; min-height: 60px !important; padding: 4px !important; border: 3px solid #173d2c !important; border-radius: 7px !important; background: var(--paper-light) !important; box-shadow: inset 0 0 0 1px #b8c0a8, 5px 5px 0 var(--green-dark) !important; }
-main > section:first-of-type input { min-width: 0 !important; color: var(--green-dark) !important; font-family: Arial, Helvetica, sans-serif !important; font-size: 15px !important; font-weight: 700 !important; }
-main > section:first-of-type input::placeholder { color: #6b776f !important; opacity: 1; }
-main > section:first-of-type button { min-height: 50px !important; padding: 0 26px !important; border: 2px solid #8d1715 !important; border-radius: 5px !important; background: var(--red) !important; color: #fff !important; box-shadow: inset 0 -3px 0 rgba(0,0,0,.18), 2px 2px 0 var(--red-dark) !important; font-family: Arial, Helvetica, sans-serif !important; font-size: 10px !important; font-weight: 900 !important; letter-spacing: .08em !important; }
-main > section:first-of-type button:hover { background: #ee2b27 !important; }
+/* Global legacy hero rules intentionally exclude the Database dashboard hero. */
+main > section:first-of-type:not(.database-hero) { position: relative !important; min-height: 360px !important; overflow: hidden !important; border-bottom: 4px solid var(--green-dark) !important; background: linear-gradient(rgba(247,242,216,.96), rgba(223,229,201,.96)), linear-gradient(rgba(18,61,48,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(18,61,48,.055) 1px, transparent 1px), var(--bg) !important; background-size: auto, 16px 16px, 16px 16px, auto !important; }
+main > section:first-of-type:not(.database-hero)::before, main > section:first-of-type:not(.database-hero)::after { content: none !important; display: none !important; }
+main > section:first-of-type:not(.database-hero) > div { position: relative !important; z-index: 1 !important; width: min(1100px, calc(100% - 40px)) !important; max-width: 1100px !important; margin: 0 auto !important; padding: 42px 0 38px !important; }
+main > section:first-of-type:not(.database-hero) > div > div { display: block !important; width: 100% !important; max-width: none !important; margin: 0 !important; }
+main > section:first-of-type:not(.database-hero) > div > div > div:first-child { display: block !important; width: 100% !important; max-width: none !important; margin: 0 !important; padding: 0 !important; border: 0 !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; }
+main > section:first-of-type:not(.database-hero) h2 { display: block !important; width: 100% !important; max-width: 900px !important; margin: 0 !important; padding: 0 !important; overflow: visible !important; font-family: Arial Black, Arial, Helvetica, sans-serif !important; font-size: clamp(3rem, 7vw, 5.8rem) !important; line-height: .94 !important; font-weight: 900 !important; letter-spacing: -.055em !important; white-space: nowrap !important; color: var(--green-dark) !important; text-shadow: 3px 4px 0 #b8c2aa !important; -webkit-text-stroke: 0 !important; }
+main > section:first-of-type:not(.database-hero) h2::before, main > section:first-of-type:not(.database-hero) h2::after { content: none !important; display: none !important; }
+main > section:first-of-type:not(.database-hero) .group.relative { position: relative !important; width: min(680px, 100%) !important; max-width: 680px !important; margin: 28px 0 0 !important; }
+main > section:first-of-type:not(.database-hero) .group.relative > div:first-child { display: flex !important; }
+main > section:first-of-type:not(.database-hero) .group.relative > div:last-child { display: flex !important; align-items: center !important; width: 100% !important; min-height: 60px !important; padding: 4px !important; border: 3px solid #173d2c !important; border-radius: 7px !important; background: var(--paper-light) !important; box-shadow: inset 0 0 0 1px #b8c0a8, 5px 5px 0 var(--green-dark) !important; }
+main > section:first-of-type:not(.database-hero) input { min-width: 0 !important; color: var(--green-dark) !important; font-family: Arial, Helvetica, sans-serif !important; font-size: 15px !important; font-weight: 700 !important; }
+main > section:first-of-type:not(.database-hero) input::placeholder { color: #6b776f !important; opacity: 1; }
+main > section:first-of-type:not(.database-hero) button { min-height: 50px !important; padding: 0 26px !important; border: 2px solid #8d1715 !important; border-radius: 5px !important; background: var(--red) !important; color: #fff !important; box-shadow: inset 0 -3px 0 rgba(0,0,0,.18), 2px 2px 0 var(--red-dark) !important; font-family: Arial, Helvetica, sans-serif !important; font-size: 10px !important; font-weight: 900 !important; letter-spacing: .08em !important; }
+main > section:first-of-type:not(.database-hero) button:hover { background: #ee2b27 !important; }
 
 #generations, #pokemon, #tcg { scroll-margin-top: 76px !important; }
 #generations, #pokemon { color: var(--ink); }
@@ -100,11 +101,11 @@ main > footer { background: var(--green-dark) !important; color: #b9c9b5 !import
 
 @media (max-width: 768px) {
   main > header > div { padding-left: 14px !important; padding-right: 14px !important; }
-  main > section:first-of-type { min-height: 300px !important; }
-  main > section:first-of-type > div { width: calc(100% - 28px) !important; padding: 28px 0 30px !important; }
-  main > section:first-of-type h2 { font-size: clamp(2.25rem, 11vw, 4rem) !important; white-space: normal !important; }
-  main > section:first-of-type .group.relative { margin-top: 22px !important; }
-  main > section:first-of-type button { min-height: 48px !important; padding: 0 18px !important; }
+  main > section:first-of-type:not(.database-hero) { min-height: 300px !important; }
+  main > section:first-of-type:not(.database-hero) > div { width: calc(100% - 28px) !important; padding: 28px 0 30px !important; }
+  main > section:first-of-type:not(.database-hero) h2 { font-size: clamp(2.25rem, 11vw, 4rem) !important; white-space: normal !important; }
+  main > section:first-of-type:not(.database-hero) .group.relative { margin-top: 22px !important; }
+  main > section:first-of-type:not(.database-hero) button { min-height: 48px !important; padding: 0 18px !important; }
   #generations > div { padding-top: 24px !important; padding-bottom: 24px !important; }
   #generations .grid { gap: 4px !important; }
   #generations .grid > button { flex: 0 0 auto !important; min-width: 104px !important; min-height: 42px !important; padding: 6px 9px !important; }
