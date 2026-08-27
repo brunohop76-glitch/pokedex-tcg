@@ -68,13 +68,13 @@ export default function CardGallery({ cards }: { cards: Card[] }) {
               <div className="relative overflow-hidden rounded-xl border border-[#d4d8c2] bg-[#ecefd2] p-1.5">
                 <img src={card.image} alt={card.name} loading="lazy" className="block w-full rounded-lg transition duration-300 group-hover:scale-[1.025]" />
                 <div className="pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-br from-white/45 via-transparent to-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="pointer-events-none absolute inset-x-2 bottom-2 rounded-lg border border-white/40 bg-[#102d23]/90 px-2 py-2 text-center font-mono text-[8px] font-black uppercase tracking-widest text-white opacity-0 shadow-lg backdrop-blur-sm transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 translate-y-2">VER CARTA ↗</div>
               </div>
               <div className="px-1 pb-1 pt-3">
-                <div className="flex items-start justify-between gap-2"><h4 className="min-w-0 truncate text-sm font-black leading-tight" title={card.name}>{card.name}</h4><Link href={`/tcg/card/${encodeURIComponent(card.id)}`} onClick={(event) => event.stopPropagation()} className="shrink-0 text-[10px] font-black text-emerald-700 transition hover:scale-110" aria-label={`Abrir ficha de ${card.name}`}>↗</Link></div>
+                <div className="flex items-start justify-between gap-2"><h4 className="min-w-0 truncate text-sm font-black leading-tight" title={card.name}>{card.name}</h4><span className="shrink-0 font-mono text-[7px] font-black text-[#28704d]">#{cardNumber}</span></div>
                 <p className="mt-1 truncate text-[9px] font-bold uppercase tracking-wide text-[#71816f]" title={card.set?.name || "Coleção TCG"}>{card.set?.name || "Coleção TCG"}</p>
                 <div className="mt-2 flex items-center justify-between gap-2"><span className="rounded-full border border-[#bfc6ae] bg-[#fffceb] px-2 py-1 font-mono text-[7px] font-black uppercase tracking-wide text-[#52655e]">TCG</span>{card.rarity && <span className="truncate text-right text-[8px] font-bold text-[#758078]" title={card.rarity}>{card.rarity}</span>}</div>
                 {card.illustrator && <p className="mt-2 truncate text-[7px] font-medium text-[#9aa397]" title={card.illustrator}>ARTISTA: {card.illustrator}</p>}
+                <Link href={`/tcg/card/${encodeURIComponent(card.id)}`} onClick={(event) => event.stopPropagation()} className="mt-3 flex min-h-10 w-full items-center justify-center rounded-lg border-2 border-[#17362c] bg-[#102d23] px-3 py-2.5 font-mono text-[9px] font-black uppercase tracking-[.12em] text-white shadow-[3px_3px_0_#71816f] transition hover:-translate-y-0.5 hover:bg-[#d71920] hover:border-[#d71920] hover:shadow-[3px_3px_0_#8e1116] focus:outline-none focus:ring-2 focus:ring-[#d71920] focus:ring-offset-2" aria-label={`Abrir ficha de ${card.name}`}>ABRIR FICHA ↗</Link>
               </div>
             </article>
           );
