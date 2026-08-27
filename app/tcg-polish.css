@@ -1,0 +1,25 @@
+/* TCG catalog visual polish — keeps the database layout compact and aligned. */
+
+@media (min-width: 1024px) {
+  /* Prevent the TCG hero title from breaking into two lines on desktop. */
+  main > section:first-of-type h1 {
+    white-space: nowrap;
+  }
+
+  /* Give the hero a cleaner, tighter rhythm once the title fits. */
+  main > section:first-of-type {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  /* Keep the descriptive copy readable without competing with the title. */
+  main > section:first-of-type p:last-child {
+    max-width: 42rem;
+  }
+}
+
+@media (max-width: 767px) {
+  main > section:first-of-type h1 {
+    font-size: clamp(2.75rem, 13vw, 4rem);
+  }
+}
