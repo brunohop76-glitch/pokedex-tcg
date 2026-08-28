@@ -18,7 +18,7 @@ export default function DatabasePage() {
   const maxGeneration = Math.max(...generations.map(g => g.count));
 
   return (
-    <main className="min-h-screen bg-[#dfe5c9] text-[#17362c]">
+    <main id="database-page" className="min-h-screen bg-[#dfe5c9] text-[#17362c]">
       <header className="sticky top-0 z-50 border-b-4 border-[#081c15] bg-[#102d23] text-white shadow-[0_4px_0_#6f796b]">
         <div className="mx-auto flex min-h-[70px] max-w-7xl items-center justify-between gap-5 px-5 md:px-8">
           <Link href="/" className="flex items-center gap-3" aria-label="Voltar para a Pokédex"><span className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-[#f7f2d8] bg-[#d71920] text-lg shadow-[3px_3px_0_#071b14]">⚡</span><span><strong className="block font-mono text-sm tracking-[.18em]">POKÉDEX</strong><small className="font-mono text-[7px] uppercase tracking-[.25em] text-[#a9c0ad]">D'Melo / Pokémon Database</small></span></Link>
@@ -65,22 +65,9 @@ export default function DatabasePage() {
             </div>
           </div>
           <div className="grid gap-4 p-5 md:grid-cols-3 md:p-6">
-            <div className="rounded-lg border-2 border-[#b8c2aa] bg-[#fffceb] p-5">
-              <p className="font-mono text-[7px] font-black uppercase tracking-[.22em] text-[#28704d]">01 / Coleções</p>
-              <p className="mt-3 text-4xl font-black tracking-tight">{loadingSets ? "…" : sets.length}</p>
-              <p className="mt-1 text-xs font-bold text-[#71816f]">Coleções TCG indexadas</p>
-            </div>
-            <div className="rounded-lg border-2 border-[#b8c2aa] bg-[#fffceb] p-5">
-              <p className="font-mono text-[7px] font-black uppercase tracking-[.22em] text-[#28704d]">02 / Cartas</p>
-              <p className="mt-3 text-4xl font-black tracking-tight">{loadingSets ? "…" : totalCards.toLocaleString("pt-BR")}</p>
-              <p className="mt-1 text-xs font-bold text-[#71816f]">Cartas contabilizadas</p>
-            </div>
-            <div className="flex flex-col rounded-lg border-2 border-[#d71920] bg-[#17362c] p-5 text-[#f7f2d8]">
-              <p className="font-mono text-[7px] font-black uppercase tracking-[.22em] text-[#f5c94a]">03 / Catálogo</p>
-              <p className="mt-3 text-xl font-black">Explore o TCG.</p>
-              <p className="mt-1 text-xs text-[#b8c2aa]">Pesquise coleções e cartas do universo Pokémon.</p>
-              <Link href="/tcg" className="mt-auto inline-flex w-fit rounded-full border border-[#f5c94a]/60 px-4 py-2.5 font-mono text-[8px] font-black uppercase tracking-[.15em] text-[#f5c94a] transition hover:bg-[#f5c94a] hover:text-[#17362c]">Abrir catálogo TCG ↗</Link>
-            </div>
+            <div className="rounded-lg border-2 border-[#b8c2aa] bg-[#fffceb] p-5"><p className="font-mono text-[7px] font-black uppercase tracking-[.22em] text-[#28704d]">01 / Coleções</p><p className="mt-3 text-4xl font-black tracking-tight">{loadingSets ? "…" : sets.length}</p><p className="mt-1 text-xs font-bold text-[#71816f]">Coleções TCG indexadas</p></div>
+            <div className="rounded-lg border-2 border-[#b8c2aa] bg-[#fffceb] p-5"><p className="font-mono text-[7px] font-black uppercase tracking-[.22em] text-[#28704d]">02 / Cartas</p><p className="mt-3 text-4xl font-black tracking-tight">{loadingSets ? "…" : totalCards.toLocaleString("pt-BR")}</p><p className="mt-1 text-xs font-bold text-[#71816f]">Cartas contabilizadas</p></div>
+            <div className="flex flex-col rounded-lg border-2 border-[#d71920] bg-[#17362c] p-5 text-[#f7f2d8]"><p className="font-mono text-[7px] font-black uppercase tracking-[.22em] text-[#f5c94a]">03 / Catálogo</p><p className="mt-3 text-xl font-black">Explore o TCG.</p><p className="mt-1 text-xs text-[#b8c2aa]">Pesquise coleções e cartas do universo Pokémon.</p><Link href="/tcg" className="mt-auto inline-flex w-fit rounded-full border border-[#f5c94a]/60 px-4 py-2.5 font-mono text-[8px] font-black uppercase tracking-[.15em] text-[#f5c94a] transition hover:bg-[#f5c94a] hover:text-[#17362c]">Abrir catálogo TCG ↗</Link></div>
           </div>
         </section>
       </section>
