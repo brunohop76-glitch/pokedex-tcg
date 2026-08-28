@@ -28,14 +28,14 @@ export default function DatabasePage() {
       </header>
 
       <section id="database-hero-final" className="database-hero border-b-4 border-[#17362c] bg-[#e7edc9]">
-        <div className="mx-auto flex min-h-[350px] max-w-7xl items-center px-5 py-10 md:px-8">
-          <div className="grid w-full grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-12">
-            <div className="min-w-0 text-left">
+        <div className="database-hero-inner mx-auto min-h-[350px] max-w-7xl px-5 py-10 md:px-8">
+          <div className="database-hero-grid grid w-full grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-12">
+            <div className="database-hero-copy min-w-0 text-center lg:text-center">
               <p className="mb-4 font-mono text-[9px] font-black uppercase tracking-[.34em] text-[#d71920]">05 // Pokémon Database</p>
-              <h1 className="whitespace-nowrap font-black text-[clamp(3.2rem,6vw,5.8rem)] leading-[.9] tracking-[-.055em] text-[#102d23] [text-shadow:5px_6px_0_#b8c2aa]">Pokémon <span className="text-[#d71920]">Database.</span></h1>
-              <p className="mt-5 max-w-[680px] text-sm leading-6 text-[#52655e]">Um painel central para acompanhar o tamanho da Pokédex D'Melo, gerações, tipos e universo TCG.</p>
+              <h1 className="database-hero-title font-black text-[clamp(3.1rem,5vw,5.2rem)] leading-[.9] tracking-[-.055em] text-[#102d23] [text-shadow:5px_6px_0_#b8c2aa]">Pokémon <span className="text-[#d71920]">Database.</span></h1>
+              <p className="database-hero-description mt-5 mx-auto max-w-[680px] text-sm leading-6 text-[#52655e]">Um painel central para acompanhar o tamanho da Pokédex D'Melo, gerações, tipos e universo TCG.</p>
             </div>
-            <div className="database-status-final mx-auto flex h-[82px] w-full max-w-[280px] flex-col justify-center gap-1.5 rounded-[10px] border-2 border-[#71816f] bg-[#f7f2d8] px-5 font-mono text-[9px] font-black uppercase tracking-[.12em] text-[#17362c] shadow-[5px_5px_0_#71816f] lg:mx-0 lg:ml-auto">
+            <div className="database-status-final flex h-[82px] w-full max-w-[280px] flex-col justify-center gap-1.5 rounded-[10px] border-2 border-[#71816f] bg-[#f7f2d8] px-5 font-mono text-[9px] font-black uppercase tracking-[.12em] text-[#17362c] shadow-[5px_5px_0_#71816f] lg:ml-auto">
               <span className="pl-2 text-[#28704d]">SYSTEM STATUS</span>
               <strong className="pl-2">ONLINE / INDEXED</strong>
             </div>
