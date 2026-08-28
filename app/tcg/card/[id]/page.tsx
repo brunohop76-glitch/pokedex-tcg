@@ -30,7 +30,7 @@ export default function TCGCardPage({ params }: { params: Promise<{ id: string }
 
   function moveCard(event: React.MouseEvent<HTMLDivElement>) {
     const rect = event.currentTarget.getBoundingClientRect();
-    setRotation({ x: -((event.clientY - rect.top) / rect.height - .5) * 7, y: ((event.clientX - rect.left) / rect.width - .5) * 7 });
+    setRotation({ x: -((event.clientY - rect.top) / rect.height - .5) * 5, y: ((event.clientX - rect.left) / rect.width - .5) * 5 });
   }
 
   const types = Array.isArray(card?.types) ? card.types.map(typeLabel).filter(Boolean) : [];
@@ -42,32 +42,69 @@ export default function TCGCardPage({ params }: { params: Promise<{ id: string }
     <main id="tcg-card-detail" className="min-h-screen bg-[#dfe5c9] text-[#17362c]">
       <header className="border-b-4 border-[#081c15] bg-[#102d23] text-white shadow-[0_4px_0_#6f796b]">
         <div className="mx-auto flex min-h-[70px] max-w-7xl items-center justify-between gap-5 px-5 md:px-8">
-          <Link href="/tcg" className="flex items-center gap-3"><span className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-[#f7f2d8] bg-[#d71920] text-lg shadow-[3px_3px_0_#071b14]">⚡</span><span><strong className="block font-mono text-sm tracking-[.18em]">POKÉDEX</strong><small className="font-mono text-[7px] uppercase tracking-[.25em] text-[#a9c0ad]">D'Melo / TCG Database</small></span></Link>
+          <Link href="/tcg" className="flex items-center gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-[#f7f2d8] bg-[#d71920] text-lg shadow-[3px_3px_0_#071b14]">⚡</span>
+            <span><strong className="block font-mono text-sm tracking-[.18em]">POKÉDEX</strong><small className="font-mono text-[7px] uppercase tracking-[.25em] text-[#a9c0ad]">D'Melo / TCG Database</small></span>
+          </Link>
           <Link href="/tcg" className="rounded-full border border-[#f5c94a]/30 px-3 py-2 font-mono text-[8px] font-black uppercase tracking-widest text-[#f5c94a]">← Catálogo TCG</Link>
         </div>
       </header>
 
-      <section className="tcg-card-hero border-b-4 border-[#17362c] bg-[#e7edc9] px-5 py-8 md:px-8 md:py-10">
+      <section className="tcg-card-hero border-b-4 border-[#17362c] bg-[#e7edc9] px-5 py-7 md:px-8 md:py-8">
         <div className="mx-auto max-w-7xl">
           <p className="font-mono text-[9px] font-black uppercase tracking-[.32em] text-[#d71920]">04 // TCG Card Database</p>
-          {loading ? <div className="mt-3 h-14 w-80 animate-pulse rounded bg-[#cfd7b9]" /> : <h1 className="mt-1 text-5xl font-black leading-none tracking-[-.055em] text-[#102d23] md:text-6xl">Ficha da <span className="text-[#d71920]">Carta.</span></h1>}
+          {loading ? <div className="mt-3 h-12 w-80 animate-pulse rounded bg-[#cfd7b9]" /> : <h1 className="mt-1 text-5xl font-black leading-none tracking-[-.055em] text-[#102d23] md:text-6xl">Ficha da <span className="text-[#d71920]">Carta.</span></h1>}
         </div>
       </section>
 
-      <section className="tcg-card-layout mx-auto grid max-w-7xl gap-8 px-5 py-8 md:px-8 lg:grid-cols-[400px_minmax(0,1fr)] lg:items-start lg:gap-9">
-        {loading ? <div className="mx-auto aspect-[2.5/3.5] w-full max-w-[360px] animate-pulse rounded-2xl border-2 border-[#71816f] bg-[#f7f2d8]" /> : error ? <div className="rounded-xl border-2 border-dashed border-[#71816f] bg-[#f7f2d8] p-8"><h2 className="text-2xl font-black">Carta não encontrada.</h2><Link href="/tcg" className="mt-5 inline-block rounded border-2 border-[#17362c] bg-[#102d23] px-4 py-3 font-mono text-[9px] font-black uppercase text-white">Voltar ao catálogo</Link></div> : <div className="tcg-card-visual mx-auto w-full max-w-[380px]" style={{ perspective: "1400px" }}><div onMouseMove={moveCard} onMouseLeave={() => setRotation({ x: 0, y: 0 })} className="tcg-card-shell relative overflow-hidden rounded-[18px] border-[3px] border-[#f7f2d8] bg-white shadow-[10px_12px_0_rgba(23,54,44,.24),0_20px_45px_rgba(0,0,0,.18)]" style={{ transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`, transition: "transform 160ms ease-out" }}><img src={card.image} alt={card.name} className="block w-full" /><div className="pointer-events-none absolute inset-0 mix-blend-screen opacity-25" style={{ background: "linear-gradient(125deg, transparent 28%, rgba(255,255,255,.45) 44%, rgba(0,220,255,.16) 50%, rgba(255,0,100,.14) 56%, transparent 70%)" }} /></div><div className="tcg-card-caption mt-3 flex items-center justify-between gap-3 px-1"><span>TCG CARD // VERIFIED</span><span>Mova o mouse para interagir</span></div></div>}
-
-        {!loading && !error && <div className="tcg-card-info rounded-2xl border-2 border-[#71816f] bg-[#f7f2d8] p-5 shadow-[6px_6px_0_rgba(23,54,44,.16)] md:p-7">
-          <div className="tcg-card-heading">
-            <p className="font-mono text-[9px] font-black uppercase tracking-[.25em] text-[#d71920]">{card.set?.name ?? "Coleção TCG"} • #{card.localId ?? card.id}</p>
-            <h2 className="mt-2 text-4xl font-black tracking-tight">{card.name}</h2>
+      <section className="tcg-card-layout mx-auto grid max-w-7xl gap-7 px-5 py-8 md:px-8 lg:grid-cols-[380px_minmax(0,1fr)] lg:items-start lg:gap-8">
+        {loading ? (
+          <div className="mx-auto aspect-[2.5/3.5] w-full max-w-[350px] animate-pulse rounded-2xl border-2 border-[#71816f] bg-[#f7f2d8]" />
+        ) : error ? (
+          <div className="rounded-xl border-2 border-dashed border-[#71816f] bg-[#f7f2d8] p-8"><h2 className="text-2xl font-black">Carta não encontrada.</h2><Link href="/tcg" className="mt-5 inline-block rounded border-2 border-[#17362c] bg-[#102d23] px-4 py-3 font-mono text-[9px] font-black uppercase text-white">Voltar ao catálogo</Link></div>
+        ) : (
+          <div className="tcg-card-visual mx-auto w-full max-w-[350px]" style={{ perspective: "1400px" }}>
+            <div onMouseMove={moveCard} onMouseLeave={() => setRotation({ x: 0, y: 0 })} className="tcg-card-shell relative overflow-hidden rounded-[18px] border-[3px] border-[#f7f2d8] bg-white shadow-[9px_10px_0_rgba(23,54,44,.22),0_18px_38px_rgba(0,0,0,.16)]" style={{ transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`, transition: "transform 160ms ease-out" }}>
+              <img src={card.image} alt={card.name} className="block w-full" />
+              <div className="pointer-events-none absolute inset-0 mix-blend-screen opacity-20" style={{ background: "linear-gradient(125deg, transparent 30%, rgba(255,255,255,.45) 46%, rgba(0,220,255,.13) 50%, rgba(255,0,100,.10) 54%, transparent 68%)" }} />
+            </div>
+            <div className="tcg-card-caption mt-3 flex items-center justify-between gap-3 px-1 font-mono text-[7px] font-black uppercase tracking-[.18em] text-[#71816f]"><span>TCG CARD // VERIFIED</span><span>Interação 3D</span></div>
           </div>
-          <div className="tcg-card-tags mt-4 flex flex-wrap gap-2">{types.map((type: string) => <span key={type} className="rounded-full border border-[#71816f] bg-[#fffceb] px-3 py-1.5 font-mono text-[8px] font-black uppercase">{type}</span>)}{card.rarity && <span className="rounded-full border border-[#d71920] bg-[#d71920] px-3 py-1.5 font-mono text-[8px] font-black uppercase text-white">{card.rarity}</span>}</div>
-          <div className="tcg-card-stats mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">{[["HP", card.hp || "—"],["Estágio", card.stage || "—"],["Artista", card.illustrator || "—"],["Categoria", card.category || "—"]].map(([label, value]) => <div key={label} className="rounded border border-[#71816f]/50 bg-[#fffceb] p-3"><p className="font-mono text-[7px] font-black uppercase tracking-widest text-[#28704d]">{label}</p><p className="mt-1 text-sm font-black">{value}</p></div>)}</div>
-          {card.description && <div className="tcg-card-description mt-6 border-t border-[#71816f]/30 pt-5"><p className="font-mono text-[8px] font-black uppercase tracking-widest text-[#28704d]">Descrição</p><p className="mt-2 text-sm leading-6 text-[#52655e]">{card.description}</p></div>}
-          {attacks.length > 0 && <div className="tcg-card-attacks mt-6 border-t border-[#71816f]/30 pt-5"><p className="font-mono text-[8px] font-black uppercase tracking-widest text-[#d71920]">Ataques</p><div className="mt-3 space-y-3">{attacks.map((attack: any, index: number) => <div key={`${attack.name}-${index}`} className="rounded border border-[#71816f]/50 bg-[#fffceb] p-4"><div className="flex items-center justify-between gap-3"><strong>{attack.name}</strong>{attack.damage && <span className="font-mono text-xs font-black">{attack.damage}</span>}</div>{attack.effect && <p className="mt-1 text-xs leading-5 text-[#52655e]">{attack.effect}</p>}</div>)}</div></div>}
-          <div className="tcg-card-footer-stats mt-6 grid gap-3 sm:grid-cols-3"><div className="rounded border border-[#71816f]/50 bg-[#fffceb] p-3"><p className="font-mono text-[7px] font-black uppercase text-[#28704d]">Fraqueza</p><p className="mt-1 text-sm font-bold">{weaknesses.map((item: any) => `${typeLabel(item.type)} ${item.value ?? ""}`).join(", ") || "—"}</p></div><div className="rounded border border-[#71816f]/50 bg-[#fffceb] p-3"><p className="font-mono text-[7px] font-black uppercase text-[#28704d]">Resistência</p><p className="mt-1 text-sm font-bold">{resistances.map((item: any) => `${typeLabel(item.type)} ${item.value ?? ""}`).join(", ") || "—"}</p></div><div className="rounded border border-[#71816f]/50 bg-[#fffceb] p-3"><p className="font-mono text-[7px] font-black uppercase text-[#28704d]">Recuo</p><p className="mt-1 text-sm font-bold">{Array.isArray(card.retreat) ? card.retreat.length : card.retreat ?? "—"}</p></div></div>
-          <Link href="/tcg" className="tcg-back-button mt-7 inline-flex rounded border-2 border-[#17362c] bg-[#102d23] px-5 py-3 font-mono text-[9px] font-black uppercase tracking-widest text-white transition hover:-translate-y-0.5">← Voltar para o catálogo</Link>
+        )}
+
+        {!loading && !error && <div className="tcg-card-info overflow-hidden rounded-2xl border-2 border-[#71816f] bg-[#f7f2d8] shadow-[6px_6px_0_rgba(23,54,44,.14)]">
+          <div className="p-5 md:p-6">
+            <div className="tcg-card-heading border-b-2 border-[#71816f]/20 pb-4">
+              <p className="font-mono text-[8px] font-black uppercase tracking-[.25em] text-[#d71920]">{card.set?.name ?? "Coleção TCG"} • #{card.localId ?? card.id}</p>
+              <div className="mt-1 flex flex-wrap items-end justify-between gap-3">
+                <h2 className="text-4xl font-black leading-none tracking-[-.035em] text-[#102d23]">{card.name}</h2>
+                {card.rarity && <span className="rounded border-2 border-[#d71920] bg-[#d71920] px-2.5 py-1.5 font-mono text-[7px] font-black uppercase tracking-wider text-white">{card.rarity}</span>}
+              </div>
+            </div>
+
+            <div className="tcg-card-tags mt-4 flex flex-wrap gap-2">
+              {types.map((type: string) => <span key={type} className="rounded-full border border-[#71816f] bg-[#fffceb] px-3 py-1.5 font-mono text-[8px] font-black uppercase tracking-wide">{type}</span>)}
+            </div>
+
+            <div className="tcg-card-stats mt-5 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+              {[["HP", card.hp || "—"],["Estágio", card.stage || "—"],["Artista", card.illustrator || "—"],["Categoria", card.category || "—"]].map(([label, value]) => <div key={label} className="rounded-lg border border-[#71816f]/45 bg-[#fffceb] p-3"><p className="font-mono text-[7px] font-black uppercase tracking-widest text-[#28704d]">{label}</p><p className="mt-1 truncate text-sm font-black text-[#17362c]">{value}</p></div>)}
+            </div>
+
+            {card.description && <div className="tcg-card-description mt-5 border-t border-[#71816f]/25 pt-4"><p className="font-mono text-[8px] font-black uppercase tracking-widest text-[#28704d]">Descrição</p><p className="mt-2 text-[13px] leading-5 text-[#52655e]">{card.description}</p></div>}
+
+            {attacks.length > 0 && <div className="tcg-card-attacks mt-5 border-t border-[#71816f]/25 pt-4">
+              <div className="flex items-center justify-between"><p className="font-mono text-[8px] font-black uppercase tracking-widest text-[#d71920]">Ataques</p><span className="font-mono text-[7px] font-black uppercase tracking-widest text-[#71816f]">Moveset</span></div>
+              <div className="mt-2.5 space-y-2.5">{attacks.map((attack: any, index: number) => <div key={`${attack.name}-${index}`} className="rounded-lg border border-[#71816f]/45 bg-[#fffceb] p-3.5 shadow-[2px_2px_0_rgba(23,54,44,.08)]"><div className="flex items-center justify-between gap-3"><strong className="text-sm font-black">{attack.name}</strong>{attack.damage && <span className="rounded bg-[#17362c] px-2 py-1 font-mono text-[10px] font-black text-white">{attack.damage}</span>}</div>{attack.effect && <p className="mt-1.5 text-xs leading-5 text-[#52655e]">{attack.effect}</p>}</div>)}</div>
+            </div>}
+
+            <div className="tcg-card-footer-stats mt-5 grid gap-2.5 border-t border-[#71816f]/25 pt-4 sm:grid-cols-3">
+              <div className="rounded-lg border border-[#71816f]/45 bg-[#fffceb] p-3"><p className="font-mono text-[7px] font-black uppercase tracking-widest text-[#28704d]">Fraqueza</p><p className="mt-1 text-sm font-bold">{weaknesses.map((item: any) => `${typeLabel(item.type)} ${item.value ?? ""}`).join(", ") || "—"}</p></div>
+              <div className="rounded-lg border border-[#71816f]/45 bg-[#fffceb] p-3"><p className="font-mono text-[7px] font-black uppercase tracking-widest text-[#28704d]">Resistência</p><p className="mt-1 text-sm font-bold">{resistances.map((item: any) => `${typeLabel(item.type)} ${item.value ?? ""}`).join(", ") || "—"}</p></div>
+              <div className="rounded-lg border border-[#71816f]/45 bg-[#fffceb] p-3"><p className="font-mono text-[7px] font-black uppercase tracking-widest text-[#28704d]">Recuo</p><p className="mt-1 text-sm font-bold">{Array.isArray(card.retreat) ? card.retreat.length : card.retreat ?? "—"}</p></div>
+            </div>
+
+            <Link href="/tcg" className="tcg-back-button mt-5 inline-flex rounded border-2 border-[#17362c] bg-[#102d23] px-5 py-3 font-mono text-[9px] font-black uppercase tracking-widest text-white transition hover:-translate-y-0.5 hover:shadow-[3px_3px_0_#71816f]">← Voltar para o catálogo</Link>
+          </div>
         </div>}
       </section>
     </main>
