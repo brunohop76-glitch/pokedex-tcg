@@ -1,12 +1,12 @@
 /* TCG catalog visual polish — compact hero and stable filters. */
 
 @media (min-width: 1024px) {
-  /* Compact hero: title + Nexus card, with minimal vertical air. */
+  /* Compact hero: keep the catalog close to the top. */
   main > section:first-of-type {
     min-height: 0 !important;
-    height: 250px !important;
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
+    height: 220px !important;
+    padding-top: .75rem !important;
+    padding-bottom: .75rem !important;
     box-sizing: border-box !important;
   }
 
@@ -15,7 +15,7 @@
     flex-direction: row !important;
     align-items: center !important;
     justify-content: space-between !important;
-    gap: 2.5rem !important;
+    gap: 2.25rem !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
   }
@@ -33,15 +33,15 @@
 
   main > section:first-of-type p:last-child {
     max-width: 42rem !important;
-    margin-top: .55rem !important;
+    margin-top: .45rem !important;
   }
 
   main > section:first-of-type > div > div:last-child {
     flex: 0 0 300px !important;
     width: 300px !important;
     max-width: 300px !important;
-    min-height: 58px !important;
-    padding: .7rem 1rem !important;
+    min-height: 54px !important;
+    padding: .65rem .9rem !important;
     margin: 0 !important;
   }
 }
