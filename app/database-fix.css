@@ -210,3 +210,22 @@ html body main section.database-hero#database-hero-final .database-status-final 
     max-width: 280px !important;
   }
 }
+
+/* DATABASE STATS — FORCE ALL FOUR CARDS INTO ONE LEVEL */
+html body main > section:nth-of-type(2) > div:first-child {
+  align-items: stretch !important;
+  grid-template-rows: 137px !important;
+}
+
+html body main > section:nth-of-type(2) > div:first-child > div {
+  align-self: stretch !important;
+  height: 137px !important;
+  min-height: 137px !important;
+  max-height: 137px !important;
+  margin: 0 !important;
+  transform: none !important;
+  position: relative !important;
+  top: 0 !important;
+  bottom: auto !important;
+  box-sizing: border-box !important;
+}
