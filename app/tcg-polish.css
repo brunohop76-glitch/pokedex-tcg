@@ -1,8 +1,8 @@
 /* TCG catalog visual polish — compact hero and stable filters. */
 
 @media (min-width: 1024px) {
-  /* Compact hero: keep the catalog close to the top. */
-  main > section:first-of-type {
+  /* Override the generic hero rule from globals.css: its min-height is 360px. */
+  main > section:first-of-type:not(.database-hero) {
     min-height: 0 !important;
     height: 220px !important;
     padding-top: .75rem !important;
@@ -10,7 +10,7 @@
     box-sizing: border-box !important;
   }
 
-  main > section:first-of-type > div {
+  main > section:first-of-type:not(.database-hero) > div {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
@@ -20,23 +20,23 @@
     padding-bottom: 0 !important;
   }
 
-  main > section:first-of-type > div > div:first-child {
+  main > section:first-of-type:not(.database-hero) > div > div:first-child {
     flex: 1 1 auto !important;
     width: auto !important;
     max-width: 760px !important;
   }
 
-  main > section:first-of-type h1 {
+  main > section:first-of-type:not(.database-hero) h1 {
     white-space: nowrap !important;
     margin: 0 !important;
   }
 
-  main > section:first-of-type p:last-child {
+  main > section:first-of-type:not(.database-hero) p:last-child {
     max-width: 42rem !important;
     margin-top: .45rem !important;
   }
 
-  main > section:first-of-type > div > div:last-child {
+  main > section:first-of-type:not(.database-hero) > div > div:last-child {
     flex: 0 0 300px !important;
     width: 300px !important;
     max-width: 300px !important;
@@ -47,18 +47,18 @@
 }
 
 @media (max-width: 1023px) {
-  main > section:first-of-type {
+  main > section:first-of-type:not(.database-hero) {
     min-height: 0 !important;
   }
 }
 
 @media (max-width: 767px) {
-  main > section:first-of-type h1 {
+  main > section:first-of-type:not(.database-hero) h1 {
     font-size: clamp(2.75rem, 13vw, 4rem) !important;
     white-space: normal !important;
   }
 
-  main > section:first-of-type > div > div:last-child {
+  main > section:first-of-type:not(.database-hero) > div > div:last-child {
     width: 100% !important;
     max-width: none !important;
   }
@@ -152,19 +152,19 @@ html body main > section:nth-of-type(2) > div:first-child > div:nth-child(2) > d
 }
 
 @media (max-width: 900px) {
-  main > section:first-of-type {
+  main > section:first-of-type:not(.database-hero) {
     height: auto !important;
   }
 
-  main > section:first-of-type > div > div:first-child {
+  main > section:first-of-type:not(.database-hero) > div > div:first-child {
     max-width: none !important;
   }
 
-  main > section:first-of-type > div {
+  main > section:first-of-type:not(.database-hero) > div {
     flex-direction: column !important;
   }
 
-  main > section:first-of-type > div > div:last-child {
+  main > section:first-of-type:not(.database-hero) > div > div:last-child {
     width: 100% !important;
     max-width: none !important;
   }
