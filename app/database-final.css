@@ -1,11 +1,10 @@
-/* DATABASE HERO — clean final layout */
-html body main section#database-hero-final.database-hero-final {
+/* DATABASE HERO — definitive stable layout */
+#database-hero-final {
   position: relative !important;
   display: block !important;
   width: 100% !important;
   height: 350px !important;
   min-height: 350px !important;
-  max-height: 350px !important;
   margin: 0 !important;
   padding: 0 !important;
   overflow: hidden !important;
@@ -14,22 +13,18 @@ html body main section#database-hero-final.database-hero-final {
   background: #e7edc9 !important;
 }
 
-html body main section#database-hero-final.database-hero-final::before {
+#database-hero-final::before {
   content: "" !important;
   position: absolute !important;
   inset: 0 !important;
   pointer-events: none !important;
   opacity: .18 !important;
-  background-image:
-    linear-gradient(rgba(23,54,44,.16) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(23,54,44,.16) 1px, transparent 1px) !important;
+  background-image: linear-gradient(rgba(23,54,44,.16) 1px, transparent 1px), linear-gradient(90deg, rgba(23,54,44,.16) 1px, transparent 1px) !important;
   background-size: 22px 22px !important;
-  mask-image: linear-gradient(90deg, black 0%, transparent 70%) !important;
 }
 
-html body main section#database-hero-final.database-hero-final > .database-hero-final-inner {
+#database-hero-final > .database-hero-final-inner {
   position: relative !important;
-  display: block !important;
   width: 100% !important;
   height: 100% !important;
   margin: 0 !important;
@@ -37,38 +32,28 @@ html body main section#database-hero-final.database-hero-final > .database-hero-
   box-sizing: border-box !important;
 }
 
-html body main section#database-hero-final .database-hero-final-grid {
+#database-hero-final .database-hero-final-grid {
   position: relative !important;
-  display: block !important;
-  width: 100% !important;
+  width: min(1240px, calc(100% - 56px)) !important;
   height: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  margin: 0 auto !important;
+  padding: 54px 0 46px !important;
   box-sizing: border-box !important;
 }
 
-html body main section#database-hero-final .database-hero-final-copy {
+#database-hero-final .database-hero-final-copy {
   position: absolute !important;
-  left: 40px !important;
-  right: auto !important;
-  top: 62px !important;
-  transform: none !important;
-  display: block !important;
-  width: 820px !important;
-  max-width: 820px !important;
-  min-width: 0 !important;
+  left: 0 !important;
+  top: 54px !important;
+  width: 760px !important;
+  max-width: 760px !important;
   margin: 0 !important;
   padding: 0 !important;
-  border: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  box-sizing: border-box !important;
-  z-index: 5 !important;
+  z-index: 2 !important;
 }
 
-html body main section#database-hero-final .database-hero-final-copy > p:first-child {
+#database-hero-final .database-hero-final-copy > p:first-child {
   display: block !important;
-  width: auto !important;
   margin: 0 0 18px !important;
   padding: 0 !important;
   font-family: var(--font-geist-mono), monospace !important;
@@ -81,17 +66,15 @@ html body main section#database-hero-final .database-hero-final-copy > p:first-c
   white-space: nowrap !important;
 }
 
-html body main section#database-hero-final h1 {
+#database-hero-final h1 {
   display: block !important;
   width: auto !important;
   max-width: none !important;
-  min-width: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
-  overflow: visible !important;
   font-family: Arial Black, Arial, Helvetica, sans-serif !important;
-  font-size: 72px !important;
-  line-height: .9 !important;
+  font-size: clamp(58px, 5.2vw, 76px) !important;
+  line-height: .92 !important;
   font-weight: 900 !important;
   letter-spacing: -.055em !important;
   white-space: nowrap !important;
@@ -99,28 +82,24 @@ html body main section#database-hero-final h1 {
   text-shadow: 5px 6px 0 #b8c2aa !important;
 }
 
-html body main section#database-hero-final h1 span {
-  color: #d71920 !important;
-}
+#database-hero-final h1 span { color: #d71920 !important; }
 
-html body main section#database-hero-final .database-hero-final-description {
+#database-hero-final .database-hero-final-description {
   display: block !important;
   width: 650px !important;
   max-width: 650px !important;
-  min-width: 0 !important;
   margin: 18px 0 0 !important;
   padding: 0 !important;
   font-family: var(--font-geist-sans), Arial, sans-serif !important;
   font-size: 14px !important;
   line-height: 1.55 !important;
   color: #52655e !important;
-  white-space: normal !important;
 }
 
-html body main section#database-hero-final .database-status-final {
+#database-hero-final .database-status-final {
   position: absolute !important;
   left: auto !important;
-  right: 40px !important;
+  right: 0 !important;
   top: 50% !important;
   bottom: auto !important;
   transform: translateY(-50%) !important;
@@ -141,6 +120,7 @@ html body main section#database-hero-final .database-status-final {
   border-radius: 10px !important;
   background: #f7f2d8 !important;
   box-shadow: 5px 5px 0 #71816f !important;
+  z-index: 3 !important;
   font-family: var(--font-geist-mono), monospace !important;
   font-size: 9px !important;
   font-weight: 900 !important;
@@ -148,10 +128,9 @@ html body main section#database-hero-final .database-status-final {
   letter-spacing: .12em !important;
   text-transform: uppercase !important;
   color: #17362c !important;
-  z-index: 6 !important;
 }
 
-html body main section#database-hero-final .database-status-final::before {
+#database-hero-final .database-status-final::before {
   content: "" !important;
   position: absolute !important;
   left: 10px !important;
@@ -162,51 +141,20 @@ html body main section#database-hero-final .database-status-final::before {
   background: #28704d !important;
 }
 
-html body main section#database-hero-final .database-status-final span,
-html body main section#database-hero-final .database-status-final strong {
+#database-hero-final .database-status-final span,
+#database-hero-final .database-status-final strong {
   display: block !important;
   padding-left: 8px !important;
 }
 
-html body main section#database-hero-final .database-status-final span {
-  color: #28704d !important;
-}
-
-html body main section#database-hero-final .database-status-final strong {
-  color: #17362c !important;
-  font-size: 9px !important;
-}
+#database-hero-final .database-status-final span { color: #28704d !important; }
+#database-hero-final .database-status-final strong { color: #17362c !important; font-size: 9px !important; }
 
 @media (max-width: 900px) {
-  html body main section#database-hero-final.database-hero-final {
-    height: 430px !important;
-    min-height: 430px !important;
-    max-height: 430px !important;
-  }
-
-  html body main section#database-hero-final .database-hero-final-copy {
-    left: 16px !important;
-    top: 48px !important;
-    width: calc(100% - 32px) !important;
-    max-width: calc(100% - 32px) !important;
-  }
-
-  html body main section#database-hero-final h1 {
-    font-size: clamp(3rem, 12vw, 4.5rem) !important;
-    line-height: .92 !important;
-    white-space: normal !important;
-  }
-
-  html body main section#database-hero-final .database-hero-final-description {
-    width: 100% !important;
-    max-width: 620px !important;
-  }
-
-  html body main section#database-hero-final .database-status-final {
-    left: 16px !important;
-    right: auto !important;
-    top: auto !important;
-    bottom: 34px !important;
-    transform: none !important;
-  }
+  #database-hero-final { height: 390px !important; min-height: 390px !important; }
+  #database-hero-final .database-hero-final-grid { width: calc(100% - 32px) !important; padding-top: 38px !important; }
+  #database-hero-final .database-hero-final-copy { left: 0 !important; top: 38px !important; width: 100% !important; max-width: 100% !important; }
+  #database-hero-final h1 { font-size: clamp(42px, 9vw, 64px) !important; white-space: normal !important; }
+  #database-hero-final .database-hero-final-description { width: min(620px, 100%) !important; max-width: 620px !important; }
+  #database-hero-final .database-status-final { left: 0 !important; right: auto !important; top: auto !important; bottom: 30px !important; transform: none !important; width: 280px !important; min-width: 280px !important; }
 }
