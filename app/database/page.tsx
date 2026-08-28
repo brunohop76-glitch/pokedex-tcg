@@ -27,7 +27,7 @@ export default function DatabasePage() {
         </div>
       </header>
 
-      <section id="database-hero-main" className="database-hero border-b-4 border-[#17362c] bg-[#e7edc9]">
+      <section id="database-hero-final" className="database-hero border-b-4 border-[#17362c] bg-[#e7edc9]">
         <div className="mx-auto flex min-h-[350px] max-w-7xl items-center px-5 py-10 md:px-8">
           <div className="grid w-full grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-12">
             <div className="min-w-0 text-left">
