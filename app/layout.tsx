@@ -18,6 +18,7 @@ import "./database-fix.css";
 import "./database-final.css";
 import "./tcg-card-detail-final.css";
 import "./tcg-card-detail-polish.css";
+import "./home-rescue.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
