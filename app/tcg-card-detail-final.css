@@ -1,47 +1,40 @@
-/* TCG CARD DETAIL — final visual pass */
+/* TCG CARD DETAIL — final visual refinement */
 
-/* Isolate this page from the generic hero rules used elsewhere. */
-main > section:first-of-type:has(+ section img) {
-  position: relative !important;
-  min-height: 270px !important;
-  height: 270px !important;
+/* HERO */
+#tcg-card-detail > .tcg-card-hero {
+  min-height: 205px !important;
+  display: flex !important;
+  align-items: center !important;
   overflow: hidden !important;
-  border-bottom: 4px solid #102d23 !important;
+  border-bottom: 4px solid #17362c !important;
   background:
-    linear-gradient(rgba(247,242,216,.94), rgba(223,229,201,.94)),
+    linear-gradient(rgba(247,242,216,.98), rgba(231,237,201,.98)),
     linear-gradient(rgba(23,54,44,.045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(23,54,44,.045) 1px, transparent 1px),
     #dfe5c9 !important;
   background-size: auto, 16px 16px, 16px 16px, auto !important;
 }
 
-main > section:first-of-type:has(+ section img) > div {
-  width: min(1200px, calc(100% - 64px)) !important;
-  max-width: 1200px !important;
-  height: 100% !important;
+#tcg-card-detail > .tcg-card-hero > div {
+  width: min(1240px, calc(100% - 56px)) !important;
+  max-width: 1240px !important;
   margin: 0 auto !important;
-  padding: 42px 0 36px !important;
 }
 
-main > section:first-of-type:has(+ section img) h1 {
-  display: block !important;
-  margin: 6px 0 0 !important;
-  color: #102d23 !important;
+#tcg-card-detail .tcg-card-hero h1 {
+  margin-top: 7px !important;
   font-family: Arial Black, Arial, Helvetica, sans-serif !important;
-  font-size: clamp(3.7rem, 6vw, 5.4rem) !important;
+  font-size: clamp(3.3rem, 5.2vw, 5rem) !important;
   line-height: .9 !important;
   font-weight: 900 !important;
-  letter-spacing: -.06em !important;
-  text-align: left !important;
-  white-space: nowrap !important;
-  text-shadow: 4px 4px 0 #b8c2aa !important;
+  letter-spacing: -.065em !important;
+  color: #102d23 !important;
+  text-shadow: 4px 5px 0 #c2c9b4 !important;
 }
 
-main > section:first-of-type:has(+ section img) h1 span {
-  color: #d71920 !important;
-}
+#tcg-card-detail .tcg-card-hero h1 span { color: #d71920 !important; }
 
-main > section:first-of-type:has(+ section img) p {
+#tcg-card-detail .tcg-card-hero p {
   color: #d71920 !important;
   font-family: var(--font-geist-mono), monospace !important;
   font-size: 9px !important;
@@ -50,148 +43,291 @@ main > section:first-of-type:has(+ section img) p {
   text-transform: uppercase !important;
 }
 
-/* Detail workspace */
-main > section:nth-of-type(2):has(img) {
+/* MAIN WORKSPACE */
+#tcg-card-detail > .tcg-card-layout {
+  width: min(1240px, calc(100% - 56px)) !important;
+  max-width: 1240px !important;
+  margin: 0 auto !important;
+  padding: 46px 0 54px !important;
+  display: grid !important;
+  grid-template-columns: minmax(350px, 430px) minmax(0, 1fr) !important;
+  gap: 42px !important;
+  align-items: start !important;
+  background: transparent !important;
+}
+
+/* CARD PRESENTATION */
+#tcg-card-detail .tcg-card-visual {
+  width: min(100%, 410px) !important;
+  max-width: 410px !important;
+  margin: 0 auto !important;
+  padding: 18px 18px 14px !important;
+  border: 2px solid #71816f !important;
+  border-radius: 18px !important;
+  background: rgba(247,242,216,.72) !important;
+  box-shadow: 7px 8px 0 rgba(23,54,44,.16) !important;
+}
+
+#tcg-card-detail .tcg-card-shell {
   width: 100% !important;
   max-width: none !important;
-  margin: 0 !important;
-  padding: 42px max(32px, calc((100% - 1200px) / 2)) 54px !important;
-  display: grid !important;
-  grid-template-columns: minmax(300px, 420px) minmax(0, 1fr) !important;
-  gap: 52px !important;
-  align-items: start !important;
-  background:
-    linear-gradient(rgba(223,229,201,.90), rgba(223,229,201,.90)),
-    linear-gradient(rgba(23,54,44,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(23,54,44,.04) 1px, transparent 1px),
-    #dfe5c9 !important;
-  background-size: auto, 12px 12px, 12px 12px, auto !important;
-}
-
-main > section:nth-of-type(2):has(img) > div {
-  margin: 0 !important;
-}
-
-/* Card frame */
-main > section:nth-of-type(2):has(img) > div:first-child {
-  width: min(100%, 380px) !important;
-  max-width: 380px !important;
-  justify-self: center !important;
-}
-
-main > section:nth-of-type(2):has(img) > div:first-child > div {
   border: 4px solid #f7f2d8 !important;
-  border-radius: 14px !important;
+  border-radius: 16px !important;
   background: #fff !important;
-  box-shadow: 8px 10px 0 rgba(23,54,44,.25), 0 22px 45px rgba(23,54,44,.18) !important;
+  box-shadow: 0 14px 28px rgba(16,45,35,.28), 0 3px 0 #71816f !important;
 }
 
-main > section:nth-of-type(2):has(img) > div:first-child img {
+#tcg-card-detail .tcg-card-shell img {
   display: block !important;
   width: 100% !important;
+  max-width: none !important;
   height: auto !important;
   max-height: none !important;
+  margin: 0 !important;
   object-fit: contain !important;
 }
 
-main > section:nth-of-type(2):has(img) > div:first-child p {
+#tcg-card-detail .tcg-card-caption {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  padding: 0 2px !important;
   margin-top: 12px !important;
   color: #718078 !important;
   font-family: var(--font-geist-mono), monospace !important;
-  font-size: 8px !important;
+  font-size: 7px !important;
   font-weight: 900 !important;
-  letter-spacing: .16em !important;
+  letter-spacing: .12em !important;
   text-transform: uppercase !important;
 }
 
-/* Information dossier */
-main > section:nth-of-type(2):has(img) > div:last-child {
+#tcg-card-detail .tcg-card-caption span:first-child { color: #d71920 !important; }
+
+/* INFORMATION DOSSIER */
+#tcg-card-detail .tcg-card-info {
+  position: relative !important;
+  overflow: hidden !important;
   width: 100% !important;
-  max-width: 760px !important;
-  justify-self: start !important;
-  padding: 28px 30px 30px !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 30px 32px 32px !important;
   border: 2px solid #71816f !important;
-  border-radius: 14px !important;
+  border-radius: 16px !important;
   background: #f7f2d8 !important;
-  box-shadow: 6px 7px 0 rgba(23,54,44,.18) !important;
+  box-shadow: 7px 8px 0 rgba(23,54,44,.16) !important;
 }
 
-main > section:nth-of-type(2):has(img) > div:last-child > p:first-child {
+#tcg-card-detail .tcg-card-info::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: #17362c;
+}
+
+#tcg-card-detail .tcg-card-heading > p {
   margin: 0 !important;
   color: #d71920 !important;
   font-family: var(--font-geist-mono), monospace !important;
-  font-size: 9px !important;
+  font-size: 8px !important;
   font-weight: 900 !important;
   letter-spacing: .22em !important;
   text-transform: uppercase !important;
 }
 
-main > section:nth-of-type(2):has(img) > div:last-child h2 {
-  margin-top: 7px !important;
-  color: #102d23 !important;
-  font-family: Arial Black, Arial, Helvetica, sans-serif !important;
-  font-size: clamp(2.4rem, 4vw, 3.5rem) !important;
-  line-height: .95 !important;
-  letter-spacing: -.045em !important;
-  text-shadow: 3px 3px 0 #b8c2aa !important;
+#tcg-card-detail .tcg-card-heading h2 {
+  margin-top: 8px !important;
+  color: #123b30 !important;
+  font-family: var(--font-geist-sans), Arial, sans-serif !important;
+  font-size: clamp(2.5rem, 4vw, 4rem) !important;
+  line-height: .92 !important;
+  font-weight: 950 !important;
+  letter-spacing: -.055em !important;
+  text-transform: uppercase !important;
+  text-shadow: 3px 3px 0 #c7ccb9 !important;
 }
 
-main > section:nth-of-type(2):has(img) > div:last-child > div {
-  border-color: rgba(113,129,111,.45) !important;
+#tcg-card-detail .tcg-card-tags {
+  margin-top: 18px !important;
+  padding-top: 14px !important;
+  border-top: 1px solid #c4cbb9 !important;
 }
 
-main > section:nth-of-type(2):has(img) > div:last-child > div > div {
+#tcg-card-detail .tcg-card-tags span {
+  min-height: 29px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  box-shadow: 2px 2px 0 rgba(23,54,44,.12) !important;
+}
+
+/* DATA TILES */
+#tcg-card-detail .tcg-card-stats {
+  margin-top: 20px !important;
+  gap: 9px !important;
+}
+
+#tcg-card-detail .tcg-card-stats > div,
+#tcg-card-detail .tcg-card-footer-stats > div {
+  position: relative !important;
+  overflow: hidden !important;
+  min-height: 72px !important;
+  padding: 13px 12px 11px !important;
+  border: 1px solid #bfc8b6 !important;
+  border-radius: 8px !important;
   background: #fffceb !important;
+  box-shadow: 2px 3px 0 rgba(141,149,130,.34) !important;
 }
 
-/* Make data blocks consistent and compact. */
-main > section:nth-of-type(2):has(img) > div:last-child strong {
-  color: #17362c !important;
+#tcg-card-detail .tcg-card-stats > div::before,
+#tcg-card-detail .tcg-card-footer-stats > div::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: #28704d;
+}
+
+#tcg-card-detail .tcg-card-stats p:first-child,
+#tcg-card-detail .tcg-card-footer-stats p:first-child {
+  color: #718078 !important;
+  font-family: var(--font-geist-mono), monospace !important;
+  font-size: 7px !important;
+  font-weight: 900 !important;
+  letter-spacing: .13em !important;
+  text-transform: uppercase !important;
+}
+
+#tcg-card-detail .tcg-card-stats p:last-child,
+#tcg-card-detail .tcg-card-footer-stats p:last-child {
+  margin-top: 6px !important;
+  color: #173f32 !important;
+  font-size: 14px !important;
+  line-height: 1.25 !important;
   font-weight: 900 !important;
 }
 
-main > section:nth-of-type(2):has(img) > div:last-child a {
-  background: #102d23 !important;
-  border-color: #102d23 !important;
-  box-shadow: 3px 3px 0 #71816f !important;
+/* DESCRIPTION + ATTACKS */
+#tcg-card-detail .tcg-card-description,
+#tcg-card-detail .tcg-card-attacks {
+  margin-top: 20px !important;
+  padding-top: 18px !important;
+  border-top: 2px solid #c4cbb9 !important;
 }
 
+#tcg-card-detail .tcg-card-description > p:first-child,
+#tcg-card-detail .tcg-card-attacks > p:first-child {
+  display: flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  color: #718078 !important;
+  font-family: var(--font-geist-mono), monospace !important;
+  font-size: 8px !important;
+  font-weight: 900 !important;
+  letter-spacing: .17em !important;
+  text-transform: uppercase !important;
+}
+
+#tcg-card-detail .tcg-card-description > p:first-child::before,
+#tcg-card-detail .tcg-card-attacks > p:first-child::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: #d71920;
+  box-shadow: 2px 2px 0 #a5ac9b;
+  flex: 0 0 auto;
+}
+
+#tcg-card-detail .tcg-card-description > p:last-child {
+  margin-top: 8px !important;
+  color: #52655e !important;
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+}
+
+#tcg-card-detail .tcg-card-attacks > div > div {
+  border: 1px solid #bfc8b6 !important;
+  border-radius: 8px !important;
+  background: #fffceb !important;
+  box-shadow: 2px 3px 0 rgba(141,149,130,.28) !important;
+}
+
+#tcg-card-detail .tcg-card-footer-stats { margin-top: 20px !important; }
+
+#tcg-card-detail .tcg-back-button {
+  min-height: 45px !important;
+  margin-top: 24px !important;
+  border-color: #17362c !important;
+  background: #102d23 !important;
+  box-shadow: 3px 3px 0 #71816f !important;
+  letter-spacing: .12em !important;
+}
+
+#tcg-card-detail .tcg-back-button:hover {
+  background: #d71920 !important;
+  border-color: #9e1017 !important;
+  box-shadow: 3px 3px 0 #8e1116 !important;
+}
+
+/* DESKTOP: keep the card visible while scrolling through the dossier. */
+@media (min-width: 1024px) {
+  #tcg-card-detail .tcg-card-visual {
+    position: sticky !important;
+    top: 94px !important;
+  }
+}
+
+/* TABLET / MOBILE */
 @media (max-width: 900px) {
-  main > section:first-of-type:has(+ section img) {
-    height: auto !important;
-    min-height: 230px !important;
+  #tcg-card-detail > .tcg-card-hero {
+    min-height: 175px !important;
   }
 
-  main > section:first-of-type:has(+ section img) > div {
+  #tcg-card-detail > .tcg-card-hero > div,
+  #tcg-card-detail > .tcg-card-layout {
     width: calc(100% - 32px) !important;
-    padding: 34px 0 32px !important;
   }
 
-  main > section:first-of-type:has(+ section img) h1 {
-    font-size: clamp(3rem, 11vw, 4.5rem) !important;
-    white-space: normal !important;
-  }
-
-  main > section:nth-of-type(2):has(img) {
+  #tcg-card-detail > .tcg-card-layout {
     grid-template-columns: 1fr !important;
-    padding: 30px 18px 44px !important;
+    padding-top: 30px !important;
     gap: 34px !important;
   }
 
-  main > section:nth-of-type(2):has(img) > div:first-child,
-  main > section:nth-of-type(2):has(img) > div:last-child {
+  #tcg-card-detail .tcg-card-visual,
+  #tcg-card-detail .tcg-card-info {
+    width: min(100%, 700px) !important;
     max-width: 700px !important;
-    width: 100% !important;
     justify-self: center !important;
+  }
+
+  #tcg-card-detail .tcg-card-visual {
+    position: relative !important;
+    top: auto !important;
   }
 }
 
-@media (max-width: 520px) {
-  main > section:first-of-type:has(+ section img) h1 {
-    font-size: 2.8rem !important;
+@media (max-width: 640px) {
+  #tcg-card-detail > .tcg-card-hero > div,
+  #tcg-card-detail > .tcg-card-layout {
+    width: calc(100% - 24px) !important;
   }
 
-  main > section:nth-of-type(2):has(img) > div:last-child {
-    padding: 20px 16px 22px !important;
+  #tcg-card-detail .tcg-card-hero h1 {
+    font-size: clamp(2.8rem, 13vw, 4rem) !important;
+  }
+
+  #tcg-card-detail .tcg-card-info {
+    padding: 25px 18px 24px !important;
+  }
+
+  #tcg-card-detail .tcg-card-heading h2 {
+    font-size: 2.65rem !important;
+  }
+
+  #tcg-card-detail .tcg-card-caption {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
   }
 }
