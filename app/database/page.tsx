@@ -47,11 +47,42 @@ export default function DatabasePage() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[["1.025", "Pokémon catalogados", "POKÉDEX"], ["9", "Gerações indexadas", "REGIONS"], ["18", "Tipos disponíveis", "TYPES"], [loadingSets ? "..." : String(sets.length), "Coleções TCG", "TCG NEXUS"]].map(([value,label,code]) => <div key={code} className="rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] p-5 shadow-[5px_5px_0_rgba(23,54,44,.18)]"><p className="font-mono text-[8px] font-black uppercase tracking-[.25em] text-[#d71920]">{code}</p><p className="mt-2 text-4xl font-black tracking-tight">{value}</p><p className="mt-1 text-xs font-bold text-[#71816f]">{label}</p></div>)}
         </div>
+
         <div className="mt-5 grid gap-5 lg:grid-cols-[1.35fr_.65fr]">
           <section className="rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] p-5 shadow-[5px_5px_0_rgba(23,54,44,.15)]"><div className="flex items-end justify-between border-b border-[#71816f]/30 pb-4"><div><p className="font-mono text-[8px] font-black uppercase tracking-[.25em] text-[#28704d]">Pokédex / distribuição</p><h2 className="text-2xl font-black">Pokémon por geração.</h2></div><span className="font-mono text-[8px] font-black uppercase text-[#71816f]">1025 TOTAL</span></div><div className="mt-5 space-y-3">{generations.map(g => <div key={g.name} className="grid grid-cols-[92px_1fr_42px] items-center gap-3"><div><p className="font-mono text-[8px] font-black uppercase">{g.name}</p><p className="text-[9px] uppercase text-[#71816f]">{g.region}</p></div><div className="h-3 overflow-hidden rounded-full border border-[#b8c2aa] bg-[#e4e9d0]"><div className="h-full rounded-full bg-[#17362c]" style={{width:`${g.count/maxGeneration*100}%`}} /></div><strong className="text-right font-mono text-[9px]">{g.count}</strong></div>)}</div></section>
           <section className="rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] p-5 shadow-[5px_5px_0_rgba(23,54,44,.15)]"><p className="font-mono text-[8px] font-black uppercase tracking-[.25em] text-[#d71920]">Pokédex / taxonomy</p><h2 className="mt-1 text-2xl font-black">18 tipos.</h2><div className="mt-5 grid grid-cols-3 gap-2">{types.map(type => <span key={type} className="rounded-lg border border-[#b8c2aa] bg-[#fffceb] px-2 py-2 font-mono text-[7px] font-black uppercase tracking-wider text-[#52655e]">{type}</span>)}</div><div className="mt-6 border-t border-[#71816f]/30 pt-4"><p className="font-mono text-[8px] font-black uppercase tracking-[.2em] text-[#28704d]">Coverage</p><p className="mt-1 text-sm font-bold">Todas as regiões da Pokédex estão disponíveis para consulta.</p></div></section>
         </div>
-        <section className="mt-5 rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] p-5 shadow-[5px_5px_0_rgba(23,54,44,.15)]"><div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><p className="font-mono text-[8px] font-black uppercase tracking-[.25em] text-[#d71920]">TCG / index overview</p><h2 className="text-2xl font-black">Universo TCG.</h2></div><span className="font-mono text-[8px] font-black uppercase text-[#71816f]">{loadingSets ? "CONSULTANDO" : `${sets.length} COLEÇÕES INDEXADAS`}</span></div><div className="mt-5 grid gap-3 sm:grid-cols-3"><div className="rounded-lg border border-[#b8c2aa] bg-[#fffceb] p-4"><p className="font-mono text-[7px] font-black uppercase text-[#28704d]">Coleções</p><p className="mt-2 text-3xl font-black">{loadingSets ? "…" : sets.length}</p></div><div className="rounded-lg border border-[#b8c2aa] bg-[#fffceb] p-4"><p className="font-mono text-[7px] font-black uppercase text-[#28704d]">Cartas indexadas</p><p className="mt-2 text-3xl font-black">{loadingSets ? "…" : totalCards.toLocaleString("pt-BR")}</p></div><div className="rounded-lg border border-[#b8c2aa] bg-[#fffceb] p-4"><p className="font-mono text-[7px] font-black uppercase text-[#28704d]">Catálogo</p><Link href="/tcg" className="mt-2 inline-block text-sm font-black text-[#d71920] hover:underline">Abrir catálogo TCG ↗</Link></div></div></section>
+
+        <section className="mt-5 overflow-hidden rounded-xl border-2 border-[#71816f] bg-[#f7f2d8] shadow-[5px_5px_0_rgba(23,54,44,.15)]">
+          <div className="border-b-2 border-[#71816f]/25 px-5 py-5 md:px-6">
+            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="font-mono text-[8px] font-black uppercase tracking-[.28em] text-[#d71920]">TCG / index overview</p>
+                <h2 className="mt-1 text-3xl font-black tracking-tight">Universo TCG.</h2>
+                <p className="mt-1 max-w-xl text-sm text-[#52655e]">Uma visão rápida das coleções e cartas disponíveis no catálogo.</p>
+              </div>
+              <span className="w-fit rounded-full border border-[#b8c2aa] bg-[#fffceb] px-3 py-2 font-mono text-[8px] font-black uppercase tracking-[.16em] text-[#71816f]">{loadingSets ? "CONSULTANDO" : `${sets.length} COLEÇÕES INDEXADAS`}</span>
+            </div>
+          </div>
+          <div className="grid gap-4 p-5 md:grid-cols-3 md:p-6">
+            <div className="rounded-lg border-2 border-[#b8c2aa] bg-[#fffceb] p-5">
+              <p className="font-mono text-[7px] font-black uppercase tracking-[.22em] text-[#28704d]">01 / Coleções</p>
+              <p className="mt-3 text-4xl font-black tracking-tight">{loadingSets ? "…" : sets.length}</p>
+              <p className="mt-1 text-xs font-bold text-[#71816f]">Coleções TCG indexadas</p>
+            </div>
+            <div className="rounded-lg border-2 border-[#b8c2aa] bg-[#fffceb] p-5">
+              <p className="font-mono text-[7px] font-black uppercase tracking-[.22em] text-[#28704d]">02 / Cartas</p>
+              <p className="mt-3 text-4xl font-black tracking-tight">{loadingSets ? "…" : totalCards.toLocaleString("pt-BR")}</p>
+              <p className="mt-1 text-xs font-bold text-[#71816f]">Cartas contabilizadas</p>
+            </div>
+            <div className="flex flex-col rounded-lg border-2 border-[#d71920] bg-[#17362c] p-5 text-[#f7f2d8]">
+              <p className="font-mono text-[7px] font-black uppercase tracking-[.22em] text-[#f5c94a]">03 / Catálogo</p>
+              <p className="mt-3 text-xl font-black">Explore o TCG.</p>
+              <p className="mt-1 text-xs text-[#b8c2aa]">Pesquise coleções e cartas do universo Pokémon.</p>
+              <Link href="/tcg" className="mt-auto inline-flex w-fit rounded-full border border-[#f5c94a]/60 px-4 py-2.5 font-mono text-[8px] font-black uppercase tracking-[.15em] text-[#f5c94a] transition hover:bg-[#f5c94a] hover:text-[#17362c]">Abrir catálogo TCG ↗</Link>
+            </div>
+          </div>
+        </section>
       </section>
     </main>
   );
