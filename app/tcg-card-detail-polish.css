@@ -1,0 +1,242 @@
+/* TCG CARD DETAIL — premium workspace polish */
+
+#tcg-card-detail {
+  min-height: 100vh !important;
+  background:
+    linear-gradient(rgba(23,54,44,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23,54,44,.035) 1px, transparent 1px),
+    #dfe5c9 !important;
+  background-size: 16px 16px !important;
+}
+
+/* Give the hero a cleaner editorial composition. */
+#tcg-card-detail > .tcg-card-hero {
+  min-height: 205px !important;
+  padding: 0 !important;
+}
+
+#tcg-card-detail > .tcg-card-hero > div {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  min-height: 205px !important;
+  padding: 30px 0 26px !important;
+}
+
+#tcg-card-detail .tcg-card-hero h1 {
+  margin: 6px 0 0 !important;
+  font-size: clamp(3rem, 5.5vw, 5.2rem) !important;
+}
+
+/* Main workspace: stronger two-column rhythm and more breathing room. */
+#tcg-card-detail > .tcg-card-layout {
+  display: grid !important;
+  grid-template-columns: minmax(360px, 440px) minmax(0, 760px) !important;
+  justify-content: center !important;
+  align-items: start !important;
+  gap: 52px !important;
+  width: min(1280px, calc(100% - 48px)) !important;
+  max-width: 1280px !important;
+  padding: 48px 0 64px !important;
+}
+
+/* Left side: make the actual card the visual anchor. */
+#tcg-card-detail .tcg-card-visual {
+  width: 100% !important;
+  max-width: 400px !important;
+  margin: 0 auto !important;
+  padding: 14px 14px 12px !important;
+  border: 2px solid #71816f !important;
+  border-radius: 18px !important;
+  background: rgba(247,242,216,.84) !important;
+  box-shadow: 8px 9px 0 rgba(23,54,44,.18), 0 18px 35px rgba(23,54,44,.10) !important;
+}
+
+#tcg-card-detail .tcg-card-shell {
+  width: 100% !important;
+  max-width: none !important;
+  border: 4px solid #f7f2d8 !important;
+  border-radius: 15px !important;
+  overflow: hidden !important;
+  background: #fff !important;
+  box-shadow: 0 12px 26px rgba(16,45,35,.25), 0 3px 0 #71816f !important;
+}
+
+#tcg-card-detail .tcg-card-shell img {
+  width: 100% !important;
+  height: auto !important;
+  max-width: none !important;
+  max-height: none !important;
+  display: block !important;
+  object-fit: contain !important;
+}
+
+#tcg-card-detail .tcg-card-caption {
+  min-height: 18px !important;
+  margin-top: 10px !important;
+}
+
+/* Right side: turn the dossier into the main information surface. */
+#tcg-card-detail .tcg-card-info {
+  width: 100% !important;
+  max-width: 760px !important;
+  margin: 0 !important;
+  padding: 30px 30px 28px !important;
+  border: 2px solid #71816f !important;
+  border-radius: 16px !important;
+  background: #f7f2d8 !important;
+  box-shadow: 8px 9px 0 rgba(23,54,44,.18) !important;
+}
+
+#tcg-card-detail .tcg-card-info::after {
+  content: "TCG / CARD RECORD";
+  position: absolute;
+  right: 26px;
+  bottom: 12px;
+  color: #718078;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: .14em;
+  opacity: .65;
+}
+
+#tcg-card-detail .tcg-card-heading h2 {
+  margin-top: 7px !important;
+  font-size: clamp(2.7rem, 4vw, 4.1rem) !important;
+  line-height: .9 !important;
+  letter-spacing: -.055em !important;
+}
+
+/* Tags read like official card metadata. */
+#tcg-card-detail .tcg-card-tags {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-top: 17px !important;
+  padding-top: 14px !important;
+}
+
+#tcg-card-detail .tcg-card-tags span {
+  min-height: 30px !important;
+  padding: 6px 12px !important;
+  border-radius: 999px !important;
+}
+
+/* Stats get equal visual weight. */
+#tcg-card-detail .tcg-card-stats {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  margin-top: 18px !important;
+}
+
+#tcg-card-detail .tcg-card-stats > div {
+  min-width: 0 !important;
+  min-height: 76px !important;
+  padding: 14px 12px 12px !important;
+}
+
+#tcg-card-detail .tcg-card-stats p:last-child {
+  overflow-wrap: anywhere !important;
+}
+
+/* Attack cards feel like individual records instead of plain text boxes. */
+#tcg-card-detail .tcg-card-attacks > div > div {
+  position: relative !important;
+  padding: 16px !important;
+  border-radius: 9px !important;
+}
+
+#tcg-card-detail .tcg-card-attacks > div > div strong {
+  font-size: 15px !important;
+}
+
+#tcg-card-detail .tcg-card-attacks > div > div span {
+  min-width: 46px !important;
+  text-align: center !important;
+  border: 1px solid #bfc8b6 !important;
+  border-radius: 999px !important;
+  padding: 6px 8px !important;
+  background: #f7f2d8 !important;
+}
+
+/* Footer stats become a clean technical strip. */
+#tcg-card-detail .tcg-card-footer-stats {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  margin-top: 18px !important;
+}
+
+#tcg-card-detail .tcg-card-footer-stats > div {
+  min-height: 76px !important;
+}
+
+#tcg-card-detail .tcg-back-button {
+  margin-top: 22px !important;
+  min-height: 46px !important;
+  padding: 12px 18px !important;
+}
+
+@media (max-width: 1050px) and (min-width: 901px) {
+  #tcg-card-detail > .tcg-card-layout {
+    grid-template-columns: minmax(310px, 390px) minmax(0, 1fr) !important;
+    gap: 30px !important;
+    width: min(100% - 32px, 1000px) !important;
+  }
+
+  #tcg-card-detail .tcg-card-info {
+    padding: 26px 24px !important;
+  }
+
+  #tcg-card-detail .tcg-card-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  #tcg-card-detail > .tcg-card-layout {
+    grid-template-columns: 1fr !important;
+    width: calc(100% - 28px) !important;
+    gap: 34px !important;
+    padding: 32px 0 48px !important;
+  }
+
+  #tcg-card-detail .tcg-card-visual,
+  #tcg-card-detail .tcg-card-info {
+    width: 100% !important;
+    max-width: 700px !important;
+    justify-self: center !important;
+  }
+
+  #tcg-card-detail .tcg-card-visual {
+    max-width: 390px !important;
+  }
+
+  #tcg-card-detail .tcg-card-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 560px) {
+  #tcg-card-detail > .tcg-card-hero > div {
+    min-height: 180px !important;
+    width: calc(100% - 24px) !important;
+  }
+
+  #tcg-card-detail > .tcg-card-layout {
+    width: calc(100% - 20px) !important;
+  }
+
+  #tcg-card-detail .tcg-card-info {
+    padding: 24px 16px 26px !important;
+  }
+
+  #tcg-card-detail .tcg-card-stats,
+  #tcg-card-detail .tcg-card-footer-stats {
+    grid-template-columns: 1fr !important;
+  }
+
+  #tcg-card-detail .tcg-card-info::after {
+    display: none !important;
+  }
+}
