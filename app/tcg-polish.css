@@ -1,10 +1,13 @@
 /* TCG catalog visual polish — compact, balanced hero. */
 
 @media (min-width: 1024px) {
+  /* Keep the TCG hero compact so the catalog starts sooner. */
   main > section:first-of-type {
-    min-height: 0 !important;
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
+    min-height: 300px !important;
+    height: 300px !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+    box-sizing: border-box !important;
   }
 
   main > section:first-of-type > div {
@@ -153,6 +156,23 @@ html body main > section:nth-of-type(2) > div:first-child > div:nth-child(2) > d
 }
 
 @media (max-width: 900px) {
+  main > section:first-of-type {
+    height: auto !important;
+  }
+
+  main > section:first-of-type > div > div:first-child {
+    max-width: none !important;
+  }
+
+  main > section:first-of-type > div {
+    flex-direction: column !important;
+  }
+
+  main > section:first-of-type > div > div:last-child {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
   html body main > section:nth-of-type(2) > div:first-child > div:first-child {
     grid-template-columns: 1fr !important;
   }
