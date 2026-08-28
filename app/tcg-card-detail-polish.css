@@ -1,20 +1,35 @@
-/* TCG CARD DETAIL — final visual pass */
+/* TCG CARD DETAIL — card presentation refinement */
+
+/* Give the physical card the visual weight of the reference layout. */
+#tcg-card-detail > .tcg-card-layout {
+  grid-template-columns: minmax(460px, 520px) minmax(0, 1fr) !important;
+  gap: 34px !important;
+  align-items: start !important;
+}
 
 #tcg-card-detail .tcg-card-visual {
   width: 100% !important;
-  max-width: 390px !important;
-  padding: 14px !important;
+  max-width: 520px !important;
+  margin: 0 auto !important;
+  padding: 16px !important;
+  border: 2px solid #71816f !important;
+  border-radius: 18px !important;
+  background: rgba(247,242,216,.78) !important;
+  box-shadow: 8px 9px 0 rgba(23,54,44,.18) !important;
 }
 
-/* The card itself must occupy the entire presentation frame. */
 #tcg-card-detail .tcg-card-shell {
   display: block !important;
   width: 100% !important;
-  max-width: 100% !important;
-  padding: 0 !important;
-  line-height: 0 !important;
+  max-width: none !important;
+  height: auto !important;
   aspect-ratio: 2.5 / 3.5 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 4px solid #f7f2d8 !important;
+  border-radius: 18px !important;
   background: #fff !important;
+  box-shadow: 0 16px 30px rgba(16,45,35,.28), 0 3px 0 #71816f !important;
 }
 
 #tcg-card-detail .tcg-card-shell > img {
@@ -27,26 +42,36 @@
   max-height: none !important;
   margin: 0 !important;
   padding: 0 !important;
-  object-fit: fill !important;
-}
-
-#tcg-card-detail .tcg-card-shell > div {
-  position: absolute !important;
-  inset: 0 !important;
+  object-fit: cover !important;
+  object-position: center !important;
 }
 
 #tcg-card-detail .tcg-card-caption {
   width: 100% !important;
-  margin-top: 10px !important;
+  margin-top: 12px !important;
+  padding: 0 2px !important;
 }
 
-/* Keep the dossier dense, premium and aligned. */
+/* Make the image area dominant, like a real card display. */
+#tcg-card-detail .tcg-card-visual::before {
+  content: "TCG CARD // VERIFIED";
+  display: block !important;
+  margin: 0 0 10px 2px !important;
+  color: #28704d !important;
+  font-family: var(--font-geist-mono), monospace !important;
+  font-size: 8px !important;
+  font-weight: 900 !important;
+  letter-spacing: .18em !important;
+}
+
+/* Keep the dossier slightly narrower so both columns breathe. */
 #tcg-card-detail .tcg-card-info {
+  min-width: 0 !important;
   padding: 30px 30px 28px !important;
 }
 
 #tcg-card-detail .tcg-card-heading h2 {
-  font-size: clamp(2.6rem, 4vw, 4rem) !important;
+  font-size: clamp(2.7rem, 4vw, 4rem) !important;
   line-height: .9 !important;
 }
 
@@ -59,8 +84,25 @@
   min-height: 96px !important;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
+  #tcg-card-detail > .tcg-card-layout {
+    grid-template-columns: minmax(400px, 480px) minmax(0, 1fr) !important;
+    gap: 26px !important;
+  }
+
   #tcg-card-detail .tcg-card-visual {
-    max-width: 390px !important;
+    max-width: 480px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  #tcg-card-detail > .tcg-card-layout {
+    grid-template-columns: 1fr !important;
+    gap: 34px !important;
+  }
+
+  #tcg-card-detail .tcg-card-visual {
+    width: min(100%, 520px) !important;
+    max-width: 520px !important;
   }
 }
