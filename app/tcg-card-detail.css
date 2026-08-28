@@ -1,0 +1,292 @@
+/* TCG CARD DETAIL — visual refinement */
+#tcg-card-detail {
+  background:
+    linear-gradient(rgba(23,54,44,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23,54,44,.035) 1px, transparent 1px),
+    #dfe5c9 !important;
+  background-size: 16px 16px !important;
+}
+
+#tcg-card-detail .tcg-card-hero {
+  min-height: 205px !important;
+  display: flex !important;
+  align-items: center !important;
+  background:
+    linear-gradient(180deg, rgba(247,242,216,.98), rgba(231,237,201,.98)),
+    #e7edc9 !important;
+  border-bottom: 4px solid #17362c !important;
+}
+
+#tcg-card-detail .tcg-card-hero > div {
+  width: min(1240px, calc(100% - 56px)) !important;
+  max-width: 1240px !important;
+}
+
+#tcg-card-detail .tcg-card-hero h1 {
+  font-family: Arial Black, Arial, Helvetica, sans-serif !important;
+  font-size: clamp(3.3rem, 5.2vw, 5rem) !important;
+  line-height: .9 !important;
+  letter-spacing: -.065em !important;
+  text-shadow: 4px 5px 0 #c2c9b4 !important;
+}
+
+#tcg-card-detail .tcg-card-layout {
+  width: min(1240px, calc(100% - 56px)) !important;
+  max-width: 1240px !important;
+  padding-top: 46px !important;
+  padding-bottom: 54px !important;
+  align-items: start !important;
+}
+
+/* Card display */
+#tcg-card-detail .tcg-card-visual {
+  width: min(100%, 410px) !important;
+  max-width: 410px !important;
+  padding: 18px 18px 14px !important;
+  border: 2px solid #71816f !important;
+  border-radius: 18px !important;
+  background: rgba(247,242,216,.72) !important;
+  box-shadow: 7px 8px 0 rgba(23,54,44,.16) !important;
+}
+
+#tcg-card-detail .tcg-card-shell {
+  width: 100% !important;
+  border: 4px solid #f7f2d8 !important;
+  border-radius: 16px !important;
+  background: #fff !important;
+  box-shadow: 0 14px 28px rgba(16,45,35,.28), 0 3px 0 #71816f !important;
+}
+
+#tcg-card-detail .tcg-card-shell img {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  height: auto !important;
+  aspect-ratio: 2.5 / 3.5 !important;
+  object-fit: contain !important;
+}
+
+#tcg-card-detail .tcg-card-caption {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  padding: 0 2px !important;
+  color: #718078 !important;
+  font-family: var(--font-geist-mono), monospace !important;
+  font-size: 7px !important;
+  font-weight: 900 !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase !important;
+}
+
+#tcg-card-detail .tcg-card-caption span:first-child {
+  color: #d71920 !important;
+}
+
+/* Information dossier */
+#tcg-card-detail .tcg-card-info {
+  position: relative !important;
+  overflow: hidden !important;
+  padding: 30px 32px 32px !important;
+  border: 2px solid #71816f !important;
+  border-radius: 16px !important;
+  background: #f7f2d8 !important;
+  box-shadow: 7px 8px 0 rgba(23,54,44,.16) !important;
+}
+
+#tcg-card-detail .tcg-card-info::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: #17362c;
+}
+
+#tcg-card-detail .tcg-card-heading h2 {
+  margin-top: 8px !important;
+  color: #123b30 !important;
+  font-family: var(--font-geist-sans), Arial, sans-serif !important;
+  font-size: clamp(2.5rem, 4vw, 4rem) !important;
+  font-weight: 950 !important;
+  line-height: .92 !important;
+  letter-spacing: -.055em !important;
+  text-transform: uppercase !important;
+  text-shadow: 3px 3px 0 #c7ccb9 !important;
+}
+
+#tcg-card-detail .tcg-card-heading > p {
+  margin: 0 !important;
+  color: #d71920 !important;
+  font-family: var(--font-geist-mono), monospace !important;
+  font-size: 8px !important;
+  font-weight: 900 !important;
+  letter-spacing: .22em !important;
+  text-transform: uppercase !important;
+}
+
+#tcg-card-detail .tcg-card-tags {
+  margin-top: 18px !important;
+  padding-top: 14px !important;
+  border-top: 1px solid #c4cbb9 !important;
+}
+
+#tcg-card-detail .tcg-card-tags span {
+  min-height: 29px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  box-shadow: 2px 2px 0 rgba(23,54,44,.12) !important;
+}
+
+#tcg-card-detail .tcg-card-stats {
+  margin-top: 20px !important;
+  gap: 9px !important;
+}
+
+#tcg-card-detail .tcg-card-stats > div,
+#tcg-card-detail .tcg-card-footer-stats > div {
+  position: relative !important;
+  overflow: hidden !important;
+  min-height: 72px !important;
+  padding: 13px 12px 11px !important;
+  border: 1px solid #bfc8b6 !important;
+  border-radius: 8px !important;
+  background: #fffceb !important;
+  box-shadow: 2px 3px 0 rgba(141,149,130,.34) !important;
+}
+
+#tcg-card-detail .tcg-card-stats > div::before,
+#tcg-card-detail .tcg-card-footer-stats > div::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: #28704d;
+}
+
+#tcg-card-detail .tcg-card-stats p:first-child,
+#tcg-card-detail .tcg-card-footer-stats p:first-child {
+  color: #718078 !important;
+  font-family: var(--font-geist-mono), monospace !important;
+  font-size: 7px !important;
+  font-weight: 900 !important;
+  letter-spacing: .13em !important;
+  text-transform: uppercase !important;
+}
+
+#tcg-card-detail .tcg-card-stats p:last-child,
+#tcg-card-detail .tcg-card-footer-stats p:last-child {
+  margin-top: 6px !important;
+  color: #173f32 !important;
+  font-size: 14px !important;
+  line-height: 1.25 !important;
+  font-weight: 900 !important;
+}
+
+#tcg-card-detail .tcg-card-description,
+#tcg-card-detail .tcg-card-attacks {
+  margin-top: 20px !important;
+  padding-top: 18px !important;
+  border-top: 2px solid #c4cbb9 !important;
+}
+
+#tcg-card-detail .tcg-card-description > p:first-child,
+#tcg-card-detail .tcg-card-attacks > p:first-child {
+  display: flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  color: #718078 !important;
+  font-family: var(--font-geist-mono), monospace !important;
+  font-size: 8px !important;
+  font-weight: 900 !important;
+  letter-spacing: .17em !important;
+  text-transform: uppercase !important;
+}
+
+#tcg-card-detail .tcg-card-description > p:first-child::before,
+#tcg-card-detail .tcg-card-attacks > p:first-child::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: #d71920;
+  box-shadow: 2px 2px 0 #a5ac9b;
+}
+
+#tcg-card-detail .tcg-card-description > p:last-child {
+  margin-top: 8px !important;
+  color: #52655e !important;
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+}
+
+#tcg-card-detail .tcg-card-attacks > div > div {
+  border: 1px solid #bfc8b6 !important;
+  border-radius: 8px !important;
+  background: #fffceb !important;
+  box-shadow: 2px 3px 0 rgba(141,149,130,.28) !important;
+}
+
+#tcg-card-detail .tcg-card-footer-stats {
+  margin-top: 20px !important;
+}
+
+#tcg-card-detail .tcg-back-button {
+  min-height: 45px !important;
+  margin-top: 24px !important;
+  border-color: #17362c !important;
+  background: #102d23 !important;
+  box-shadow: 3px 3px 0 #71816f !important;
+  letter-spacing: .12em !important;
+}
+
+#tcg-card-detail .tcg-back-button:hover {
+  background: #d71920 !important;
+  border-color: #9e1017 !important;
+  box-shadow: 3px 3px 0 #8e1116 !important;
+}
+
+@media (min-width: 1024px) {
+  #tcg-card-detail .tcg-card-layout {
+    grid-template-columns: minmax(350px, 430px) minmax(0, 1fr) !important;
+    gap: 42px !important;
+  }
+
+  #tcg-card-detail .tcg-card-visual {
+    position: sticky !important;
+    top: 94px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  #tcg-card-detail .tcg-card-hero { min-height: 175px !important; }
+  #tcg-card-detail .tcg-card-layout {
+    width: calc(100% - 32px) !important;
+    padding-top: 30px !important;
+  }
+  #tcg-card-detail .tcg-card-visual {
+    width: min(100%, 390px) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  #tcg-card-detail .tcg-card-hero > div { width: calc(100% - 28px) !important; }
+  #tcg-card-detail .tcg-card-hero h1 {
+    font-size: clamp(2.8rem, 13vw, 4rem) !important;
+  }
+  #tcg-card-detail .tcg-card-layout {
+    width: calc(100% - 24px) !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  #tcg-card-detail .tcg-card-info {
+    padding: 25px 18px 24px !important;
+  }
+  #tcg-card-detail .tcg-card-heading h2 {
+    font-size: 2.65rem !important;
+  }
+  #tcg-card-detail .tcg-card-caption {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+  }
+}
